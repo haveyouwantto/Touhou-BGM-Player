@@ -16,7 +16,7 @@ public class PCMPlayer {
 	private SourceDataLine sdl;
 	
 	
-	public void play(String thbgm, Music music, boolean loop) {
+	public void play(String thbgm, Music music, boolean loop) throws FileNotFoundException {
 		try {
 
 			// 打开 thbgm.dat
@@ -38,10 +38,10 @@ public class PCMPlayer {
 			sdl.open(af);
 			sdl.start();
 
-			// 播放前奏
+			// 播放第一遍
 			raf.seek(music.preludePos);
-			byte[] b = new byte[music.preludeLength];
-			raf.read(b, 0, music.preludeLength);
+			byte[] b = new byte[music.getTotalLength()];
+			raf.read(b, 0, music.getTotalLength());
 			sdl.write(b, 0, b.length);
 
 			// 循环
@@ -55,9 +55,6 @@ public class PCMPlayer {
 			raf.close();
 
 		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
