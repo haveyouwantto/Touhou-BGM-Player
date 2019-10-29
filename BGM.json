@@ -1,0 +1,462 @@
+{
+    "date": [
+        2019,
+        10,
+        29
+    ],
+    "games": [
+        {
+            "no": "TH06",
+            "title": "東方紅魔郷 ～ the Embodiment of Scarlet Devil",
+            "format": 0,
+            "music": [
+                {
+                    "title": "赤より紅い夢",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 1058416,
+                    "loopPos": 1058460,
+                    "loopLength": 9387000
+                },
+                {
+                    "title": "ほおずきみたいに紅い魂",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 3663316,
+                    "loopPos": 3663360,
+                    "loopLength": 11677736
+                },
+                {
+                    "title": "妖魔夜行",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 507044,
+                    "loopPos": 507088,
+                    "loopLength": 9282520
+                },
+                {
+                    "title": "ルーネイトエルフ",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 1215644,
+                    "loopPos": 1215688,
+                    "loopLength": 14221268
+                },
+                {
+                    "title": "おてんば恋娘",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 1021504,
+                    "loopPos": 1021548,
+                    "loopLength": 14774564
+                },
+                {
+                    "title": "上海紅茶館　～ Chinese Tea",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 7936456,
+                    "loopPos": 7936500,
+                    "loopLength": 16730644
+                },
+                {
+                    "title": "明治十七年の上海アリス",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 4152112,
+                    "loopPos": 4152156,
+                    "loopLength": 14410476
+                },
+                {
+                    "title": "ヴワル魔法図書館",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 731160,
+                    "loopPos": 731204,
+                    "loopLength": 18810388
+                },
+                {
+                    "title": "ラクトガール　～ 少女密室",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 5183996,
+                    "loopPos": 5184040,
+                    "loopLength": 15621500
+                },
+                {
+                    "title": "メイドと血の懐中時計",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 3620476,
+                    "loopPos": 3620520,
+                    "loopLength": 25117468
+                },
+                {
+                    "title": "月時計　～ ルナ・ダイアル",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 957720,
+                    "loopPos": 957764,
+                    "loopLength": 13919348
+                },
+                {
+                    "title": "ツェペシュの幼き末裔",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 663936,
+                    "loopPos": 663980,
+                    "loopLength": 9770464
+                },
+                {
+                    "title": "亡き王女の為のセプテット",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 5856628,
+                    "loopPos": 5856672,
+                    "loopLength": 18984460
+                },
+                {
+                    "title": "魔法少女達の百年祭",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 6324824,
+                    "loopPos": 6324868,
+                    "loopLength": 20719308
+                },
+                {
+                    "title": "U.N.オーエンは彼女なのか？",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 788464,
+                    "loopPos": 788508,
+                    "loopLength": 21516196
+                },
+                {
+                    "title": "紅より儚い永遠",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 1600832,
+                    "loopPos": 1600876,
+                    "loopLength": 8310056
+                },
+                {
+                    "title": "紅楼　～ Eastern Dream...",
+                    "sampleRate": 44100,
+                    "preludePos": 44,
+                    "preludeLength": 957984,
+                    "loopPos": 958028,
+                    "loopLength": 17720376
+                }
+            ]
+        },
+        {
+            "no": "TH07",
+            "title": "東方妖々夢 ～ Perfect Cherry Blossom",
+            "format": 1,
+            "music": [
+                {
+                    "title": "妖々夢　～ Snow or Cherry Petal",
+                    "sampleRate": 44100,
+                    "preludePos": 16,
+                    "preludeLength": 1217280,
+                    "loopPos": 1217296,
+                    "loopLength": 15328288
+                },
+                {
+                    "title": "無何有の郷　～ Deep Mountain",
+                    "sampleRate": 44100,
+                    "preludePos": 16545584,
+                    "preludeLength": 2858880,
+                    "loopPos": 19404464,
+                    "loopLength": 12640384
+                },
+                {
+                    "title": "クリスタライズシルバー",
+                    "sampleRate": 44100,
+                    "preludePos": 32044848,
+                    "preludeLength": 1912480,
+                    "loopPos": 33957328,
+                    "loopLength": 10375516
+                },
+                {
+                    "title": "遠野幻想物語",
+                    "sampleRate": 44100,
+                    "preludePos": 44332844,
+                    "preludeLength": 4222040,
+                    "loopPos": 48554884,
+                    "loopLength": 20418100
+                },
+                {
+                    "title": "ティアオイエツォン(withered leaf)",
+                    "sampleRate": 44100,
+                    "preludePos": 68972984,
+                    "preludeLength": 646696,
+                    "loopPos": 69619680,
+                    "loopLength": 9279440
+                },
+                {
+                    "title": "ブクレシュティの人形師",
+                    "sampleRate": 44100,
+                    "preludePos": 78899120,
+                    "preludeLength": 1404416,
+                    "loopPos": 80303536,
+                    "loopLength": 20614144
+                },
+                {
+                    "title": "人形裁判　～ 人の形弄びし少女",
+                    "sampleRate": 44100,
+                    "preludePos": 100917680,
+                    "preludeLength": 5019648,
+                    "loopPos": 105937328,
+                    "loopLength": 26667008
+                },
+                {
+                    "title": "天空の花の都",
+                    "sampleRate": 44100,
+                    "preludePos": 132604336,
+                    "preludeLength": 1433984,
+                    "loopPos": 134038320,
+                    "loopLength": 41759360
+                },
+                {
+                    "title": "幽霊楽団　～ Phantom Ensemble",
+                    "sampleRate": 44100,
+                    "preludePos": 175797680,
+                    "preludeLength": 746240,
+                    "loopPos": 176543920,
+                    "loopLength": 24153088
+                },
+                {
+                    "title": "東方妖々夢　～ Ancient Temple",
+                    "sampleRate": 44100,
+                    "preludePos": 200697008,
+                    "preludeLength": 1725440,
+                    "loopPos": 202422448,
+                    "loopLength": 24528896
+                },
+                {
+                    "title": "広有射怪鳥事　～ Till When？",
+                    "sampleRate": 44100,
+                    "preludePos": 226951344,
+                    "preludeLength": 1186816,
+                    "loopPos": 228138160,
+                    "loopLength": 18571264
+                },
+                {
+                    "title": "アルティメットトゥルース",
+                    "sampleRate": 44100,
+                    "preludePos": 246709424,
+                    "preludeLength": 493568,
+                    "loopPos": 247202992,
+                    "loopLength": 9645056
+                },
+                {
+                    "title": "幽雅に咲かせ、墨染の桜　～ Border of Life",
+                    "sampleRate": 44100,
+                    "preludePos": 256848048,
+                    "preludeLength": 3055104,
+                    "loopPos": 259903152,
+                    "loopLength": 22357504
+                },
+                {
+                    "title": "ボーダーオブライフ",
+                    "sampleRate": 44100,
+                    "preludePos": 282260656,
+                    "preludeLength": 11650048,
+                    "loopPos": 293910704,
+                    "loopLength": 4458752
+                },
+                {
+                    "title": "妖々跋扈",
+                    "sampleRate": 44100,
+                    "preludePos": 326951600,
+                    "preludeLength": 1018880,
+                    "loopPos": 327970480,
+                    "loopLength": 24154880
+                },
+                {
+                    "title": "少女幻葬　～ Necro-Fantasy",
+                    "sampleRate": 44100,
+                    "preludePos": 352125360,
+                    "preludeLength": 257792,
+                    "loopPos": 352383152,
+                    "loopLength": 37435776
+                },
+                {
+                    "title": "妖々跋扈　～ Who done it!",
+                    "sampleRate": 44100,
+                    "preludePos": 389818928,
+                    "preludeLength": 1018880,
+                    "loopPos": 390837808,
+                    "loopLength": 24154880
+                },
+                {
+                    "title": "ネクロファンタジア",
+                    "sampleRate": 44100,
+                    "preludePos": 414992688,
+                    "preludeLength": 349440,
+                    "loopPos": 415342128,
+                    "loopLength": 29174528
+                },
+                {
+                    "title": "春風の夢",
+                    "sampleRate": 44100,
+                    "preludePos": 298369456,
+                    "preludeLength": 827648,
+                    "loopPos": 299197104,
+                    "loopLength": 10584064
+                },
+                {
+                    "title": "さくらさくら　～ Japanize Dream...",
+                    "sampleRate": 44100,
+                    "preludePos": 309781168,
+                    "preludeLength": 5245696,
+                    "loopPos": 315026864,
+                    "loopLength": 11924736
+                }
+            ]
+        },
+        {
+            "no": "TH11",
+            "title": "東方地霊殿 ～ Subterranean Animism",
+            "format": 1,
+            "music": [
+                {
+                    "title": "地霊達の起床",
+                    "sampleRate": 44100,
+                    "preludePos": 16,
+                    "preludeLength": 343552,
+                    "loopPos": 343568,
+                    "loopLength": 13401984
+                },
+                {
+                    "title": "暗闇の風穴",
+                    "sampleRate": 44100,
+                    "preludePos": 13745552,
+                    "preludeLength": 413056,
+                    "loopPos": 14158608,
+                    "loopLength": 17067008
+                },
+                {
+                    "title": "封じられた妖怪　～ Lost Place",
+                    "sampleRate": 44100,
+                    "preludePos": 31225616,
+                    "preludeLength": 815104,
+                    "loopPos": 32040720,
+                    "loopLength": 8980608
+                },
+                {
+                    "title": "渡る者の途絶えた橋",
+                    "sampleRate": 44100,
+                    "preludePos": 41021328,
+                    "preludeLength": 670208,
+                    "loopPos": 41691536,
+                    "loopLength": 19007488
+                },
+                {
+                    "title": "緑眼のジェラシー",
+                    "sampleRate": 44100,
+                    "preludePos": 60699024,
+                    "preludeLength": 591872,
+                    "loopPos": 61290896,
+                    "loopLength": 18933248
+                },
+                {
+                    "title": "旧地獄街道を行く",
+                    "sampleRate": 44100,
+                    "preludePos": 80224144,
+                    "preludeLength": 586368,
+                    "loopPos": 80810512,
+                    "loopLength": 19945472
+                },
+                {
+                    "title": "華のさかづき大江山",
+                    "sampleRate": 44100,
+                    "preludePos": 100755984,
+                    "preludeLength": 1054464,
+                    "loopPos": 101810448,
+                    "loopLength": 18027776
+                },
+                {
+                    "title": "ハートフェルトファンシー",
+                    "sampleRate": 44100,
+                    "preludePos": 119838224,
+                    "preludeLength": 1431040,
+                    "loopPos": 121269264,
+                    "loopLength": 23286016
+                },
+                {
+                    "title": "少女さとり　～ 3rd eye",
+                    "sampleRate": 44100,
+                    "preludePos": 144555280,
+                    "preludeLength": 638464,
+                    "loopPos": 145193744,
+                    "loopLength": 21400192
+                },
+                {
+                    "title": "廃獄ララバイ",
+                    "sampleRate": 44100,
+                    "preludePos": 166593936,
+                    "preludeLength": 708008,
+                    "loopPos": 167301944,
+                    "loopLength": 31154896
+                },
+                {
+                    "title": "死体旅行　～ Be of good cheer!",
+                    "sampleRate": 44100,
+                    "preludePos": 198456840,
+                    "preludeLength": 542208,
+                    "loopPos": 198999048,
+                    "loopLength": 17354496
+                },
+                {
+                    "title": "業火マントル",
+                    "sampleRate": 44100,
+                    "preludePos": 216353544,
+                    "preludeLength": 616448,
+                    "loopPos": 216969992,
+                    "loopLength": 20002816
+                },
+                {
+                    "title": "霊知の太陽信仰　～ Nuclear Fusion",
+                    "sampleRate": 44100,
+                    "preludePos": 236972808,
+                    "preludeLength": 633088,
+                    "loopPos": 237605896,
+                    "loopLength": 29304064
+                },
+                {
+                    "title": "ラストリモート",
+                    "sampleRate": 44100,
+                    "preludePos": 266909960,
+                    "preludeLength": 1103744,
+                    "loopPos": 268013704,
+                    "loopLength": 32584960
+                },
+                {
+                    "title": "ハルトマンの妖怪少女",
+                    "sampleRate": 44100,
+                    "preludePos": 300598664,
+                    "preludeLength": 4111616,
+                    "loopPos": 304710280,
+                    "loopLength": 23098624
+                },
+                {
+                    "title": "地霊達の帰宅",
+                    "sampleRate": 44100,
+                    "preludePos": 327808904,
+                    "preludeLength": 781824,
+                    "loopPos": 328590728,
+                    "loopLength": 11988480
+                },
+                {
+                    "title": "エネルギー黎明　～ Future Dream...",
+                    "sampleRate": 44100,
+                    "preludePos": 340579208,
+                    "preludeLength": 5381088,
+                    "loopPos": 345960296,
+                    "loopLength": 9540576
+                }
+            ]
+        }
+    ]
+}
