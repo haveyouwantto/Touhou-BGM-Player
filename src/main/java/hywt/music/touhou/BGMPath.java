@@ -6,7 +6,7 @@ import java.io.IOException;
 import com.google.gson.Gson;
 
 public class BGMPath {
-	public String[] path;
+	public DataPath[] path;
 	public static BGMPath fromJSON(){
 		Gson g = new Gson();
 		String json;

@@ -49,7 +49,7 @@ public class GUI {
 	 */
 	private void initialize() {
 		frmTouhouBgmPlayer = new JFrame();
-		frmTouhouBgmPlayer.setTitle("Touhou BGM Player");
+		frmTouhouBgmPlayer.setTitle(Messages.getString("GUI.title")); //$NON-NLS-1$
 		frmTouhouBgmPlayer.setBounds(100, 100, 450, 300);
 		frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -88,14 +88,14 @@ public class GUI {
 		playbackControlPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.add(playbackControlPanel);
 
-		JButton btnStop = new JButton("O");
+		JButton btnStop = new JButton("O"); //$NON-NLS-1$
 		playbackControlPanel.add(btnStop);
 
 		btnStop.setEnabled(false);
-		JButton btnPlay = new JButton(">");
+		JButton btnPlay = new JButton(">"); //$NON-NLS-1$
 		playbackControlPanel.add(btnPlay);
 
-		JToggleButton tglbtnLoop = new JToggleButton("L");
+		JToggleButton tglbtnLoop = new JToggleButton("L"); //$NON-NLS-1$
 		playbackControlPanel.add(tglbtnLoop);
 		tglbtnLoop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -110,9 +110,9 @@ public class GUI {
 					@Override
 					public void run() {
 						try {
-							pcmp.play(BGMPath.fromJSON().path[gameId], (Music) musicComboBox.getSelectedItem(), tglbtnLoop.isSelected());
+							pcmp.play(BGMPath.fromJSON().path[gameId].path, (Music) musicComboBox.getSelectedItem(), tglbtnLoop.isSelected());
 						} catch (FileNotFoundException e) {
-							not.showError("文件未找到。请检查BGM路径设置。");
+							not.showError(Messages.getString("GUI.file_not_found_error")); //$NON-NLS-1$
 							e.printStackTrace();
 						}
 					}
