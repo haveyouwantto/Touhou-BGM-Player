@@ -2296,9 +2296,9 @@
                     "title": "不思議なお祓い棒",
                     "sampleRate": 44100,
                     "preludePos": 16,
-                    "preludeLength": 2862560,
-                    "loopPos": 20784040,
-                    "loopLength": 17921480
+                    "preludeLength": 2862544,
+                    "loopPos": 2862560,
+                    "loopLength": 17924496
                 },
                 {
                     "title": "ミストレイク",
@@ -2306,7 +2306,7 @@
                     "preludePos": 20787056,
                     "preludeLength": 1431744,
                     "loopPos": 22218800,
-                    "loopLength": 14893840
+                    "loopLength": 14897216
                 },
                 {
                     "title": "秘境のマーメイド",
@@ -2353,7 +2353,7 @@
                     "sampleRate": 44100,
                     "preludePos": 134221008,
                     "preludeLength": 7280624,
-                    "loopPos": 166849312,
+                    "loopPos": 141501632,
                     "loopLength": 25347680
                 },
                 {
@@ -2361,7 +2361,7 @@
                     "sampleRate": 44100,
                     "preludePos": 166849312,
                     "preludeLength": 5390560,
-                    "loopPos": 192224608,
+                    "loopPos": 172239872,
                     "loopLength": 19984736
                 },
                 {
@@ -2369,7 +2369,7 @@
                     "sampleRate": 44100,
                     "preludePos": 192224608,
                     "preludeLength": 3661512,
-                    "loopPos": 218201472,
+                    "loopPos": 195886120,
                     "loopLength": 22315352
                 },
                 {
@@ -2377,7 +2377,7 @@
                     "sampleRate": 44100,
                     "preludePos": 218201472,
                     "preludeLength": 926016,
-                    "loopPos": 241353936,
+                    "loopPos": 219127488,
                     "loopLength": 22226448
                 },
                 {
@@ -2385,15 +2385,15 @@
                     "sampleRate": 44100,
                     "preludePos": 241353936,
                     "preludeLength": 3320064,
-                    "loopPos": 259398096,
+                    "loopPos": 244674000,
                     "loopLength": 14724096
                 },
                 {
                     "title": "輝く針の小人族 ～ Little Princess",
                     "sampleRate": 44100,
-                    "preludePos": 260191896,
-                    "preludeLength": 367416,
-                    "loopPos": 299797840,
+                    "preludePos": 259398096,
+                    "preludeLength": 1161216,
+                    "loopPos": 260559312,
                     "loopLength": 39238528
                 },
                 {
@@ -2401,7 +2401,7 @@
                     "sampleRate": 44100,
                     "preludePos": 328293616,
                     "preludeLength": 1838432,
-                    "loopPos": 354247600,
+                    "loopPos": 330132048,
                     "loopLength": 24115552
                 },
                 {
@@ -2409,7 +2409,7 @@
                     "sampleRate": 44100,
                     "preludePos": 354247600,
                     "preludeLength": 2544832,
-                    "loopPos": 391090352,
+                    "loopPos": 356792432,
                     "loopLength": 34297920
                 },
                 {
@@ -2417,15 +2417,15 @@
                     "sampleRate": 44100,
                     "preludePos": 299797840,
                     "preludeLength": 525568,
-                    "loopPos": 314734832,
+                    "loopPos": 300323408,
                     "loopLength": 14411424
                 },
                 {
                     "title": "不思議な不思議な道具達",
                     "sampleRate": 44100,
-                    "preludePos": 314734832,
+                    "preludePos": 354247600,
                     "preludeLength": 3123264,
-                    "loopPos": 328293616,
+                    "loopPos": 356792432,
                     "loopLength": 10435520
                 },
                 {
@@ -2433,7 +2433,7 @@
                     "sampleRate": 44100,
                     "preludePos": 391090352,
                     "preludeLength": 1879240,
-                    "loopPos": 397831536,
+                    "loopPos": 392969592,
                     "loopLength": 4861944
                 }
             ]
