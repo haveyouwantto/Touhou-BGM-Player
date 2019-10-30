@@ -74,6 +74,7 @@ public class PathManager {
 					b.path.add(d);
 				}
 				b.save();
+				nof.showMessage(Messages.getString("PathManager.save_dialog")); //$NON-NLS-1$
 			}
 		});
 		GridBagConstraints gbc_btnSave = new GridBagConstraints();
