@@ -5,11 +5,9 @@ import java.awt.Toolkit;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -34,6 +32,7 @@ public class PathManager {
 	private List<JButton> buttons = new ArrayList<JButton>();
 	private BGMPath bgmpath;
 	private JButton btnSave;
+	private Notification nof = new Notification(frmBgmPathManager);
 
 	/**
 	 * Create the application.
@@ -65,13 +64,13 @@ public class PathManager {
 		gbl_panel.columnWeights = new double[] { 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		gbl_panel.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-		
+
 		btnSave = new JButton(Messages.getString("PathManager.btnSave.text")); //$NON-NLS-1$
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BGMPath b=new BGMPath();
+				BGMPath b = new BGMPath();
 				for (int i = 0; i < bgm.games.length; i++) {
-					DataPath d=new DataPath(bgm.games[i].no, fields.get(i).getText());
+					DataPath d = new DataPath(bgm.games[i].no, fields.get(i).getText());
 					b.path.add(d);
 				}
 				b.save();
@@ -93,14 +92,14 @@ public class PathManager {
 			gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
 			gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 			gbc_lblNewLabel.gridx = 0;
-			gbc_lblNewLabel.gridy = i+1;
+			gbc_lblNewLabel.gridy = i + 1;
 			panel.add(lblNewLabel, gbc_lblNewLabel);
 
 			textField = new JTextField();
 			GridBagConstraints gbc_textField = new GridBagConstraints();
 			gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 			gbc_textField.gridx = 1;
-			gbc_textField.gridy = i+1;
+			gbc_textField.gridy = i + 1;
 			panel.add(textField, gbc_textField);
 			textField.setColumns(10);
 			fields.add(textField);
@@ -108,7 +107,7 @@ public class PathManager {
 			JButton button = new JButton(Messages.getString("PathManager.browse")); //$NON-NLS-1$
 			GridBagConstraints gbc_btnNewButton1 = new GridBagConstraints();
 			gbc_btnNewButton1.gridx = 2;
-			gbc_btnNewButton1.gridy = i+1;
+			gbc_btnNewButton1.gridy = i + 1;
 
 			final int i2 = i;
 
@@ -116,21 +115,32 @@ public class PathManager {
 				public void actionPerformed(ActionEvent e) {
 
 					JFileChooser filechooser = new JFileChooser("."); //$NON-NLS-1$
-					FileNameExtensionFilter Filter = new FileNameExtensionFilter("thbgm.dat", "dat"); //$NON-NLS-1$ //$NON-NLS-2$
 
-					// Attaching Filter to JFileChooser object
+					String filename;
+
+					if (i2 == 0) { // TH06
+						filename = "BGM"; //$NON-NLS-1$
+						filechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+					} else if (i2 == 2) { // TH07.5
+						filename = "th075bgm.dat"; //$NON-NLS-1$
+					} else if (i2 == 7) { // TH10.5
+						filename = "th105a.dat"; //$NON-NLS-1$
+					} else if (i2 == 10) { // TH12.3
+						filename = "th123a.dat"; //$NON-NLS-1$
+					} else {
+						filename = "thbgm.dat"; //$NON-NLS-1$
+					}
+
+					FileNameExtensionFilter Filter = new FileNameExtensionFilter(filename, "dat"); //$NON-NLS-1$ //$NON-NLS-2$
+
 					filechooser.setFileFilter(Filter);
 					filechooser.setAcceptAllFileFilterUsed(false);
 
 					int returnVal = filechooser.showOpenDialog(frmBgmPathManager);
 
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
-						try {
-							fields.get(i2).setText(filechooser.getSelectedFile().getCanonicalPath());
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						// 设置field文本
+						fields.get(i2).setText(filechooser.getSelectedFile().getPath());
 					}
 				}
 			});
@@ -141,14 +151,14 @@ public class PathManager {
 
 	public void display() {
 		try {
-			bgmpath=BGMPath.load();
+			bgmpath = BGMPath.load();
 			for (int i = 0; i < bgm.games.length; i++) {
-				String path=bgmpath.path.get(i).path;
+				// 将 path.json 里的路径信息显示至 textField
+				String path = bgmpath.path.get(i).path;
 				fields.get(i).setText(path);
 			}
-		}catch(Exception e)
-		{
-			
+		} catch (Exception e) {
+
 		}
 		frmBgmPathManager.setVisible(true);
 	}

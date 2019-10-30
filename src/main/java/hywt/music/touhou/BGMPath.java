@@ -9,10 +9,12 @@ import com.google.gson.Gson;
 
 public class BGMPath {
 	public List<DataPath> path;
+
 	public BGMPath() {
-		this.path=new ArrayList<DataPath>();
+		this.path = new ArrayList<DataPath>();
 	}
-	public static BGMPath load(){
+
+	public static BGMPath load() {
 		Gson g = new Gson();
 		String json;
 		try {
@@ -24,9 +26,10 @@ public class BGMPath {
 		}
 		return null;
 	}
+
 	public void save() {
-		Gson g=new Gson();
-		String s=g.toJson(this);
+		Gson g = new Gson();
+		String s = g.toJson(this);
 		try {
 			FileReader.save(new File("path.json"), s);
 		} catch (IOException e) {

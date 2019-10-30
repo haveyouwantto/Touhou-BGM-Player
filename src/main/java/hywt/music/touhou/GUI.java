@@ -49,12 +49,13 @@ public class GUI {
 	 */
 	private void initialize() {
 		frmTouhouBgmPlayer = new JFrame();
-		frmTouhouBgmPlayer.setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/assets/hywt/music/touhou/icon.png")));
+		frmTouhouBgmPlayer.setIconImage(
+				Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/assets/hywt/music/touhou/icon.png")));
 		frmTouhouBgmPlayer.setTitle(Messages.getString("GUI.title")); //$NON-NLS-1$
 		frmTouhouBgmPlayer.setBounds(100, 100, 450, 300);
 		frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		PathManager pathman=new PathManager();
+		PathManager pathman = new PathManager();
 
 		Notification not = new Notification(frmTouhouBgmPlayer);
 
@@ -101,7 +102,7 @@ public class GUI {
 		JToggleButton tglbtnLoop = new JToggleButton("L"); //$NON-NLS-1$
 		tglbtnLoop.setSelected(true);
 		playbackControlPanel.add(tglbtnLoop);
-		
+
 		JButton btnP = new JButton(Messages.getString("GUI.btnP.text")); //$NON-NLS-1$
 		btnP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -122,7 +123,16 @@ public class GUI {
 					@Override
 					public void run() {
 						try {
-							pcmp.play(BGMPath.load().path.get(gameId).path, (Music) musicComboBox.getSelectedItem(), tglbtnLoop.isSelected());
+							BGMPath bgmpath = BGMPath.load();
+							Game g = (Game) gameComboBox.getSelectedItem();
+							if (g.format == 0) {
+
+							} else if (g.format == 1) {
+								pcmp.play(bgmpath.path.get(gameId).path, (Music) musicComboBox.getSelectedItem(),
+										tglbtnLoop.isSelected());
+							} else {
+
+							}
 						} catch (FileNotFoundException e) {
 							not.showError(Messages.getString("GUI.file_not_found_error")); //$NON-NLS-1$
 							e.printStackTrace();
