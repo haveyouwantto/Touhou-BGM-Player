@@ -37,6 +37,14 @@ public class PCMPlayer {
 			sdl = (SourceDataLine) AudioSystem.getLine(info);
 			sdl.open(af);
 			sdl.start();
+			/*
+			sdl.addLineListener(new LineListener() {
+				@Override
+				public void update(LineEvent event) {
+					System.out.println(event.getFramePosition());
+				}
+			});
+			*/
 			playing=true;
 			
 			// 播放前奏
@@ -46,11 +54,11 @@ public class PCMPlayer {
 			sdl.write(b, 0, b.length);
 
 			// 循环
+			b = new byte[music.loopLength];
 			while (true) {
 				raf.seek(music.loopPos);
-				byte[] b2 = new byte[music.loopLength];
-				raf.read(b2, 0, music.loopLength);
-				sdl.write(b2, 0, b2.length);
+				raf.read(b, 0, music.loopLength);
+				sdl.write(b, 0, b.length);
 				if (!loop || !playing) {
 					break;
 				}
