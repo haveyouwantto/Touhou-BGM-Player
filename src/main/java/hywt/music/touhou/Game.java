@@ -1,12 +1,14 @@
 package hywt.music.touhou;
 
+import java.util.List;
+
 public class Game {
 	public String no;
 	public String title;
 	public int format;
-	public Music[] music;
+	public List<Music> music;
 
-	public Game(String no, String titie, int format, Music[] music) {
+	public Game(String no, String titie, int format, List<Music> music) {
 		super();
 		this.no = no;
 		this.title = titie;

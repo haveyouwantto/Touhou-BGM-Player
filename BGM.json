@@ -588,9 +588,9 @@
                     "title": "砕月",
                     "sampleRate": 44100,
                     "preludePos": 396101826,
-                    "preludeLength": 512840,
+                    "preludeLength": 689240,
                     "loopPos": 396791066,
-                    "loopLength": 7938380
+                    "loopLength": 7938984
                 }
             ]
         },

@@ -67,8 +67,8 @@ public class GUI {
 		// TODO: Add music to combo box
 		BGMData bgm = InfoReader.read();
 
-		for (int i = 0; i < bgm.games[0].music.length; i++) {
-			musicComboBox.addItem(bgm.games[0].music[i]);
+		for (int i = 0; i < bgm.games.get(0).music.size(); i++) {
+			musicComboBox.addItem(bgm.games.get(0).music.get(i));
 		}
 
 		JComboBox<Game> gameComboBox = new JComboBox<Game>();
@@ -76,13 +76,13 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				musicComboBox.removeAllItems();
 				gameId = gameComboBox.getSelectedIndex();
-				for (int i = 0; i < bgm.games[gameId].music.length; i++) {
-					musicComboBox.addItem(bgm.games[gameId].music[i]);
+				for (int i = 0; i < bgm.games.get(gameId).music.size(); i++) {
+					musicComboBox.addItem(bgm.games.get(gameId).music.get(i));
 				}
 			}
 		});
-		for (int i = 0; i < bgm.games.length; i++) {
-			gameComboBox.addItem(bgm.games[i]);
+		for (int i = 0; i < bgm.games.size(); i++) {
+			gameComboBox.addItem(bgm.games.get(i));
 		}
 		panel.add(gameComboBox);
 
@@ -125,11 +125,23 @@ public class GUI {
 						try {
 							BGMPath bgmpath = BGMPath.load();
 							Game g = (Game) gameComboBox.getSelectedItem();
+							Music m=(Music) musicComboBox.getSelectedItem();
+							boolean loop=tglbtnLoop.isSelected();
+							
 							if (g.format == 0) {
-
+								int index=g.music.indexOf(m);
+								++index;
+								
+								String filename;
+								if(index<10) {
+									filename="th06_0"+index+".wav";
+								}else {
+									filename="th06_"+index+".wav";
+								}
+								pcmp.play(bgmpath.path.get(gameId).path+"/"+filename, m, loop);
 							} else if (g.format == 1) {
-								pcmp.play(bgmpath.path.get(gameId).path, (Music) musicComboBox.getSelectedItem(),
-										tglbtnLoop.isSelected());
+								pcmp.play(bgmpath.path.get(gameId).path, m,
+										loop);
 							} else {
 
 							}

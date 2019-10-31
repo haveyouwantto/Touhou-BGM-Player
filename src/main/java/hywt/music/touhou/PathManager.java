@@ -69,8 +69,8 @@ public class PathManager {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BGMPath b = new BGMPath();
-				for (int i = 0; i < bgm.games.length; i++) {
-					DataPath d = new DataPath(bgm.games[i].no, fields.get(i).getText());
+				for (int i = 0; i < bgm.games.size(); i++) {
+					DataPath d = new DataPath(bgm.games.get(i).no, fields.get(i).getText());
 					b.path.add(d);
 				}
 				b.save();
@@ -86,8 +86,8 @@ public class PathManager {
 
 		bgm = InfoReader.read();
 
-		for (int i = 0; i < bgm.games.length; i++) {
-			JLabel lblNewLabel = new JLabel(bgm.games[i].toString());
+		for (int i = 0; i < bgm.games.size(); i++) {
+			JLabel lblNewLabel = new JLabel(bgm.games.get(i).toString());
 			lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 			gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
@@ -153,7 +153,7 @@ public class PathManager {
 	public void display() {
 		try {
 			bgmpath = BGMPath.load();
-			for (int i = 0; i < bgm.games.length; i++) {
+			for (int i = 0; i < bgm.games.size(); i++) {
 				// 将 path.json 里的路径信息显示至 textField
 				String path = bgmpath.path.get(i).path;
 				fields.get(i).setText(path);

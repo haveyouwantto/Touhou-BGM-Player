@@ -1,13 +1,14 @@
 package hywt.music.touhou;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class BGMData {
 	public int[] date;
-	public Game[] games;
-	public String[] comments;
+	public List<Game> games;
+	public List<String> comments;
 
-	public BGMData(int[] date, Game[] games) {
+	public BGMData(int[] date, List<Game> games) {
 		super();
 		this.date = date;
 		this.games = games;
@@ -15,6 +16,11 @@ public class BGMData {
 
 	@Override
 	public String toString() {
-		return "BGMData [date=" + date + ", games=" + Arrays.toString(games) + "]";
+		return "BGMData [date=" + Arrays.toString(date) + ", games=" + games + ", comments=" + comments
+				+ "]";
+	}
+
+	public List<String> getComments() {
+		return comments;
 	}
 }

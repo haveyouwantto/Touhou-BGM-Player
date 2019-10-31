@@ -3,8 +3,8 @@ package hywt.music.touhou;
 public class Main {
 	public static void main(String[] args) {
 		BGMData bgm = InfoReader.read();
-		for (int i = 0; i < bgm.games.length; i++) {
-			System.out.println(bgm.games[i].title);
+		for (int i = 0; i < bgm.games.size(); i++) {
+			System.out.println(bgm.games.get(i).title);
 
 		}
 		System.out.println(bgm);
