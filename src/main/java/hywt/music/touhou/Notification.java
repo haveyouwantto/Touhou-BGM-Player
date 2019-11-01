@@ -11,15 +11,15 @@ public class Notification {
 	}
 
 	public void showError(String msg) {
-		JOptionPane.showMessageDialog(frame, msg, "Error", 0);
+		JOptionPane.showMessageDialog(frame, msg, Messages.getString("Notification.error"), 0); //$NON-NLS-1$
 	}
 
 	public void showMessage(String msg) {
-		JOptionPane.showMessageDialog(frame, msg, "Info", 1);
+		JOptionPane.showMessageDialog(frame, msg, Messages.getString("Notification.info"), 1); //$NON-NLS-1$
 	}
 
 	public void showWarning(String msg) {
-		JOptionPane.showMessageDialog(frame, msg, "Warning", 2);
+		JOptionPane.showMessageDialog(frame, msg, Messages.getString("Notification.warning"), 2); //$NON-NLS-1$
 	}
 
 }

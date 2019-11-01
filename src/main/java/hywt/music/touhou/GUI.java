@@ -19,6 +19,7 @@ public class GUI {
 
 	private JFrame frmTouhouBgmPlayer;
 	private PCMPlayer pcmp = new PCMPlayer();
+	private Notification nof;
 	private int gameId = 0;
 
 	/**
@@ -49,8 +50,9 @@ public class GUI {
 	 */
 	private void initialize() {
 		frmTouhouBgmPlayer = new JFrame();
+		nof=new Notification(frmTouhouBgmPlayer);
 		frmTouhouBgmPlayer.setIconImage(
-				Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/assets/hywt/music/touhou/icon.png")));
+				Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/assets/hywt/music/touhou/icon.png"))); //$NON-NLS-1$
 		frmTouhouBgmPlayer.setTitle(Messages.getString("GUI.title")); //$NON-NLS-1$
 		frmTouhouBgmPlayer.setBounds(100, 100, 450, 300);
 		frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -134,16 +136,18 @@ public class GUI {
 								
 								String filename;
 								if(index<10) {
-									filename="th06_0"+index+".wav";
+									filename="th06_0"+index+".wav"; //$NON-NLS-1$ //$NON-NLS-2$
 								}else {
-									filename="th06_"+index+".wav";
+									filename="th06_"+index+".wav"; //$NON-NLS-1$ //$NON-NLS-2$
 								}
-								pcmp.play(bgmpath.path.get(gameId).path+"/"+filename, m, loop);
+								pcmp.play(bgmpath.path.get(gameId).path+"/"+filename, m, loop); //$NON-NLS-1$
 							} else if (g.format == 1) {
 								pcmp.play(bgmpath.path.get(gameId).path, m,
 										loop);
 							} else {
-
+								nof.showWarning(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
+									btnStop.setEnabled(false);
+									btnPlay.setEnabled(true);
 							}
 						} catch (FileNotFoundException e) {
 							not.showError(Messages.getString("GUI.file_not_found_error")); //$NON-NLS-1$

@@ -2,7 +2,6 @@ package hywt.music.touhou;
 
 import javax.swing.JFrame;
 import java.awt.Toolkit;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -46,8 +45,7 @@ public class PathManager {
 	private void initialize() {
 		frmBgmPathManager = new JFrame();
 		frmBgmPathManager.setIconImage(Toolkit.getDefaultToolkit()
-				.getImage(PathManager.class.getResource("/assets/hywt/music/touhou/icon.png"))); //$NON-NLS-1$
-		frmBgmPathManager.setType(Type.UTILITY);
+				.getImage(PathManager.class.getResource("/assets/hywt/music/touhou/icon.png")));
 		frmBgmPathManager.setTitle(Messages.getString("PathManager.title")); //$NON-NLS-1$
 		frmBgmPathManager.setBounds(100, 100, 711, 407);
 		frmBgmPathManager.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -86,14 +84,14 @@ public class PathManager {
 		bgm = InfoReader.read();
 
 		for (int i = 0; i < bgm.games.size(); i++) {
-			JLabel lblNewLabel = new JLabel(bgm.games.get(i).toString());
-			lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-			gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
-			gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
-			gbc_lblNewLabel.gridx = 0;
-			gbc_lblNewLabel.gridy = i + 1;
-			panel.add(lblNewLabel, gbc_lblNewLabel);
+			JLabel labelGameTitle = new JLabel(bgm.games.get(i).toString());
+			labelGameTitle.setHorizontalAlignment(SwingConstants.LEFT);
+			GridBagConstraints gbc_labelGameTitle = new GridBagConstraints();
+			gbc_labelGameTitle.insets = new Insets(0, 0, 0, 5);
+			gbc_labelGameTitle.anchor = GridBagConstraints.EAST;
+			gbc_labelGameTitle.gridx = 0;
+			gbc_labelGameTitle.gridy = i + 1;
+			panel.add(labelGameTitle, gbc_labelGameTitle);
 
 			textField = new JTextField();
 			GridBagConstraints gbc_textField = new GridBagConstraints();
