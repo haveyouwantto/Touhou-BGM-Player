@@ -15,6 +15,7 @@ public class PCMPlayer {
 	private SourceDataLine.Info info;
 	private SourceDataLine sdl;
 	private boolean playing = false;
+	long playback;
 
 	public void play(String thbgm, Music music, boolean loop) throws FileNotFoundException {
 		try {
@@ -22,7 +23,7 @@ public class PCMPlayer {
 			// 打开 thbgm.dat
 			RandomAccessFile raf = new RandomAccessFile(thbgm, "r");
 
-			int bufferSize = 0x1000000;
+			int bufferSize = 4096;
 
 			// PCM 参数
 			float sampleRate = 44100;
@@ -47,17 +48,20 @@ public class PCMPlayer {
 
 			// 播放前奏
 			raf.seek(music.preludePos);
-			byte[] b = new byte[music.preludeLength];
-			raf.read(b, 0, music.preludeLength);
-			byte[] b2=new byte[music.loopLength];
-			raf.seek(music.loopPos);
-			raf.read(b2, 0, music.loopLength);
+			byte[] b = new byte[bufferSize];
 			
-			sdl.write(b, 0, b.length);
+			playback = 0;
+			while (playback < music.preludeLength) {
+				raf.read(b, 0, bufferSize);
+				sdl.write(b, 0, b.length);
+				playback+=bufferSize;
+			}
 
 			// 循环
+			playback=music.loopPos;
 			while (true) {
-				sdl.write(b2, 0, b2.length);
+				raf.read(b, 0, bufferSize);
+				sdl.write(b, 0, b.length);
 				if (!loop || !playing) {
 					break;
 				}
