@@ -15,6 +15,10 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.GridLayout;
+import javax.swing.UIManager;
 
 public class GUI {
 
@@ -51,7 +55,7 @@ public class GUI {
 	 */
 	private void initialize() {
 		frmTouhouBgmPlayer = new JFrame();
-		nof=new Notification(frmTouhouBgmPlayer);
+		nof = new Notification(frmTouhouBgmPlayer);
 		frmTouhouBgmPlayer.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/assets/hywt/music/touhou/icon.png"))); //$NON-NLS-1$
 		frmTouhouBgmPlayer.setTitle(Messages.getString("GUI.title")); //$NON-NLS-1$
@@ -59,31 +63,33 @@ public class GUI {
 		frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		PathManager pathman = new PathManager();
+		BGMData bgm = InfoReader.read();
 
 		Notification not = new Notification(frmTouhouBgmPlayer);
-		
+
 		JPanel infoPanel = new JPanel();
 		frmTouhouBgmPlayer.getContentPane().add(infoPanel, BorderLayout.SOUTH);
-		
+
 		JLabel lblNowPlaying = new JLabel(Messages.getString("GUI.lblNowPlaying.text")); //$NON-NLS-1$
 		infoPanel.add(lblNowPlaying);
-		
-		JLabel lblplaying = new JLabel(Messages.getString("GUI.lblNewLabel.text")); //$NON-NLS-1$
+
+		JLabel lblplaying = new JLabel("-"); //$NON-NLS-1$
 		infoPanel.add(lblplaying);
 
 		JPanel controlPanel = new JPanel();
 		frmTouhouBgmPlayer.getContentPane().add(controlPanel, BorderLayout.CENTER);
 
-		JComboBox<Music> musicComboBox = new JComboBox<Music>();
-
-		// TODO: Add music to combo box
-		BGMData bgm = InfoReader.read();
-
-		for (int i = 0; i < bgm.games.get(0).music.size(); i++) {
-			musicComboBox.addItem(bgm.games.get(0).music.get(i));
-		}
+		JPanel musicSelectionPanel = new JPanel();
+		musicSelectionPanel
+				.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), Messages.getString("GUI.musicSelection"), TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0))); //$NON-NLS-1$ //$NON-NLS-2$
+		controlPanel.add(musicSelectionPanel);
+		musicSelectionPanel.setLayout(new GridLayout(0, 1, 0, 4));
 
 		JComboBox<Game> gameComboBox = new JComboBox<Game>();
+		musicSelectionPanel.add(gameComboBox);
+
+		JComboBox<Music> musicComboBox = new JComboBox<Music>();
+		musicSelectionPanel.add(musicComboBox);
 		gameComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				musicComboBox.removeAllItems();
@@ -93,22 +99,23 @@ public class GUI {
 				}
 			}
 		});
+
+		for (int i = 0; i < bgm.games.get(0).music.size(); i++) {
+			musicComboBox.addItem(bgm.games.get(0).music.get(i));
+		}
 		for (int i = 0; i < bgm.games.size(); i++) {
 			gameComboBox.addItem(bgm.games.get(i));
 		}
-		controlPanel.add(gameComboBox);
-
-		controlPanel.add(musicComboBox);
 
 		JPanel playbackControlPanel = new JPanel();
 		playbackControlPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		controlPanel.add(playbackControlPanel);
 
-		JButton btnStop = new JButton("O"); //$NON-NLS-1$
+		JButton btnStop = new JButton("\u2588"); //$NON-NLS-1$
 		playbackControlPanel.add(btnStop);
 
 		btnStop.setEnabled(false);
-		JButton btnPlay = new JButton(">"); //$NON-NLS-1$
+		JButton btnPlay = new JButton("\u25b6"); //$NON-NLS-1$
 		playbackControlPanel.add(btnPlay);
 
 		JToggleButton tglbtnLoop = new JToggleButton("L"); //$NON-NLS-1$
@@ -137,29 +144,28 @@ public class GUI {
 						try {
 							BGMPath bgmpath = BGMPath.load();
 							Game g = (Game) gameComboBox.getSelectedItem();
-							Music m=(Music) musicComboBox.getSelectedItem();
-							boolean loop=tglbtnLoop.isSelected();
-							
+							Music m = (Music) musicComboBox.getSelectedItem();
+							boolean loop = tglbtnLoop.isSelected();
+
 							if (g.format == 0) {
-								int index=g.music.indexOf(m);
+								int index = g.music.indexOf(m);
 								++index;
-								
+
 								String filename;
-								if(index<10) {
-									filename="th06_0"+index+".wav"; //$NON-NLS-1$ //$NON-NLS-2$
-								}else {
-									filename="th06_"+index+".wav"; //$NON-NLS-1$ //$NON-NLS-2$
+								if (index < 10) {
+									filename = "th06_0" + index + ".wav"; //$NON-NLS-1$ //$NON-NLS-2$
+								} else {
+									filename = "th06_" + index + ".wav"; //$NON-NLS-1$ //$NON-NLS-2$
 								}
 								lblplaying.setText(m.title);
-								pcmp.play(bgmpath.path.get(gameId).path+"/"+filename, m, loop); //$NON-NLS-1$
+								pcmp.play(bgmpath.path.get(gameId).path + "/" + filename, m, loop); //$NON-NLS-1$
 							} else if (g.format == 1) {
 								lblplaying.setText(m.title);
-								pcmp.play(bgmpath.path.get(gameId).path, m,
-										loop);
+								pcmp.play(bgmpath.path.get(gameId).path, m, loop);
 							} else {
 								nof.showWarning(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
-									btnStop.setEnabled(false);
-									btnPlay.setEnabled(true);
+								btnStop.setEnabled(false);
+								btnPlay.setEnabled(true);
 							}
 						} catch (FileNotFoundException e) {
 							not.showError(Messages.getString("GUI.file_not_found_error")); //$NON-NLS-1$
@@ -177,7 +183,7 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				btnStop.setEnabled(false);
 				btnPlay.setEnabled(true);
-				lblplaying.setText("-");
+				lblplaying.setText("-"); //$NON-NLS-1$
 				try {
 					pcmp.stop();
 				} catch (Exception e1) {
