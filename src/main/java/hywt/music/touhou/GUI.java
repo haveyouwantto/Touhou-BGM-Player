@@ -14,6 +14,7 @@ import javax.swing.JToggleButton;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
 
 public class GUI {
 
@@ -60,9 +61,18 @@ public class GUI {
 		PathManager pathman = new PathManager();
 
 		Notification not = new Notification(frmTouhouBgmPlayer);
+		
+		JPanel infoPanel = new JPanel();
+		frmTouhouBgmPlayer.getContentPane().add(infoPanel, BorderLayout.SOUTH);
+		
+		JLabel lblNowPlaying = new JLabel(Messages.getString("GUI.lblNowPlaying.text")); //$NON-NLS-1$
+		infoPanel.add(lblNowPlaying);
+		
+		JLabel lblplaying = new JLabel(Messages.getString("GUI.lblNewLabel.text")); //$NON-NLS-1$
+		infoPanel.add(lblplaying);
 
-		JPanel panel = new JPanel();
-		frmTouhouBgmPlayer.getContentPane().add(panel, BorderLayout.CENTER);
+		JPanel controlPanel = new JPanel();
+		frmTouhouBgmPlayer.getContentPane().add(controlPanel, BorderLayout.CENTER);
 
 		JComboBox<Music> musicComboBox = new JComboBox<Music>();
 
@@ -86,13 +96,13 @@ public class GUI {
 		for (int i = 0; i < bgm.games.size(); i++) {
 			gameComboBox.addItem(bgm.games.get(i));
 		}
-		panel.add(gameComboBox);
+		controlPanel.add(gameComboBox);
 
-		panel.add(musicComboBox);
+		controlPanel.add(musicComboBox);
 
 		JPanel playbackControlPanel = new JPanel();
 		playbackControlPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel.add(playbackControlPanel);
+		controlPanel.add(playbackControlPanel);
 
 		JButton btnStop = new JButton("O"); //$NON-NLS-1$
 		playbackControlPanel.add(btnStop);
@@ -111,7 +121,7 @@ public class GUI {
 				pathman.display();
 			}
 		});
-		panel.add(btnP);
+		controlPanel.add(btnP);
 		tglbtnLoop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tglbtnLoop.isSelected();
@@ -140,8 +150,10 @@ public class GUI {
 								}else {
 									filename="th06_"+index+".wav"; //$NON-NLS-1$ //$NON-NLS-2$
 								}
+								lblplaying.setText(m.title);
 								pcmp.play(bgmpath.path.get(gameId).path+"/"+filename, m, loop); //$NON-NLS-1$
 							} else if (g.format == 1) {
+								lblplaying.setText(m.title);
 								pcmp.play(bgmpath.path.get(gameId).path, m,
 										loop);
 							} else {
@@ -165,6 +177,7 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				btnStop.setEnabled(false);
 				btnPlay.setEnabled(true);
+				lblplaying.setText("-");
 				try {
 					pcmp.stop();
 				} catch (Exception e1) {

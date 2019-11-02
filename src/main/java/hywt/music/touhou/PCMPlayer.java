@@ -3,7 +3,6 @@ package hywt.music.touhou;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
@@ -23,7 +22,7 @@ public class PCMPlayer {
 			// 打开 thbgm.dat
 			RandomAccessFile raf = new RandomAccessFile(thbgm, "r");
 
-			int bufferSize = 4096;
+			int bufferSize = 0x100;
 
 			// PCM 参数
 			float sampleRate = 44100;
@@ -49,19 +48,27 @@ public class PCMPlayer {
 			// 播放前奏
 			raf.seek(music.preludePos);
 			byte[] b = new byte[bufferSize];
-			
+
 			playback = 0;
 			while (playback < music.preludeLength) {
 				raf.read(b, 0, bufferSize);
 				sdl.write(b, 0, b.length);
-				playback+=bufferSize;
+				playback += bufferSize;
 			}
 
 			// 循环
-			playback=music.loopPos;
+			playback = music.loopPos;
 			while (true) {
-				raf.read(b, 0, bufferSize);
-				sdl.write(b, 0, b.length);
+				playback=0;
+				raf.seek(music.loopPos);
+				while (playback < music.loopLength) {
+					raf.read(b, 0, bufferSize);
+					sdl.write(b, 0, b.length);
+					if (!loop || !playing) {
+						break;
+					}
+					playback+=bufferSize;
+				}
 				if (!loop || !playing) {
 					break;
 				}
