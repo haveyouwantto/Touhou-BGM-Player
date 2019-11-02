@@ -49,14 +49,15 @@ public class PCMPlayer {
 			raf.seek(music.preludePos);
 			byte[] b = new byte[music.preludeLength];
 			raf.read(b, 0, music.preludeLength);
+			byte[] b2=new byte[music.loopLength];
+			raf.seek(music.loopPos);
+			raf.read(b2, 0, music.loopLength);
+			
 			sdl.write(b, 0, b.length);
 
 			// 循环
-			b = new byte[music.loopLength];
 			while (true) {
-				raf.seek(music.loopPos);
-				raf.read(b, 0, music.loopLength);
-				sdl.write(b, 0, b.length);
+				sdl.write(b2, 0, b2.length);
 				if (!loop || !playing) {
 					break;
 				}
