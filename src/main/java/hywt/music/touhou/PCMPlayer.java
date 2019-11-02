@@ -22,7 +22,7 @@ public class PCMPlayer {
 			// 打开 thbgm.dat
 			RandomAccessFile raf = new RandomAccessFile(thbgm, "r");
 
-			int bufferSize = 0x100000;
+			int bufferSize = 0x1000000;
 
 			// PCM 参数
 			float sampleRate = 44100;
