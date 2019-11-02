@@ -1,8 +1,8 @@
 {
     "date": [
         2019,
-        10,
-        29
+        11,
+        2
     ],
     "games": [
         {
@@ -2183,7 +2183,7 @@
                 },
                 {
                     "title": "死霊の夜桜（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 29985152,
                     "preludeLength": 1522004,
                     "loopPos": 31507156,
@@ -2191,7 +2191,7 @@
                 },
                 {
                     "title": "ゴーストリード（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 54483000,
                     "preludeLength": 358016,
                     "loopPos": 54841016,
@@ -2199,7 +2199,7 @@
                 },
                 {
                     "title": "妖怪寺へようこそ（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 80806648,
                     "preludeLength": 199360,
                     "loopPos": 81006008,
@@ -2207,7 +2207,7 @@
                 },
                 {
                     "title": "門前の妖怪小娘（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 102955224,
                     "preludeLength": 171648,
                     "loopPos": 103126872,
@@ -2215,7 +2215,7 @@
                 },
                 {
                     "title": "素敵な墓場で暮しましょ（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 133896248,
                     "preludeLength": 1359248,
                     "loopPos": 135255496,
@@ -2223,7 +2223,7 @@
                 },
                 {
                     "title": "リジッドパラダイス（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 159838648,
                     "preludeLength": 353952,
                     "loopPos": 160192600,
@@ -2231,7 +2231,7 @@
                 },
                 {
                     "title": "デザイアドライブ（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 194214904,
                     "preludeLength": 803072,
                     "loopPos": 195017976,
@@ -2239,7 +2239,7 @@
                 },
                 {
                     "title": "古きユアンシェン（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 226297336,
                     "preludeLength": 760000,
                     "loopPos": 227057336,
@@ -2247,7 +2247,7 @@
                 },
                 {
                     "title": "夢殿大祀廟（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 256067928,
                     "preludeLength": 137752,
                     "loopPos": 256205680,
@@ -2255,7 +2255,7 @@
                 },
                 {
                     "title": "大神神話伝（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 293164328,
                     "preludeLength": 330752,
                     "loopPos": 293495080,
@@ -2263,7 +2263,7 @@
                 },
                 {
                     "title": "小さな欲望の星空（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 326402760,
                     "preludeLength": 1416992,
                     "loopPos": 327819752,
@@ -2271,7 +2271,7 @@
                 },
                 {
                     "title": "妖怪裏参道（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 434959512,
                     "preludeLength": 728640,
                     "loopPos": 435688152,
@@ -2279,7 +2279,7 @@
                 },
                 {
                     "title": "佐渡の二ッ岩（霊界トランス）",
-                    "sampleRate": "22050",
+                    "sampleRate": 22050,
                     "preludePos": 472508744,
                     "preludeLength": 1199440,
                     "loopPos": 473708184,

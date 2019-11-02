@@ -25,7 +25,7 @@ public class PCMPlayer {
 			int bufferSize = 0x100;
 
 			// PCM 参数
-			float sampleRate = 44100;
+			float sampleRate = music.sampleRate;
 			int sampleSizeInBits = 16;
 			int channels = 2;
 			boolean signed = true;

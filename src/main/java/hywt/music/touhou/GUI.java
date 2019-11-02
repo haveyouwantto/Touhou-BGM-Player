@@ -15,7 +15,6 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
-import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.GridLayout;
 import javax.swing.UIManager;
