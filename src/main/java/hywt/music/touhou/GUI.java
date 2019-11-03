@@ -11,13 +11,16 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 import javax.swing.JToggleButton;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
 import java.awt.GridLayout;
 import javax.swing.UIManager;
+import java.awt.FlowLayout;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class GUI {
 
@@ -77,6 +80,7 @@ public class GUI {
 
 		JPanel controlPanel = new JPanel();
 		frmTouhouBgmPlayer.getContentPane().add(controlPanel, BorderLayout.CENTER);
+		controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JPanel musicSelectionPanel = new JPanel();
 		musicSelectionPanel
@@ -107,8 +111,9 @@ public class GUI {
 		}
 
 		JPanel playbackControlPanel = new JPanel();
-		playbackControlPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		playbackControlPanel.setBorder(new TitledBorder(null, "\u64AD\u653E\u63A7\u5236", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		controlPanel.add(playbackControlPanel);
+		playbackControlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		JButton btnStop = new JButton("\u2588"); //$NON-NLS-1$
 		playbackControlPanel.add(btnStop);
@@ -120,6 +125,21 @@ public class GUI {
 		JToggleButton tglbtnLoop = new JToggleButton("L"); //$NON-NLS-1$
 		tglbtnLoop.setSelected(true);
 		playbackControlPanel.add(tglbtnLoop);
+		
+		JLabel label = new JLabel(Messages.getString("GUI.label.text")); //$NON-NLS-1$
+		playbackControlPanel.add(label);
+		
+		JSlider slider = new JSlider();
+		slider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				float volume=slider.getValue()/100f;
+				label.setText(String.valueOf(slider.getValue()));
+				pcmp.setVolume(volume);
+			}
+		});
+		slider.setValue(100);
+		slider.setPaintLabels(true);
+		playbackControlPanel.add(slider);
 
 		JButton btnP = new JButton(Messages.getString("GUI.btnP.text")); //$NON-NLS-1$
 		btnP.addActionListener(new ActionListener() {

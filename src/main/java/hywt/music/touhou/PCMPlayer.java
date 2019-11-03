@@ -6,6 +6,7 @@ import java.io.RandomAccessFile;
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
@@ -13,7 +14,9 @@ public class PCMPlayer {
 	private AudioFormat af;
 	private SourceDataLine.Info info;
 	private SourceDataLine sdl;
+	private FloatControl volumeControl;
 	private boolean playing = false;
+	private float volume = 1;
 	long playback;
 
 	public void play(String thbgm, Music music, boolean loop) throws FileNotFoundException {
@@ -35,14 +38,13 @@ public class PCMPlayer {
 			af = new AudioFormat(sampleRate, sampleSizeInBits, channels, signed, bigEndian);
 			info = new DataLine.Info(SourceDataLine.class, af, bufferSize);
 			sdl = (SourceDataLine) AudioSystem.getLine(info);
+
 			sdl.open(af);
 			sdl.start();
-			/*
-			 * sdl.addLineListener(new LineListener() {
-			 * 
-			 * @Override public void update(LineEvent event) {
-			 * System.out.println(event.getFramePosition()); } });
-			 */
+
+			volumeControl = (FloatControl) sdl.getControl(FloatControl.Type.MASTER_GAIN);
+			this.setVolume(this.volume);
+
 			playing = true;
 
 			// 播放前奏
@@ -59,7 +61,7 @@ public class PCMPlayer {
 			// 循环
 			playback = music.loopPos;
 			while (true) {
-				playback=0;
+				playback = 0;
 				raf.seek(music.loopPos);
 				while (playback < music.loopLength) {
 					raf.read(b, 0, bufferSize);
@@ -67,7 +69,7 @@ public class PCMPlayer {
 					if (!loop || !playing) {
 						break;
 					}
-					playback+=bufferSize;
+					playback += bufferSize;
 				}
 				if (!loop || !playing) {
 					break;
@@ -89,4 +91,26 @@ public class PCMPlayer {
 		playing = false;
 		sdl.close();
 	}
+
+	public float getVolume() {
+		return volume;
+	}
+
+	public void setVolume(float volume) {
+		try {
+			if (volume > 1) {
+				this.volume = 1f;
+				volumeControl.setValue(0);
+			} else if (volume < 0) {
+				this.volume = 0f;
+				volumeControl.setValue(-100);
+			} else {
+				this.volume = volume;
+				volumeControl.setValue((float) (Math.log10(Math.pow(this.volume, 2)) * 10));
+			}
+		} catch (NullPointerException e) {
+
+		}
+	}
+
 }
