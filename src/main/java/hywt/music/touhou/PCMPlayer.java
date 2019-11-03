@@ -103,10 +103,10 @@ public class PCMPlayer {
 				volumeControl.setValue(0);
 			} else if (volume < 0) {
 				this.volume = 0f;
-				volumeControl.setValue(-100);
+				volumeControl.setValue(-80);
 			} else {
 				this.volume = volume;
-				volumeControl.setValue((float) (Math.log10(Math.pow(this.volume, 2)) * 10));
+				volumeControl.setValue((float) (Math.log10(Math.pow(this.volume, 4)) * 10));
 			}
 		} catch (NullPointerException e) {
 
