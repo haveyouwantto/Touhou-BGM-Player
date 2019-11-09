@@ -1,4 +1,4 @@
-package hywt.music.touhou;
+package hywt.music.touhou.gui;
 
 import javax.swing.JFrame;
 import java.awt.Toolkit;
@@ -12,6 +12,11 @@ import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import hywt.music.touhou.Messages;
+import hywt.music.touhou.savedata.BGMData;
+import hywt.music.touhou.savedata.BGMPath;
+import hywt.music.touhou.savedata.DataPath;
 
 import java.awt.Insets;
 import javax.swing.JScrollPane;
@@ -81,7 +86,7 @@ public class PathManager {
 		gbc_btnSave.gridy = 0;
 		panel.add(btnSave, gbc_btnSave);
 
-		bgm = InfoReader.read();
+		bgm = BGMData.read();
 
 		for (int i = 0; i < bgm.games.size(); i++) {
 			JLabel labelGameTitle = new JLabel(bgm.games.get(i).toString());

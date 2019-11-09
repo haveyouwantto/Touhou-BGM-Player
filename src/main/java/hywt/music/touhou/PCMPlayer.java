@@ -10,6 +10,8 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 
+import hywt.music.touhou.savedata.Music;
+
 public class PCMPlayer {
 	private AudioFormat af;
 	private SourceDataLine.Info info;

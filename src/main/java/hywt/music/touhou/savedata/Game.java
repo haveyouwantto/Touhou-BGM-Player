@@ -1,4 +1,4 @@
-package hywt.music.touhou;
+package hywt.music.touhou.savedata;
 
 import java.util.List;
 

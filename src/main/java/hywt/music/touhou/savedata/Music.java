@@ -1,4 +1,4 @@
-package hywt.music.touhou;
+package hywt.music.touhou.savedata;
 
 public class Music {
 	public String title;

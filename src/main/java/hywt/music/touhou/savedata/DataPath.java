@@ -1,4 +1,4 @@
-package hywt.music.touhou;
+package hywt.music.touhou.savedata;
 
 public class DataPath {
 	private String no;

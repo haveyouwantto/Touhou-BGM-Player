@@ -1,4 +1,4 @@
-package hywt.music.touhou;
+package hywt.music.touhou.savedata;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
+
+import hywt.music.touhou.FileReader;
 
 public class BGMPath {
 	public List<DataPath> path;

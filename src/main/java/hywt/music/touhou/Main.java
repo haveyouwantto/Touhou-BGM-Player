@@ -1,8 +1,10 @@
 package hywt.music.touhou;
 
+import hywt.music.touhou.savedata.BGMData;
+
 public class Main {
 	public static void main(String[] args) {
-		BGMData bgm = InfoReader.read();
+		BGMData bgm = BGMData.read();
 		for (int i = 0; i < bgm.games.size(); i++) {
 			System.out.println(bgm.games.get(i).title);
 

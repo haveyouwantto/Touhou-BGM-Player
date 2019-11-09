@@ -1,4 +1,4 @@
-package hywt.music.touhou;
+package hywt.music.touhou.gui;
 
 import java.awt.EventQueue;
 
@@ -20,6 +20,14 @@ import javax.swing.UIManager;
 import java.awt.FlowLayout;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
+
+import hywt.music.touhou.Messages;
+import hywt.music.touhou.PCMPlayer;
+import hywt.music.touhou.savedata.BGMData;
+import hywt.music.touhou.savedata.BGMPath;
+import hywt.music.touhou.savedata.Game;
+import hywt.music.touhou.savedata.Music;
+
 import javax.swing.event.ChangeEvent;
 
 public class GUI {
@@ -65,7 +73,7 @@ public class GUI {
 		frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		PathManager pathman = new PathManager();
-		BGMData bgm = InfoReader.read();
+		BGMData bgm = BGMData.read();
 
 		Notification not = new Notification(frmTouhouBgmPlayer);
 
