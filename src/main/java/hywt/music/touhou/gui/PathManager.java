@@ -11,9 +11,10 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import hywt.music.touhou.Messages;
+import hywt.music.touhou.gui.Messages;
 import hywt.music.touhou.savedata.BGMData;
 import hywt.music.touhou.savedata.BGMPath;
 import hywt.music.touhou.savedata.DataPath;
@@ -53,7 +54,7 @@ public class PathManager {
 				.getImage(PathManager.class.getResource("/assets/hywt/music/touhou/icon.png")));
 		frmBgmPathManager.setTitle(Messages.getString("PathManager.title")); //$NON-NLS-1$
 		frmBgmPathManager.setBounds(100, 100, 711, 407);
-		frmBgmPathManager.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frmBgmPathManager.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
 		JScrollPane scrollPane = new JScrollPane();
 		frmBgmPathManager.getContentPane().add(scrollPane, BorderLayout.CENTER);
@@ -69,6 +70,7 @@ public class PathManager {
 
 		btnSave = new JButton(Messages.getString("PathManager.btnSave.text")); //$NON-NLS-1$
 		btnSave.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				BGMPath b = new BGMPath();
 				for (int i = 0; i < bgm.games.size(); i++) {
@@ -115,6 +117,7 @@ public class PathManager {
 			final int i2 = i;
 
 			button.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent e) {
 
 					JFileChooser filechooser = new JFileChooser("."); //$NON-NLS-1$
@@ -134,7 +137,7 @@ public class PathManager {
 						filename = "thbgm.dat"; //$NON-NLS-1$
 					}
 
-					FileNameExtensionFilter Filter = new FileNameExtensionFilter(filename, "dat"); //$NON-NLS-1$ //$NON-NLS-2$
+					FileNameExtensionFilter Filter = new FileNameExtensionFilter(filename, "dat"); //$NON-NLS-1$ 
 
 					filechooser.setFileFilter(Filter);
 					filechooser.setAcceptAllFileFilterUsed(false);

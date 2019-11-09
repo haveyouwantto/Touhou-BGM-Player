@@ -1,4 +1,4 @@
-package hywt.music.touhou;
+package hywt.music.touhou.pcmprocessing;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
