@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import hywt.music.touhou.Constants;
 import hywt.music.touhou.gui.Messages;
 import hywt.music.touhou.savedata.BGMData;
 import hywt.music.touhou.savedata.BGMPath;
@@ -29,7 +30,6 @@ import javax.swing.JFileChooser;
 public class PathManager {
 
 	private JFrame frmBgmPathManager;
-	private BGMData bgm;
 	private JTextField textField;
 	private JPanel panel;
 	private List<JTextField> fields = new ArrayList<JTextField>();
@@ -73,8 +73,8 @@ public class PathManager {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				BGMPath b = new BGMPath();
-				for (int i = 0; i < bgm.games.size(); i++) {
-					DataPath d = new DataPath(bgm.games.get(i).no, fields.get(i).getText());
+				for (int i = 0; i < Constants.bgmdata.games.size(); i++) {
+					DataPath d = new DataPath(Constants.bgmdata.games.get(i).no, fields.get(i).getText());
 					b.path.add(d);
 				}
 				b.save();
@@ -88,10 +88,8 @@ public class PathManager {
 		gbc_btnSave.gridy = 0;
 		panel.add(btnSave, gbc_btnSave);
 
-		bgm = BGMData.read();
-
-		for (int i = 0; i < bgm.games.size(); i++) {
-			JLabel labelGameTitle = new JLabel(bgm.games.get(i).toString());
+		for (int i = 0; i < Constants.bgmdata.games.size(); i++) {
+			JLabel labelGameTitle = new JLabel(Constants.bgmdata.games.get(i).toString());
 			labelGameTitle.setHorizontalAlignment(SwingConstants.LEFT);
 			GridBagConstraints gbc_labelGameTitle = new GridBagConstraints();
 			gbc_labelGameTitle.insets = new Insets(0, 0, 0, 5);
@@ -158,7 +156,7 @@ public class PathManager {
 	public void display() {
 		try {
 			bgmpath = BGMPath.load();
-			for (int i = 0; i < bgm.games.size(); i++) {
+			for (int i = 0; i < Constants.bgmdata.games.size(); i++) {
 				// 将 path.json 里的路径信息显示至 textField
 				String path = bgmpath.path.get(i).path;
 				fields.get(i).setText(path);

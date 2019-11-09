@@ -16,7 +16,7 @@ public class Main {
 		}
 		System.out.println(bgm);
 		try {
-			PCMSaver.save(new File("s.wav"), "E:\\\\正作\\\\[th11] 东方地灵殿 (汉化版+日文版)\\\\thbgm.dat", bgm.games.get(8).music.get(5), 2);
+			PCMSaver.save(new File("d:\\"), "E:/正作/[th07] 东方妖妖梦 (汉化版)/thbgm.dat", Constants.bgmdata.games.get(0),bgm.games.get(1).music.get(0), 2);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

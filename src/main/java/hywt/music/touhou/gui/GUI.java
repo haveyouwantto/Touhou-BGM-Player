@@ -23,10 +23,10 @@ import javax.swing.event.ChangeListener;
 
 import hywt.music.touhou.gui.Messages;
 import hywt.music.touhou.pcmprocessing.PCMPlayer;
-import hywt.music.touhou.savedata.BGMData;
 import hywt.music.touhou.savedata.BGMPath;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
+import hywt.music.touhou.Constants;
 
 import javax.swing.event.ChangeEvent;
 
@@ -74,7 +74,6 @@ public class GUI {
 		frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//获取BGM信息
-		BGMData bgm = BGMData.read();
 
 		//初始化工具
 		PathManager pathman = new PathManager();
@@ -114,18 +113,18 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				musicComboBox.removeAllItems();
 				gameId = gameComboBox.getSelectedIndex();
-				for (int i = 0; i < bgm.games.get(gameId).music.size(); i++) {
-					musicComboBox.addItem(bgm.games.get(gameId).music.get(i));
+				for (int i = 0; i < Constants.bgmdata.games.get(gameId).music.size(); i++) {
+					musicComboBox.addItem(Constants.bgmdata.games.get(gameId).music.get(i));
 				}
 			}
 		});
 
 		//将音乐信息添加至下拉菜单
-		for (int i = 0; i < bgm.games.get(0).music.size(); i++) {
-			musicComboBox.addItem(bgm.games.get(0).music.get(i));
+		for (int i = 0; i < Constants.bgmdata.games.get(0).music.size(); i++) {
+			musicComboBox.addItem(Constants.bgmdata.games.get(0).music.get(i));
 		}
-		for (int i = 0; i < bgm.games.size(); i++) {
-			gameComboBox.addItem(bgm.games.get(i));
+		for (int i = 0; i < Constants.bgmdata.games.size(); i++) {
+			gameComboBox.addItem(Constants.bgmdata.games.get(i));
 		}
 
 		//播放控制的panel

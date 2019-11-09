@@ -7,14 +7,20 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import hywt.music.touhou.savedata.BGMData;
+import hywt.music.touhou.Constants;
+import hywt.music.touhou.pcmprocessing.PCMSaver;
+import hywt.music.touhou.savedata.BGMPath;
+
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.awt.event.ActionEvent;
 import javax.swing.BoxLayout;
 import java.awt.GridLayout;
@@ -46,7 +52,7 @@ public class MusicExporter {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		frmMusicExporter.setContentPane(contentPane);
 
-		BGMData bgm = BGMData.read();
+		BGMPath bgmpath = BGMPath.load();
 
 		JPanel selectionPanel = new JPanel();
 		contentPane.add(selectionPanel, BorderLayout.CENTER);
@@ -119,33 +125,47 @@ public class MusicExporter {
 		exportButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (int i = 0; i < gameCheckboxes.size(); i++) {
-					for (int j = 0; j < musicCheckboxLists.get(i).size(); j++) {
-						if (musicCheckboxLists.get(i).get(j).isSelected()) {
-							//导出音乐
-							System.out.println(bgm.games.get(i).music.get(j).toString());
+
+				JFileChooser filechooser = new JFileChooser(".");
+				filechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				int returnVal = filechooser.showSaveDialog(frmMusicExporter);
+
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					for (int i = 0; i < gameCheckboxes.size(); i++) {
+						for (int j = 0; j < musicCheckboxLists.get(i).size(); j++) {
+							if (musicCheckboxLists.get(i).get(j).isSelected()) {
+								//导出音乐
+								try {
+									PCMSaver.save(filechooser.getSelectedFile(), bgmpath.path.get(i).path,Constants.bgmdata.games.get(i), Constants.bgmdata.games.get(i).music.get(j), 2);
+								} catch (FileNotFoundException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								System.out.println(Constants.bgmdata.games.get(i).music.get(j).toString());
+							}
 						}
 					}
 				}
+				
 			}
 		});
 		exportPanel.add(exportButton);
 
-		for (int i = 0; i < bgm.games.size(); i++) {
+		for (int i = 0; i < Constants.bgmdata.games.size(); i++) {
 			JPanel innerMusicPanel = new JPanel();
 			List<JCheckBox> checkboxes = new ArrayList<JCheckBox>();
 
 			innerMusicPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), //$NON-NLS-1$
-					bgm.games.get(i).toString(), TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+					Constants.bgmdata.games.get(i).toString(), TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			innerMusicPanel.setLayout(new GridLayout(0, 1, 0, 0));
-			for (int j = 0; j < bgm.games.get(i).music.size(); j++) {
-				JCheckBox chckbxMusic = new JCheckBox(bgm.games.get(i).music.get(j).toString()); // $NON-NLS-1$
+			for (int j = 0; j < Constants.bgmdata.games.get(i).music.size(); j++) {
+				JCheckBox chckbxMusic = new JCheckBox(Constants.bgmdata.games.get(i).music.get(j).toString()); // $NON-NLS-1$
 				innerMusicPanel.add(chckbxMusic);
 				checkboxes.add(chckbxMusic);
 			}
 
 			panels.add(innerMusicPanel);
-			JCheckBox chckbxGame = new JCheckBox(bgm.games.get(i).toString()); // $NON-NLS-1$
+			JCheckBox chckbxGame = new JCheckBox(Constants.bgmdata.games.get(i).toString()); // $NON-NLS-1$
 			chckbxGame.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -165,7 +185,6 @@ public class MusicExporter {
 
 	public void display() {
 		frmMusicExporter.setVisible(true);
-		System.out.println(musicCheckboxLists);
 	}
 
 }
