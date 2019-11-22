@@ -27,8 +27,12 @@ import hywt.music.touhou.savedata.BGMPath;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
 import hywt.music.touhou.Constants;
+import hywt.music.touhou.Etc;
 
 import javax.swing.event.ChangeEvent;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 public class GUI {
 
@@ -192,7 +196,7 @@ public class GUI {
 			}
 		});
 		controlPanel.add(btnExporter);
-		
+
 		//播放按钮的事件
 		btnPlay.addActionListener(new ActionListener() {
 			@Override
@@ -210,16 +214,9 @@ public class GUI {
 							if (g.format == 0) {
 								//东方红魔乡格式 = 0
 								int index = g.music.indexOf(m);
-								++index;
-
-								String filename;
-								if (index < 10) {
-									filename = "th06_0" + index + ".wav"; //$NON-NLS-1$ //$NON-NLS-2$
-								} else {
-									filename = "th06_" + index + ".wav"; //$NON-NLS-1$ //$NON-NLS-2$
-								}
+								
 								lblplaying.setText(m.title);
-								pcmp.play(bgmpath.path.get(gameId).path + "/" + filename, m, loop); //$NON-NLS-1$
+								pcmp.play(bgmpath.path.get(gameId).path + "/" + Etc.getEoSDFilename(index), m, loop); //$NON-NLS-1$
 							} else if (g.format == 1) {
 								
 								// 一般格式 = 1
