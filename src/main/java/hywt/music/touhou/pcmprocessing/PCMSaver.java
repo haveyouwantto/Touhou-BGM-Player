@@ -33,13 +33,13 @@ public class PCMSaver {
 			if (separate) {
 				FileInputStream fis1 = new FileInputStream(thbgm);
 				fis1.skip(music.preludePos);
-				
+
 				FileInputStream fis2 = new FileInputStream(thbgm);
 				fis2.skip(music.loopPos);
-				
+
 				long time1 = (int) (music.preludeLength / sampleSizeInBits * 8 / channels);
 				long time2 = (int) (music.loopLength / sampleSizeInBits * 8 / channels);
-				
+
 				// 创建音频流
 				AudioFormat af = new AudioFormat(sampleRate, sampleSizeInBits, channels, signed, bigEndian);
 
@@ -47,15 +47,17 @@ public class PCMSaver {
 				AudioInputStream ais2 = new AudioInputStream(fis2, af, time2);
 
 				// wav 文件
-				File outPath= new File(outAlbum.getAbsolutePath() + "/" + (game.music.indexOf(music) + 1) + " - "
-						+ music.title + "/");
-				
+				File outPath = new File(
+						outAlbum.getAbsolutePath() + "/" + (game.music.indexOf(music) + 1) + " - " + music.title + "/");
+
 				if (!outPath.exists()) {
 					outPath.mkdirs();
 				}
-				
-				File file1 =new File(outPath.getAbsolutePath()+"/1.wav");
-				File file2 = new File(outPath.getAbsolutePath()+"/2.wav");
+
+				File file1 = new File(outPath.getAbsolutePath() + "/" + (game.music.indexOf(music) + 1) + ".1 - "
+						+ music.title + ".wav");
+				File file2 = new File(outPath.getAbsolutePath() + "/" + (game.music.indexOf(music) + 1) + ".2 - "
+						+ music.title + ".wav");
 
 				AudioSystem.write(ais1, Type.WAVE, file1);
 				AudioSystem.write(ais2, Type.WAVE, file2);
@@ -65,9 +67,9 @@ public class PCMSaver {
 
 				FileInputStream fis = new FileInputStream(thbgm);
 				fis.skip(music.preludePos);
-				
+
 				long time = (int) (music.getTotalLength() / sampleSizeInBits * 8 / channels);
-				
+
 				// 创建音频流
 				AudioFormat af = new AudioFormat(sampleRate, sampleSizeInBits, channels, signed, bigEndian);
 

@@ -132,7 +132,7 @@ public class MusicExporter {
 								int format = Constants.bgmdata.games.get(i).format;
 								for (int j = 0; j < musicCheckboxLists.get(i).size(); j++) {
 
-									if (musicCheckboxLists.get(i).get(j).isSelected()) {
+									if (musicCheckboxLists.get(i).get(j).isSelected() && gameCheckboxes.get(i).isSelected()) {
 										// 导出音乐
 										try {
 											if (format == 0) {
