@@ -18,18 +18,22 @@ public class PCMPlayer {
 	private SourceDataLine sdl;
 	private FloatControl volumeControl;
 	private boolean playing = false;
+	private boolean inLoop;
 	private boolean pause;
 	private float volume = 1;
-	long playback;
+	private Music music;
+	int playback;
 
-	public void play(String thbgm, Music music, boolean loop) throws FileNotFoundException {
+	public void play(String thbgm, Music m, boolean loop) throws FileNotFoundException {
 		try {
-			pause=false;
+			pause = false;
+			inLoop = false;
+			music = m;
 
 			// 打开 thbgm.dat
 			RandomAccessFile raf = new RandomAccessFile(thbgm, "r");
 
-			int bufferSize = 0x100;
+			int bufferSize = 256;
 
 			// PCM 参数
 			float sampleRate = music.sampleRate;
@@ -57,33 +61,38 @@ public class PCMPlayer {
 
 			playback = 0;
 			while (playback < music.preludeLength) {
-				if(pause) {
-						Thread.sleep(50);
-						continue;
+				if (pause) {
+					Thread.sleep(50);
+					continue;
 				}
 				raf.read(b, 0, bufferSize);
 				sdl.write(b, 0, b.length);
 				playback += bufferSize;
+				if (!playing) {
+					raf.close();
+					return;
+				}
 			}
 
 			// 循环
-			playback = music.loopPos;
+			inLoop = true;
 			while (true) {
 				playback = 0;
 				raf.seek(music.loopPos);
 				while (playback < music.loopLength) {
-					if(pause) {
+					if (pause) {
 						Thread.sleep(50);
 						continue;
 					}
 					raf.read(b, 0, bufferSize);
 					sdl.write(b, 0, b.length);
-					if (!loop || !playing) {
-						break;
-					}
 					playback += bufferSize;
+					if (!playing) {
+						raf.close();
+						return;
+					}
 				}
-				if (!loop || !playing) {
+				if (!loop) {
 					break;
 				}
 			}
@@ -101,15 +110,15 @@ public class PCMPlayer {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void pause() {
-		pause=true;
+		pause = true;
 	}
-	
+
 	public void resume() {
-		pause=false;
+		pause = false;
 	}
-	
+
 	public boolean isPaused() {
 		return this.pause;
 	}
@@ -138,6 +147,28 @@ public class PCMPlayer {
 		} catch (NullPointerException e) {
 
 		}
+	}
+
+	public int getPlayback() {
+		if (!playing)
+			return 0;
+		if (inLoop) {
+			return playback + music.preludeLength;
+		} else {
+			return playback;
+		}
+	}
+	
+	public void setPlayback(int value) {
+		
+	}
+
+	public int getLength() {
+		if (music == null)
+			return 0;
+		if (!playing)
+			return 0;
+		return music.getTotalLength();
 	}
 
 }

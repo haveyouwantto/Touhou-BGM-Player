@@ -31,6 +31,7 @@ import hywt.music.touhou.Etc;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.BoxLayout;
+import javax.swing.border.EmptyBorder;
 
 public class GUI {
 
@@ -71,7 +72,7 @@ public class GUI {
 		frmTouhouBgmPlayer.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/assets/hywt/music/touhou/icon.png"))); //$NON-NLS-1$
 		frmTouhouBgmPlayer.setTitle(Messages.getString("GUI.title")); //$NON-NLS-1$
-		frmTouhouBgmPlayer.setBounds(100, 100, 450, 300);
+		frmTouhouBgmPlayer.setBounds(100, 100, 450, 311);
 		frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// 获取BGM信息
@@ -81,14 +82,45 @@ public class GUI {
 		MusicExporter mus = new MusicExporter();
 
 		JPanel infoPanel = new JPanel();
+		infoPanel.setBorder(new EmptyBorder(0, 5, 5, 5));
 		frmTouhouBgmPlayer.getContentPane().add(infoPanel, BorderLayout.SOUTH);
+		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
+		
+		JPanel panel_3 = new JPanel();
+		infoPanel.add(panel_3);
 
 		// 正在播放
-		JLabel lblNowPlaying = new JLabel(Messages.getString("GUI.lblNowPlaying.text")); //$NON-NLS-1$
-		infoPanel.add(lblNowPlaying);
+		JLabel lblNowPlaying = new JLabel(Messages.getString("GUI.lblNowPlaying.text"));
+		panel_3.add(lblNowPlaying);
 
-		JLabel lblplaying = new JLabel("-"); //$NON-NLS-1$
-		infoPanel.add(lblplaying);
+		JLabel lblplaying = new JLabel("-");
+		panel_3.add(lblplaying);
+		
+		JSlider progressBar = new JSlider();
+		progressBar.setEnabled(false);
+		progressBar.setValue(0);
+		infoPanel.add(progressBar);
+		
+		Runnable r2=new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				while(true) {
+					progressBar.setValue(pcmp.getPlayback());
+					
+					try {
+						Thread.sleep(50);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+			
+		};
+		
+		new Thread(r2).start();
 
 		JPanel controlPanel = new JPanel();
 		frmTouhouBgmPlayer.getContentPane().add(controlPanel, BorderLayout.CENTER);
@@ -216,6 +248,8 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 
 				new Thread(musicPlaying).start();
+				
+				progressBar.setMaximum(((Music) musicComboBox.getSelectedItem()).getTotalLength());
 
 				// 设置播放和停止按钮状态
 				btnStop.setEnabled(true);
