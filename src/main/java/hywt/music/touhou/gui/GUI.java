@@ -85,7 +85,7 @@ public class GUI {
 		infoPanel.setBorder(new EmptyBorder(0, 5, 5, 5));
 		frmTouhouBgmPlayer.getContentPane().add(infoPanel, BorderLayout.SOUTH);
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-		
+
 		JPanel panel_3 = new JPanel();
 		infoPanel.add(panel_3);
 
@@ -95,31 +95,43 @@ public class GUI {
 
 		JLabel lblplaying = new JLabel("-");
 		panel_3.add(lblplaying);
-		
+
+		JPanel panel_4 = new JPanel();
+		infoPanel.add(panel_4);
+		panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
+
+		JLabel lblTime = new JLabel(Messages.getString("GUI.lblNewLabel.text"));
+		panel_4.add(lblTime);
+
 		JSlider progressBar = new JSlider();
+		panel_4.add(progressBar);
 		progressBar.setEnabled(false);
 		progressBar.setValue(0);
-		infoPanel.add(progressBar);
-		
-		Runnable r2=new Runnable() {
+
+		JLabel lblLength = new JLabel(Messages.getString("GUI.label.text")); //$NON-NLS-1$
+		panel_4.add(lblLength);
+
+		Runnable r2 = new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				while(true) {
-					progressBar.setValue(pcmp.getPlayback());
-					
+				while (true) {
 					try {
+						progressBar.setValue(pcmp.getPlayback());
+						lblTime.setText(Etc.getMusicLengthTime(pcmp.getMusic().sampleRate, pcmp.getPlayback()));
 						Thread.sleep(50);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+					} catch (NullPointerException e2) {
+
 					}
 				}
 			}
-			
+
 		};
-		
+
 		new Thread(r2).start();
 
 		JPanel controlPanel = new JPanel();
@@ -173,8 +185,6 @@ public class GUI {
 		// 停止按钮
 		JButton btnStop = new JButton("\u2588");
 		panel_1.add(btnStop);
-		
-
 
 		// 播放按钮
 		JButton btnPlay = new JButton("\u25b6");
@@ -248,13 +258,16 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 
 				new Thread(musicPlaying).start();
-				
-				progressBar.setMaximum(((Music) musicComboBox.getSelectedItem()).getTotalLength());
 
-				// 设置播放和停止按钮状态
+				Music m = ((Music) musicComboBox.getSelectedItem());
+
+				progressBar.setMaximum(m.getTotalLength());
+
+				// 设置GUI
 				btnStop.setEnabled(true);
 				btnPlay.setEnabled(false);
 				btnPause.setEnabled(true);
+				lblLength.setText(Etc.getMusicLengthTime(m.sampleRate, m.getTotalLength()));
 			}
 		});
 
@@ -273,11 +286,12 @@ public class GUI {
 					e1.printStackTrace();
 				}
 
-				// 设置播放和停止按钮状态
+				// 设置GUI
 				btnStop.setEnabled(false);
 				btnPlay.setEnabled(true);
 				btnPause.setSelected(false);
 				btnPause.setEnabled(false);
+				lblLength.setText("00:00");
 			}
 		});
 
@@ -301,30 +315,30 @@ public class GUI {
 		});
 		slider.setValue(100);
 		slider.setPaintLabels(true);
-		
+
 		JPanel panel_2 = new JPanel();
 		controlPanel.add(panel_2);
-		
-				// 显示路径管理器按钮
-				JButton btnP = new JButton(Messages.getString("GUI.PathManager.text")); //$NON-NLS-1$
-				panel_2.add(btnP);
-				
-						// 音乐导出按钮
-						JButton btnExporter = new JButton(Messages.getString("GUI.exportMusic.text")); //$NON-NLS-1$
-						panel_2.add(btnExporter);
-						btnExporter.addActionListener(new ActionListener() {
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								mus.display();
-							}
-						});
-				btnP.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// 显示路径管理器
-						pathman.display();
-					}
-				});
+
+		// 显示路径管理器按钮
+		JButton btnP = new JButton(Messages.getString("GUI.PathManager.text")); //$NON-NLS-1$
+		panel_2.add(btnP);
+
+		// 音乐导出按钮
+		JButton btnExporter = new JButton(Messages.getString("GUI.exportMusic.text")); //$NON-NLS-1$
+		panel_2.add(btnExporter);
+		btnExporter.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mus.display();
+			}
+		});
+		btnP.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// 显示路径管理器
+				pathman.display();
+			}
+		});
 
 	}
 

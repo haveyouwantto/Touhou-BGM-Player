@@ -159,6 +159,7 @@ public class PCMPlayer {
 		}
 	}
 	
+	// TODO 设置播放进度
 	public void setPlayback(int value) {
 		
 	}
@@ -169,6 +170,10 @@ public class PCMPlayer {
 		if (!playing)
 			return 0;
 		return music.getTotalLength();
+	}
+
+	public Music getMusic() {
+		return music;
 	}
 
 }

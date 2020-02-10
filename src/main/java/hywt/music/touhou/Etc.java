@@ -1,5 +1,7 @@
 package hywt.music.touhou;
 
+import java.text.DecimalFormat;
+
 public class Etc {
 	public static String getEoSDFilename(int index) {
 		++index;
@@ -11,5 +13,12 @@ public class Etc {
 			filename = "th06_" + index + ".wav"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return filename;
+	}
+
+	public static String getMusicLengthTime(int sampleRate,int length) {
+		int lengthSec = length / (sampleRate * 16 * 2 / 8);
+		int second = lengthSec % 60;
+		int minute = lengthSec / 60 % 60;
+		return new DecimalFormat("00").format(minute) + ":" + new DecimalFormat("00").format(second);
 	}
 }
