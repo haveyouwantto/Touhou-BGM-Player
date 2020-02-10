@@ -24,7 +24,7 @@ public class PCMPlayer {
 	private Music music;
 	int playback;
 
-	public void play(String thbgm, Music m, boolean loop) throws FileNotFoundException {
+	public void play(String thbgm, Music m, boolean loop) throws IOException {
 		try {
 			pause = false;
 			inLoop = false;
@@ -100,9 +100,6 @@ public class PCMPlayer {
 			raf.close();
 
 		} catch (LineUnavailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {

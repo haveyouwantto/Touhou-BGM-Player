@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JToggleButton;
 import java.awt.Color;
@@ -72,7 +73,7 @@ public class GUI {
 		frmTouhouBgmPlayer.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/assets/hywt/music/touhou/icon.png"))); //$NON-NLS-1$
 		frmTouhouBgmPlayer.setTitle(Messages.getString("GUI.title")); //$NON-NLS-1$
-		frmTouhouBgmPlayer.setBounds(100, 100, 450, 311);
+		frmTouhouBgmPlayer.setBounds(100, 100, 450, 320);
 		frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// 获取BGM信息
@@ -228,13 +229,9 @@ public class GUI {
 					if (g.format == 0) {
 						// 东方红魔乡格式 = 0
 						int index = g.music.indexOf(m);
-
-						lblplaying.setText(m.title);
 						pcmp.play(bgmpath.path.get(gameId).path + "/" + Etc.getEoSDFilename(index), m, loop); //$NON-NLS-1$
 					} else if (g.format == 1) {
-
 						// 一般格式 = 1
-						lblplaying.setText(m.title);
 						pcmp.play(bgmpath.path.get(gameId).path, m, loop);
 					} else {
 						// 不支持的格式
@@ -246,6 +243,11 @@ public class GUI {
 				} catch (FileNotFoundException e1) {
 					not.showError(Messages.getString("GUI.fileNotFoundError")); //$NON-NLS-1$
 					e1.printStackTrace();
+					btnStop.doClick();
+				} catch (IOException e) {
+					not.showError("文件读取失败。详细信息: " + e.getLocalizedMessage());
+					e.printStackTrace();
+					btnStop.doClick();
 				}
 			}
 		};
@@ -267,6 +269,7 @@ public class GUI {
 				btnStop.setEnabled(true);
 				btnPlay.setEnabled(false);
 				btnPause.setEnabled(true);
+				lblplaying.setText(m.title);
 				lblLength.setText(Etc.getMusicLengthTime(m.sampleRate, m.getTotalLength()));
 			}
 		});
