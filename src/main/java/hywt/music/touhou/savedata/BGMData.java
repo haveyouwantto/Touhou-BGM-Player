@@ -22,23 +22,16 @@ public class BGMData {
 
 	@Override
 	public String toString() {
-		return "BGMData [date=" + Arrays.toString(date) + ", games=" + games + ", comments=" + comments
-				+ "]";
+		return "BGMData [date=" + Arrays.toString(date) + ", games=" + games + ", comments=" + comments + "]";
 	}
 
 	public List<String> getComments() {
 		return comments;
 	}
-	
-	public static BGMData read() {
+
+	public static BGMData read() throws IOException {
 		Gson g = new Gson();
-		try {
-			String json = FileReader.read(new File("BGM.json"));
-			return g.fromJson(json, BGMData.class);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		String json = FileReader.read(new File("BGM.json"));
+		return g.fromJson(json, BGMData.class);
 	}
 }

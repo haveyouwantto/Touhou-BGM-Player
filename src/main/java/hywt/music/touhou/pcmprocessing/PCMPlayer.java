@@ -1,6 +1,5 @@
 package hywt.music.touhou.pcmprocessing;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import javax.sound.sampled.AudioFormat;

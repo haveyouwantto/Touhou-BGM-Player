@@ -78,7 +78,14 @@ public class GUI {
 
 		// 获取BGM信息
 
-		// 初始化工具
+		// 初始化
+		try {
+			Constants.init();
+		} catch (IOException e3) {
+			not.showError("未找到BGM数据。 (BGM.json)");
+			e3.printStackTrace();
+			Thread.currentThread().interrupt();
+		}
 		PathManager pathman = new PathManager();
 		MusicExporter mus = new MusicExporter();
 
