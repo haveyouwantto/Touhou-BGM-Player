@@ -16,7 +16,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import hywt.music.touhou.Constants;
 import hywt.music.touhou.gui.Messages;
-import hywt.music.touhou.savedata.BGMData;
 import hywt.music.touhou.savedata.BGMPath;
 import hywt.music.touhou.savedata.DataPath;
 

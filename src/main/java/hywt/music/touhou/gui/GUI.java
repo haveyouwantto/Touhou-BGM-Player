@@ -30,9 +30,7 @@ import hywt.music.touhou.Constants;
 import hywt.music.touhou.Etc;
 
 import javax.swing.event.ChangeEvent;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.BoxLayout;
 
 public class GUI {
 
@@ -75,8 +73,7 @@ public class GUI {
 		frmTouhouBgmPlayer.setTitle(Messages.getString("GUI.title")); //$NON-NLS-1$
 		frmTouhouBgmPlayer.setBounds(100, 100, 450, 300);
 		frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
+
 		// 获取BGM信息
 
 		// 初始化工具
@@ -136,115 +133,94 @@ public class GUI {
 		playbackControlPanel.setBorder(new TitledBorder(null, Messages.getString("GUI.playControl"), //$NON-NLS-1$
 				TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		controlPanel.add(playbackControlPanel);
-		playbackControlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		playbackControlPanel.setLayout(new BoxLayout(playbackControlPanel, BoxLayout.Y_AXIS));
+
+		JPanel panel_1 = new JPanel();
+		playbackControlPanel.add(panel_1);
 
 		// 停止按钮
-		JButton btnStop = new JButton("\u2588"); //$NON-NLS-1$
-		playbackControlPanel.add(btnStop);
+		JButton btnStop = new JButton("\u2588");
+		panel_1.add(btnStop);
+		
 
-		btnStop.setEnabled(false);
 
 		// 播放按钮
-		JButton btnPlay = new JButton("\u25b6"); //$NON-NLS-1$
-		playbackControlPanel.add(btnPlay);
+		JButton btnPlay = new JButton("\u25b6");
+		panel_1.add(btnPlay);
 
 		// 循环按钮
 		JToggleButton tglbtnLoop = new JToggleButton("L"); //$NON-NLS-1$
+		panel_1.add(tglbtnLoop);
 		tglbtnLoop.setSelected(true);
+
+		JToggleButton btnPause = new JToggleButton(Messages.getString("GUI.btnP_1.text"));
+		panel_1.add(btnPause);
+		btnPause.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (pcmp.isPaused()) {
+					pcmp.resume();
+				} else {
+					pcmp.pause();
+				}
+			}
+		});
+		btnPause.setEnabled(false);
 		tglbtnLoop.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tglbtnLoop.isSelected();
 			}
 		});
-		playbackControlPanel.add(tglbtnLoop);
 
-		// 音量数字显示
-		JLabel volumeLabel = new JLabel(Messages.getString("GUI.volumeLabel.text")); //$NON-NLS-1$
-		playbackControlPanel.add(volumeLabel);
-
-		// 音量滑块
-		JSlider slider = new JSlider();
-		slider.addChangeListener(new ChangeListener() {
-			@Override
-			public void stateChanged(ChangeEvent e) {
-				float volume = slider.getValue() / 100f;
-				volumeLabel.setText(String.valueOf(slider.getValue()));
-				pcmp.setVolume(volume);
-			}
-		});
-		slider.setValue(100);
-		slider.setPaintLabels(true);
-		playbackControlPanel.add(slider);
-
-		// 显示路径管理器按钮
-		JButton btnP = new JButton(Messages.getString("GUI.PathManager.text")); //$NON-NLS-1$
-		btnP.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// 显示路径管理器
-				pathman.display();
-			}
-		});
-		controlPanel.add(btnP);
-
-		// 音乐导出按钮
-		JButton btnExporter = new JButton(Messages.getString("GUI.exportMusic.text")); //$NON-NLS-1$
-		btnExporter.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				mus.display();
-			}
-		});
-		controlPanel.add(btnExporter);
-		
 		// 线程代码
-				Runnable musicPlaying = new Runnable() {
-					@Override
-					public void run() {
-						try {
-							// 读取音乐信息
-							BGMPath bgmpath = BGMPath.load();
-							Game g = (Game) gameComboBox.getSelectedItem();
-							Music m = (Music) musicComboBox.getSelectedItem();
-							boolean loop = tglbtnLoop.isSelected();
+		Runnable musicPlaying = new Runnable() {
+			@Override
+			public void run() {
+				try {
+					// 读取音乐信息
+					BGMPath bgmpath = BGMPath.load();
+					Game g = (Game) gameComboBox.getSelectedItem();
+					Music m = (Music) musicComboBox.getSelectedItem();
+					boolean loop = tglbtnLoop.isSelected();
 
-							if (g.format == 0) {
-								// 东方红魔乡格式 = 0
-								int index = g.music.indexOf(m);
+					if (g.format == 0) {
+						// 东方红魔乡格式 = 0
+						int index = g.music.indexOf(m);
 
-								lblplaying.setText(m.title);
-								pcmp.play(bgmpath.path.get(gameId).path + "/" + Etc.getEoSDFilename(index), m, loop); //$NON-NLS-1$
-							} else if (g.format == 1) {
+						lblplaying.setText(m.title);
+						pcmp.play(bgmpath.path.get(gameId).path + "/" + Etc.getEoSDFilename(index), m, loop); //$NON-NLS-1$
+					} else if (g.format == 1) {
 
-								// 一般格式 = 1
-								lblplaying.setText(m.title);
-								pcmp.play(bgmpath.path.get(gameId).path, m, loop);
-							} else {
-								// 不支持的格式
-								// TODO 支持黄昏格式（绯想天和非想天则）
-								not.showWarning(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
-								btnStop.setEnabled(false);
-								btnPlay.setEnabled(true);
-							}
-						} catch (FileNotFoundException e1) {
-							not.showError(Messages.getString("GUI.fileNotFoundError")); //$NON-NLS-1$
-							e1.printStackTrace();
-						}
+						// 一般格式 = 1
+						lblplaying.setText(m.title);
+						pcmp.play(bgmpath.path.get(gameId).path, m, loop);
+					} else {
+						// 不支持的格式
+						// TODO 支持黄昏格式（绯想天和非想天则）
+						not.showWarning(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
+						btnStop.setEnabled(false);
+						btnPlay.setEnabled(true);
 					}
-				};
+				} catch (FileNotFoundException e1) {
+					not.showError(Messages.getString("GUI.fileNotFoundError")); //$NON-NLS-1$
+					e1.printStackTrace();
+				}
+			}
+		};
 
+		btnStop.setEnabled(false);
 
 		// 播放按钮的事件
 		btnPlay.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+
 				new Thread(musicPlaying).start();
 
 				// 设置播放和停止按钮状态
 				btnStop.setEnabled(true);
 				btnPlay.setEnabled(false);
+				btnPause.setEnabled(true);
 			}
 		});
 
@@ -257,6 +233,7 @@ public class GUI {
 				lblplaying.setText("-"); //$NON-NLS-1$
 				try {
 					// 尝试停止音乐
+					pcmp.resume();
 					pcmp.stop();
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -265,8 +242,56 @@ public class GUI {
 				// 设置播放和停止按钮状态
 				btnStop.setEnabled(false);
 				btnPlay.setEnabled(true);
+				btnPause.setSelected(false);
+				btnPause.setEnabled(false);
 			}
 		});
+
+		JPanel panel = new JPanel();
+		playbackControlPanel.add(panel);
+
+		// 音量数字显示
+		JLabel volumeLabel = new JLabel(Messages.getString("GUI.volumeLabel.text"));
+		panel.add(volumeLabel);
+
+		// 音量滑块
+		JSlider slider = new JSlider();
+		panel.add(slider);
+		slider.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				float volume = slider.getValue() / 100f;
+				volumeLabel.setText(String.valueOf(slider.getValue()));
+				pcmp.setVolume(volume);
+			}
+		});
+		slider.setValue(100);
+		slider.setPaintLabels(true);
+		
+		JPanel panel_2 = new JPanel();
+		controlPanel.add(panel_2);
+		
+				// 显示路径管理器按钮
+				JButton btnP = new JButton(Messages.getString("GUI.PathManager.text")); //$NON-NLS-1$
+				panel_2.add(btnP);
+				
+						// 音乐导出按钮
+						JButton btnExporter = new JButton(Messages.getString("GUI.exportMusic.text")); //$NON-NLS-1$
+						panel_2.add(btnExporter);
+						btnExporter.addActionListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								mus.display();
+							}
+						});
+				btnP.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// 显示路径管理器
+						pathman.display();
+					}
+				});
+
 	}
 
 }

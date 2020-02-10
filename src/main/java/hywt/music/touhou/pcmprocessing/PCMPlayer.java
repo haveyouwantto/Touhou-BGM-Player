@@ -18,11 +18,13 @@ public class PCMPlayer {
 	private SourceDataLine sdl;
 	private FloatControl volumeControl;
 	private boolean playing = false;
+	private boolean pause;
 	private float volume = 1;
 	long playback;
 
 	public void play(String thbgm, Music music, boolean loop) throws FileNotFoundException {
 		try {
+			pause=false;
 
 			// 打开 thbgm.dat
 			RandomAccessFile raf = new RandomAccessFile(thbgm, "r");
@@ -55,6 +57,10 @@ public class PCMPlayer {
 
 			playback = 0;
 			while (playback < music.preludeLength) {
+				if(pause) {
+						Thread.sleep(50);
+						continue;
+				}
 				raf.read(b, 0, bufferSize);
 				sdl.write(b, 0, b.length);
 				playback += bufferSize;
@@ -66,6 +72,10 @@ public class PCMPlayer {
 				playback = 0;
 				raf.seek(music.loopPos);
 				while (playback < music.loopLength) {
+					if(pause) {
+						Thread.sleep(50);
+						continue;
+					}
 					raf.read(b, 0, bufferSize);
 					sdl.write(b, 0, b.length);
 					if (!loop || !playing) {
@@ -86,7 +96,22 @@ public class PCMPlayer {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	}
+	
+	public void pause() {
+		pause=true;
+	}
+	
+	public void resume() {
+		pause=false;
+	}
+	
+	public boolean isPaused() {
+		return this.pause;
 	}
 
 	public void stop() {
