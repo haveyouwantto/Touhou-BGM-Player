@@ -20,6 +20,18 @@ public class BGMData {
 		this.games = games;
 	}
 
+	public Game getGamebyId(String id) {
+		for (int i = 0; i < games.size(); i++) {
+			if (games.get(i).no.equals(id))
+				return games.get(i);
+		}
+		return null;
+	}
+
+	public Music getMusicbyId(String gameId, String musicId) {
+		return getGamebyId(gameId.toUpperCase()).music.get(Integer.parseInt(musicId) - 1);
+	}
+
 	@Override
 	public String toString() {
 		return "BGMData [date=" + Arrays.toString(date) + ", games=" + games + ", comments=" + comments + "]";

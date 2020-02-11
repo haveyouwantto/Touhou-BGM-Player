@@ -31,6 +31,7 @@ import hywt.music.touhou.Constants;
 import hywt.music.touhou.Etc;
 
 import javax.swing.event.ChangeEvent;
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.BoxLayout;
 import javax.swing.border.EmptyBorder;
 
@@ -82,7 +83,7 @@ public class GUI {
 		try {
 			Constants.init();
 		} catch (IOException e3) {
-			not.showError("未找到BGM数据。 (BGM.json)");
+			not.showError(Messages.getString("GUI.bgmDataNotFound")); //$NON-NLS-1$
 			e3.printStackTrace();
 			Thread.currentThread().interrupt();
 		}
@@ -198,11 +199,6 @@ public class GUI {
 		JButton btnPlay = new JButton("\u25b6");
 		panel_1.add(btnPlay);
 
-		// 循环按钮
-		JToggleButton tglbtnLoop = new JToggleButton("L"); //$NON-NLS-1$
-		panel_1.add(tglbtnLoop);
-		tglbtnLoop.setSelected(true);
-
 		JToggleButton btnPause = new JToggleButton(Messages.getString("GUI.btnP_1.text"));
 		panel_1.add(btnPause);
 		btnPause.addActionListener(new ActionListener() {
@@ -215,6 +211,11 @@ public class GUI {
 			}
 		});
 		btnPause.setEnabled(false);
+
+		// 循环按钮
+		JToggleButton tglbtnLoop = new JToggleButton("L"); //$NON-NLS-1$
+		panel_1.add(tglbtnLoop);
+		tglbtnLoop.setSelected(true);
 		tglbtnLoop.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -232,17 +233,21 @@ public class GUI {
 					Game g = (Game) gameComboBox.getSelectedItem();
 					Music m = (Music) musicComboBox.getSelectedItem();
 					boolean loop = tglbtnLoop.isSelected();
+					String path = bgmpath.path.get(gameId).path;
 
 					if (g.format == 0) {
 						// 东方红魔乡格式 = 0
 						int index = g.music.indexOf(m);
-						pcmp.play(bgmpath.path.get(gameId).path + "/" + Etc.getEoSDFilename(index), m, loop); //$NON-NLS-1$
+						pcmp.play(path + "/" + Etc.getEoSDFilename(index), m, loop); //$NON-NLS-1$
 					} else if (g.format == 1) {
 						// 一般格式 = 1
-						pcmp.play(bgmpath.path.get(gameId).path, m, loop);
+						pcmp.play(path, m, loop);
+					} else if (g.format == 2) {
+						not.showWarning(Messages.getString("GUI.oggUnsupported")); //$NON-NLS-1$
+						btnStop.doClick();
+						// pcmp.playTFMusic(path, m, loop);
 					} else {
 						// 不支持的格式
-						// TODO 支持黄昏格式（绯想天和非想天则）
 						not.showWarning(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
 						btnStop.setEnabled(false);
 						btnPlay.setEnabled(true);
@@ -252,9 +257,15 @@ public class GUI {
 					e1.printStackTrace();
 					btnStop.doClick();
 				} catch (IOException e) {
-					not.showError("文件读取失败。详细信息: " + e.getLocalizedMessage());
+					not.showError(Messages.getString("GUI.IOException") + e.getLocalizedMessage()); //$NON-NLS-1$
 					e.printStackTrace();
 					btnStop.doClick();
+				} catch (LineUnavailableException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		};
@@ -301,7 +312,7 @@ public class GUI {
 				btnPlay.setEnabled(true);
 				btnPause.setSelected(false);
 				btnPause.setEnabled(false);
-				lblLength.setText("00:00");
+				lblLength.setText(Messages.getString("GUI.time")); //$NON-NLS-1$
 			}
 		});
 

@@ -127,9 +127,9 @@ public class PathManager {
 					} else if (i2 == 2) { // TH07.5
 						filename = "th075bgm.dat"; //$NON-NLS-1$
 					} else if (i2 == 7) { // TH10.5
-						filename = "th105a.dat"; //$NON-NLS-1$
+						filename = "th105b.dat"; //$NON-NLS-1$
 					} else if (i2 == 10) { // TH12.3
-						filename = "th123a.dat"; //$NON-NLS-1$
+						filename = "th123b.dat"; //$NON-NLS-1$
 					} else {
 						filename = "thbgm.dat"; //$NON-NLS-1$
 					}
