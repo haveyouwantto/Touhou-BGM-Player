@@ -12,9 +12,9 @@ public class TFOggInputStream extends InputStream {
 	private File file;
 	private RandomAccessFile raf;
 	private int xor;
-	private long markpos;
 	private long pointer;
-	
+	private long markpos;
+
 	public TFOggInputStream(String path, Music m) throws IOException {
 		this.m = m;
 		file = new File(path);
@@ -30,28 +30,20 @@ public class TFOggInputStream extends InputStream {
 		pointer++;
 		return raf.read() ^ xor;
 	}
-
-	@Override
-	public int read(byte b[], int off, int len) throws IOException {
-		if (pointer >= m.getTotalLength())
-			return -1;
-		pointer += b.length;
-		int re = raf.read(b, off, len);
-		// System.out.println(Arrays.toString(b2));
-		for (int i = 0; i < b.length; i++) {
-			b[i] = (byte) (b[i] ^ xor);
-		}
-		return re;
+	
+	public void seek(long pos) throws IOException {
+		this.pointer = pos;
+		raf.seek(pos);
 	}
 
 	@Override
-	public synchronized void mark(int readlimit) {
+	public void mark(int readlimit) {
 		markpos = pointer;
 	}
 
 	@Override
-	public synchronized void reset() throws IOException {
-		raf.seek(markpos);
+	public void reset() throws IOException {
+		seek(markpos);
 	}
 
 	@Override

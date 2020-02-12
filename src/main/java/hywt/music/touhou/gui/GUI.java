@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import javax.swing.JToggleButton;
 import java.awt.Color;
@@ -22,6 +23,8 @@ import java.awt.FlowLayout;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
 
+import com.jcraft.jorbis.JOrbisException;
+
 import hywt.music.touhou.gui.Messages;
 import hywt.music.touhou.pcmprocessing.PCMPlayer;
 import hywt.music.touhou.savedata.BGMPath;
@@ -32,14 +35,20 @@ import hywt.music.touhou.Etc;
 
 import javax.swing.event.ChangeEvent;
 import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
 import javax.swing.border.EmptyBorder;
+import javax.swing.SwingConstants;
 
 public class GUI {
 
 	private JFrame frmTouhouBgmPlayer;
 	private PCMPlayer pcmp = new PCMPlayer();
 	private int gameId = 0;
+	/**
+	 * @wbp.nonvisual location=479,34
+	 */
+	private final JLabel label = new JLabel("\u25b2");
 
 	/**
 	 * Launch the application.
@@ -69,12 +78,13 @@ public class GUI {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		label.setHorizontalAlignment(SwingConstants.CENTER);
 		frmTouhouBgmPlayer = new JFrame();
 		final Notification not = new Notification(frmTouhouBgmPlayer);
 		frmTouhouBgmPlayer.setIconImage(
 				Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/assets/hywt/music/touhou/icon.png"))); //$NON-NLS-1$
 		frmTouhouBgmPlayer.setTitle(Messages.getString("GUI.title")); //$NON-NLS-1$
-		frmTouhouBgmPlayer.setBounds(100, 100, 450, 320);
+		frmTouhouBgmPlayer.setBounds(100, 100, 440, 320);
 		frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// 获取BGM信息
@@ -99,23 +109,28 @@ public class GUI {
 		infoPanel.add(panel_3);
 
 		// 正在播放
-		JLabel lblNowPlaying = new JLabel(Messages.getString("GUI.lblNowPlaying.text"));
+		JLabel lblNowPlaying = new JLabel(Messages.getString("GUI.lblNowPlaying.text")); //$NON-NLS-1$
 		panel_3.add(lblNowPlaying);
 
-		JLabel lblplaying = new JLabel("-");
+		JLabel lblplaying = new JLabel("-"); //$NON-NLS-1$
 		panel_3.add(lblplaying);
 
 		JPanel panel_4 = new JPanel();
 		infoPanel.add(panel_4);
 		panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
 
-		JLabel lblTime = new JLabel(Messages.getString("GUI.lblNewLabel.text"));
+		JLabel lblTime = new JLabel(Messages.getString("GUI.lblNewLabel.text")); //$NON-NLS-1$
 		panel_4.add(lblTime);
 
 		JSlider progressBar = new JSlider();
 		panel_4.add(progressBar);
 		progressBar.setEnabled(false);
 		progressBar.setValue(0);
+		
+		Hashtable<Integer, JLabel> ht=new Hashtable<Integer, JLabel>();
+		ht.put(0, label);
+		progressBar.setLabelTable(ht);
+		progressBar.setPaintLabels(true);
 
 		JLabel lblLength = new JLabel(Messages.getString("GUI.label.text")); //$NON-NLS-1$
 		panel_4.add(lblLength);
@@ -138,14 +153,13 @@ public class GUI {
 					}
 				}
 			}
-
 		};
 
 		new Thread(r2).start();
 
 		JPanel controlPanel = new JPanel();
 		frmTouhouBgmPlayer.getContentPane().add(controlPanel, BorderLayout.CENTER);
-		controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 2));
 
 		// 选择音乐的panel
 		JPanel musicSelectionPanel = new JPanel();
@@ -189,17 +203,19 @@ public class GUI {
 		playbackControlPanel.setLayout(new BoxLayout(playbackControlPanel, BoxLayout.Y_AXIS));
 
 		JPanel panel_1 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_1.getLayout();
+		flowLayout.setVgap(0);
 		playbackControlPanel.add(panel_1);
 
 		// 停止按钮
-		JButton btnStop = new JButton("\u2588");
+		JButton btnStop = new JButton("\u2588"); //$NON-NLS-1$
 		panel_1.add(btnStop);
 
 		// 播放按钮
-		JButton btnPlay = new JButton("\u25b6");
+		JButton btnPlay = new JButton("\u25b6"); //$NON-NLS-1$
 		panel_1.add(btnPlay);
 
-		JToggleButton btnPause = new JToggleButton(Messages.getString("GUI.btnP_1.text"));
+		JToggleButton btnPause = new JToggleButton(Messages.getString("GUI.btnP_1.text")); //$NON-NLS-1$
 		panel_1.add(btnPause);
 		btnPause.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -243,9 +259,9 @@ public class GUI {
 						// 一般格式 = 1
 						pcmp.play(path, m, loop);
 					} else if (g.format == 2) {
-						not.showWarning(Messages.getString("GUI.oggUnsupported")); //$NON-NLS-1$
-						btnStop.doClick();
-						// pcmp.playTFMusic(path, m, loop);
+						not.showMessage(Messages.getString("GUI.oggUnsupported")); //$NON-NLS-1$
+						//btnStop.doClick();
+						pcmp.playTFMusic(path, m, loop);
 					} else {
 						// 不支持的格式
 						not.showWarning(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
@@ -266,6 +282,9 @@ public class GUI {
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (UnsupportedAudioFileException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		};
@@ -282,6 +301,8 @@ public class GUI {
 				Music m = ((Music) musicComboBox.getSelectedItem());
 
 				progressBar.setMaximum(m.getTotalLength());
+				ht.clear();
+				ht.put((int) m.preludeLength, label);
 
 				// 设置GUI
 				btnStop.setEnabled(true);
@@ -306,6 +327,9 @@ public class GUI {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
+				
+				ht.clear();
+				ht.put(0, label);
 
 				// 设置GUI
 				btnStop.setEnabled(false);
@@ -320,7 +344,7 @@ public class GUI {
 		playbackControlPanel.add(panel);
 
 		// 音量数字显示
-		JLabel volumeLabel = new JLabel(Messages.getString("GUI.volumeLabel.text"));
+		JLabel volumeLabel = new JLabel(Messages.getString("GUI.volumeLabel.text")); //$NON-NLS-1$
 		panel.add(volumeLabel);
 
 		// 音量滑块
@@ -338,6 +362,8 @@ public class GUI {
 		slider.setPaintLabels(true);
 
 		JPanel panel_2 = new JPanel();
+		FlowLayout flowLayout_2 = (FlowLayout) panel_2.getLayout();
+		flowLayout_2.setVgap(0);
 		controlPanel.add(panel_2);
 
 		// 显示路径管理器按钮

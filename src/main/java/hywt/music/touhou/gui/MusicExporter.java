@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
@@ -62,6 +63,8 @@ public class MusicExporter {
 		selectionPanel.setLayout(new GridLayout(0, 2, 0, 0));
 
 		JScrollPane gameScrollPane = new JScrollPane();
+		JScrollBar gameScrollBar = gameScrollPane.getVerticalScrollBar();
+		gameScrollBar.setUnitIncrement(10);
 		selectionPanel.add(gameScrollPane);
 
 		JPanel gamePanel = new JPanel();
@@ -73,6 +76,8 @@ public class MusicExporter {
 		gamePanel.setLayout(new GridLayout(0, 1, 0, 0));
 
 		JScrollPane musicScrollPane = new JScrollPane();
+		JScrollBar musicScrollBar = musicScrollPane.getVerticalScrollBar();
+		musicScrollBar.setUnitIncrement(10);
 		selectionPanel.add(musicScrollPane);
 
 		JPanel musicPanel = new JPanel();

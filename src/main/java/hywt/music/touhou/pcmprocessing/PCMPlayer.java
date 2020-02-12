@@ -1,5 +1,6 @@
 package hywt.music.touhou.pcmprocessing;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import javax.sound.sampled.AudioFormat;
@@ -11,7 +12,6 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import hywt.music.touhou.Etc;
 import hywt.music.touhou.savedata.Music;
 import hywt.music.touhou.tfpack.TFOggInputStream;
 
@@ -27,7 +27,7 @@ public class PCMPlayer {
 	private boolean loop;
 	private Music music;
 	int playback;
-	int bufferSize = 0x100;
+	int bufferSize = 256;
 
 	public void play(String thbgm, Music m, boolean loop)
 			throws IOException, LineUnavailableException, InterruptedException {
@@ -53,6 +53,28 @@ public class PCMPlayer {
 		playLoop(raf);
 		raf.close();
 	}
+	
+	public void playMusic(AudioInputStream f)
+			throws LineUnavailableException, IOException, InterruptedException, UnsupportedAudioFileException {
+		final AudioFormat outFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4,
+				44100, false);
+		final AudioInputStream ais = AudioSystem.getAudioInputStream(outFormat, f);
+		openSDL(outFormat);
+		byte[] b = new byte[bufferSize];
+		playback = 0;
+		while (f.available()>0) {
+			if (pause) {
+				Thread.sleep(50);
+				continue;
+			}
+			if (!playing) {
+				return;
+			}
+			ais.read(b);
+			sdl.write(b, 0, b.length);
+			playback += bufferSize;
+		}
+	}
 
 	public void playTFMusic(String thbgm, Music m, boolean loop)
 			throws LineUnavailableException, IOException, InterruptedException, UnsupportedAudioFileException {
@@ -63,18 +85,14 @@ public class PCMPlayer {
 		music = m;
 
 		TFOggInputStream tfois = new TFOggInputStream(thbgm, m);
-		AudioInputStream ais = Etc.toPCM(tfois);
 
-		// PCM 参数
-		float sampleRate = music.sampleRate;
-		int sampleSizeInBits = 16;
-		int channels = 2;
-		boolean signed = true;
-		boolean bigEndian = false;
-
-		af = new AudioFormat(sampleRate, sampleSizeInBits, channels, signed, bigEndian);
-		openSDL(af);
-		byte[] b = new byte[bufferSize];
+		final AudioInputStream in = AudioSystem.getAudioInputStream(new BufferedInputStream(tfois));
+		final AudioFormat outFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, music.sampleRate, 16, 2, 4,
+				music.sampleRate, false);
+		final AudioInputStream ais = AudioSystem.getAudioInputStream(outFormat, in);
+		openSDL(outFormat);
+		byte[] b = new byte[256];
+		playback = 0;
 		while (playback < music.getTotalLength()) {
 			if (pause) {
 				Thread.sleep(50);
@@ -83,8 +101,7 @@ public class PCMPlayer {
 			if (!playing) {
 				return;
 			}
-			ais.read(b, 0, bufferSize);
-			// System.out.println(Arrays.toString(b));
+			ais.read(b);
 			sdl.write(b, 0, b.length);
 			playback += bufferSize;
 		}
@@ -118,7 +135,7 @@ public class PCMPlayer {
 			if (!playing) {
 				return;
 			}
-			raf.read(b, 0, bufferSize);
+			raf.read(b);
 			sdl.write(b, 0, b.length);
 			playback += bufferSize;
 		}
@@ -128,7 +145,7 @@ public class PCMPlayer {
 	private void playLoop(RandomAccessFile raf) throws IOException, InterruptedException {
 		inLoop = true;
 		byte[] b = new byte[bufferSize];
-		while (true) {
+		while (loop) {
 			playback = 0;
 			raf.seek(music.loopPos);
 			while (playback < music.loopLength) {
@@ -139,12 +156,9 @@ public class PCMPlayer {
 				if (!playing) {
 					return;
 				}
-				raf.read(b, 0, bufferSize);
+				raf.read(b);
 				sdl.write(b, 0, b.length);
 				playback += bufferSize;
-			}
-			if (!loop) {
-				break;
 			}
 		}
 	}

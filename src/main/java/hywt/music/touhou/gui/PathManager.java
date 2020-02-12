@@ -23,8 +23,11 @@ import java.awt.Insets;
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.border.EmptyBorder;
+import java.awt.FlowLayout;
 
 public class PathManager {
 
@@ -36,6 +39,7 @@ public class PathManager {
 	private BGMPath bgmpath;
 	private JButton btnSave;
 	private Notification nof = new Notification(frmBgmPathManager);
+	private JPanel panel_1;
 
 	/**
 	 * Create the application.
@@ -56,9 +60,12 @@ public class PathManager {
 		frmBgmPathManager.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
 		JScrollPane scrollPane = new JScrollPane();
+		JScrollBar bar = scrollPane.getVerticalScrollBar();
+		bar.setUnitIncrement(10);
 		frmBgmPathManager.getContentPane().add(scrollPane, BorderLayout.CENTER);
 
 		panel = new JPanel();
+		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		scrollPane.setViewportView(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[] { 0, 270, 0, 0 };
@@ -67,7 +74,13 @@ public class PathManager {
 		gbl_panel.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
 
-		btnSave = new JButton(Messages.getString("PathManager.btnSave.text")); //$NON-NLS-1$
+		panel_1 = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel_1.getLayout();
+		flowLayout.setHgap(0);
+		frmBgmPathManager.getContentPane().add(panel_1, BorderLayout.NORTH);
+
+		btnSave = new JButton(Messages.getString("PathManager.btnSave.text"));
+		panel_1.add(btnSave);
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -80,19 +93,13 @@ public class PathManager {
 				nof.showMessage(Messages.getString("PathManager.save_dialog")); //$NON-NLS-1$
 			}
 		});
-		GridBagConstraints gbc_btnSave = new GridBagConstraints();
-		gbc_btnSave.gridwidth = 3;
-		gbc_btnSave.insets = new Insets(0, 0, 0, 5);
-		gbc_btnSave.gridx = 0;
-		gbc_btnSave.gridy = 0;
-		panel.add(btnSave, gbc_btnSave);
 
 		for (int i = 0; i < Constants.bgmdata.games.size(); i++) {
 			JLabel labelGameTitle = new JLabel(Constants.bgmdata.games.get(i).toString());
 			labelGameTitle.setHorizontalAlignment(SwingConstants.LEFT);
 			GridBagConstraints gbc_labelGameTitle = new GridBagConstraints();
 			gbc_labelGameTitle.insets = new Insets(0, 0, 0, 5);
-			gbc_labelGameTitle.anchor = GridBagConstraints.EAST;
+			gbc_labelGameTitle.anchor = GridBagConstraints.WEST;
 			gbc_labelGameTitle.gridx = 0;
 			gbc_labelGameTitle.gridy = i + 1;
 			panel.add(labelGameTitle, gbc_labelGameTitle);
@@ -134,7 +141,7 @@ public class PathManager {
 						filename = "thbgm.dat"; //$NON-NLS-1$
 					}
 
-					FileNameExtensionFilter Filter = new FileNameExtensionFilter(filename, "dat"); //$NON-NLS-1$ 
+					FileNameExtensionFilter Filter = new FileNameExtensionFilter(filename, "dat"); //$NON-NLS-1$
 
 					filechooser.setFileFilter(Filter);
 					filechooser.setAcceptAllFileFilterUsed(false);
