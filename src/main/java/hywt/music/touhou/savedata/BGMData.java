@@ -46,4 +46,23 @@ public class BGMData {
 		String json = FileReader.read(new File("BGM.json"));
 		return g.fromJson(json, BGMData.class);
 	}
+
+	public int[] indexOf(Music m) {
+		for (int i = 0; i < games.size(); i++) {
+			int index = games.get(i).indexOf(m);
+			if (index != -1) {
+				int[] out = { i, index };
+				return out;
+			}
+		}
+		return null;
+	}
+	
+	public Game getGamebyMusic(Music m) {
+		for (int i = 0; i < games.size(); i++) {
+			int index = games.get(i).indexOf(m);
+			if (index != -1) return games.get(i);
+		}
+		return null;
+	}
 }

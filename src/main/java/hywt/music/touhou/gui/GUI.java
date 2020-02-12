@@ -39,12 +39,16 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BoxLayout;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 public class GUI {
 
 	private JFrame frmTouhouBgmPlayer;
 	private PCMPlayer pcmp = new PCMPlayer();
 	private int gameId = 0;
+	private boolean updateProgressBar = true;
 	/**
 	 * @wbp.nonvisual location=479,34
 	 */
@@ -119,15 +123,42 @@ public class GUI {
 		infoPanel.add(panel_4);
 		panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
 
-		JLabel lblTime = new JLabel(Messages.getString("GUI.lblNewLabel.text")); //$NON-NLS-1$
+		JLabel lblTime = new JLabel(Messages.getString("GUI.lblNewLabel.text"));
 		panel_4.add(lblTime);
 
 		JSlider progressBar = new JSlider();
-		panel_4.add(progressBar);
 		progressBar.setEnabled(false);
+		progressBar.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				if (progressBar.isEnabled())
+					lblTime.setText(Etc.getMusicLengthTime(pcmp.getMusic().sampleRate, progressBar.getValue()));
+			}
+		});
+		progressBar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				if (progressBar.isEnabled()) {
+					int pos = progressBar.getValue();
+					try {
+						pcmp.seek(pos);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				updateProgressBar = true;
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				updateProgressBar = false;
+			}
+		});
+		panel_4.add(progressBar);
 		progressBar.setValue(0);
-		
-		Hashtable<Integer, JLabel> ht=new Hashtable<Integer, JLabel>();
+
+		Hashtable<Integer, JLabel> ht = new Hashtable<Integer, JLabel>();
 		ht.put(0, label);
 		progressBar.setLabelTable(ht);
 		progressBar.setPaintLabels(true);
@@ -142,8 +173,10 @@ public class GUI {
 				// TODO Auto-generated method stub
 				while (true) {
 					try {
-						progressBar.setValue(pcmp.getPlayback());
-						lblTime.setText(Etc.getMusicLengthTime(pcmp.getMusic().sampleRate, pcmp.getPlayback()));
+						if (updateProgressBar) {
+							progressBar.setValue(pcmp.getPlayback());
+							lblTime.setText(Etc.getMusicLengthTime(pcmp.getMusic().sampleRate, pcmp.getPlayback()));
+						}
 						Thread.sleep(50);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
@@ -260,7 +293,7 @@ public class GUI {
 						pcmp.play(path, m, loop);
 					} else if (g.format == 2) {
 						not.showMessage(Messages.getString("GUI.oggUnsupported")); //$NON-NLS-1$
-						//btnStop.doClick();
+						// btnStop.doClick();
 						pcmp.playTFMusic(path, m, loop);
 					} else {
 						// 不支持的格式
@@ -308,6 +341,7 @@ public class GUI {
 				btnStop.setEnabled(true);
 				btnPlay.setEnabled(false);
 				btnPause.setEnabled(true);
+				progressBar.setEnabled(true);
 				lblplaying.setText(m.title);
 				lblLength.setText(Etc.getMusicLengthTime(m.sampleRate, m.getTotalLength()));
 			}
@@ -327,7 +361,7 @@ public class GUI {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				
+
 				ht.clear();
 				ht.put(0, label);
 
@@ -336,6 +370,7 @@ public class GUI {
 				btnPlay.setEnabled(true);
 				btnPause.setSelected(false);
 				btnPause.setEnabled(false);
+				progressBar.setEnabled(false);
 				lblLength.setText(Messages.getString("GUI.time")); //$NON-NLS-1$
 			}
 		});

@@ -20,4 +20,8 @@ public class Game {
 	public String toString() {
 		return no + " - " + title;
 	}
+	
+	public int indexOf(Music m) {
+		return music.indexOf(m);
+	}
 }
