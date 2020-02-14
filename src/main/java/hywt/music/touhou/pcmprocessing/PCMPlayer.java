@@ -25,15 +25,19 @@ public class PCMPlayer {
 	private boolean playing = false;
 	private boolean pause;
 	private float volume = 1;
+	private int playMode;
 	private boolean loop;
 	private Music music;
 	int playback;
 	int bufferSize = 256;
 
-	public void play(String thbgm, Music m, boolean loop)
-			throws IOException, LineUnavailableException, InterruptedException {
+	public PCMPlayer() {
+		loop = true;
+		playMode = 1;
+	}
+
+	public void play(String thbgm, Music m) throws IOException, LineUnavailableException, InterruptedException {
 		pause = false;
-		this.loop = loop;
 		music = m;
 
 		// 打开 thbgm.dat
@@ -73,11 +77,10 @@ public class PCMPlayer {
 		}
 	}
 
-	public void playTFMusic(String thbgm, Music m, boolean loop)
+	public void playTFMusic(String thbgm, Music m)
 			throws LineUnavailableException, IOException, InterruptedException, UnsupportedAudioFileException {
 
 		pause = false;
-		this.loop = loop;
 		music = m;
 
 		TFOggInputStream tfois = new TFOggInputStream(thbgm, m);
@@ -122,7 +125,7 @@ public class PCMPlayer {
 		byte[] b = new byte[bufferSize];
 		playback = 0;
 		raf.seek(music.preludePos);
-		while (loop) {
+		while (true) {
 			while (playback < music.getTotalLength()) {
 				if (pause) {
 					Thread.sleep(50);
@@ -136,8 +139,25 @@ public class PCMPlayer {
 				sdl.write(b, 0, b.length);
 				playback += bufferSize;
 			}
-			playback = music.preludeLength;
-			raf.seek(music.loopPos);
+			if (playMode == 0) {
+				playback = music.preludeLength;
+				raf.seek(music.loopPos);
+			} else if (playMode == 1) {
+				int[] index = Constants.bgmdata.indexOf(music);
+				try {
+					music = Constants.bgmdata.games.get(index[0]).music.get(index[1] + 1);
+				} catch (IndexOutOfBoundsException e) {
+					if (!loop)
+						break;
+					music = Constants.bgmdata.games.get(index[0]).music.get(0);
+				}
+				playback = 0;
+				raf.seek(music.preludePos);
+				continue;
+			}
+			if (!loop && playMode == 0) {
+				break;
+			}
 		}
 	}
 
@@ -216,6 +236,22 @@ public class PCMPlayer {
 
 	public Music getMusic() {
 		return music;
+	}
+
+	public int getPlayMode() {
+		return playMode;
+	}
+
+	public void setPlayMode(int playMode) {
+		this.playMode = playMode;
+	}
+
+	public boolean isLoop() {
+		return loop;
+	}
+
+	public void setLoop(boolean loop) {
+		this.loop = loop;
 	}
 
 }

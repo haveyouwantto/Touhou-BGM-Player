@@ -49,10 +49,13 @@ public class GUI {
 	private PCMPlayer pcmp = new PCMPlayer();
 	private int gameId = 0;
 	private boolean updateProgressBar = true;
+	private int playMode = 0;
+	private boolean playing;
 	/**
 	 * @wbp.nonvisual location=479,34
 	 */
 	private final JLabel label = new JLabel("\u25b2");
+	private JLabel lblplaying;
 
 	/**
 	 * Launch the application.
@@ -116,7 +119,7 @@ public class GUI {
 		JLabel lblNowPlaying = new JLabel(Messages.getString("GUI.lblNowPlaying.text")); //$NON-NLS-1$
 		panel_3.add(lblNowPlaying);
 
-		JLabel lblplaying = new JLabel("-"); //$NON-NLS-1$
+		lblplaying = new JLabel("-"); //$NON-NLS-1$
 		panel_3.add(lblplaying);
 
 		JPanel panel_4 = new JPanel();
@@ -166,6 +169,7 @@ public class GUI {
 		JLabel lblLength = new JLabel(Messages.getString("GUI.label.text")); //$NON-NLS-1$
 		panel_4.add(lblLength);
 
+		// 播放状态更新线程
 		Runnable r2 = new Runnable() {
 
 			@Override
@@ -174,8 +178,17 @@ public class GUI {
 				while (true) {
 					try {
 						if (updateProgressBar) {
+							Music m = pcmp.getMusic();
 							progressBar.setValue(pcmp.getPlayback());
-							lblTime.setText(Etc.getMusicLengthTime(pcmp.getMusic().sampleRate, pcmp.getPlayback()));
+							lblTime.setText(Etc.getMusicLengthTime(m.sampleRate, pcmp.getPlayback()));
+							lblLength.setText(Etc.getMusicLengthTime(m.sampleRate, m.getTotalLength()));
+							lblplaying.setText(m.title);
+							progressBar.setMaximum(m.getTotalLength());
+							ht.clear();
+							ht.put((int) m.preludeLength, label);
+						}
+						if (!playing) {
+							lblplaying.setText("-"); //$NON-NLS-1$
 						}
 						Thread.sleep(50);
 					} catch (InterruptedException e) {
@@ -262,17 +275,34 @@ public class GUI {
 		btnPause.setEnabled(false);
 
 		// 循环按钮
-		JToggleButton tglbtnLoop = new JToggleButton("L"); //$NON-NLS-1$
-		panel_1.add(tglbtnLoop);
-		tglbtnLoop.setSelected(true);
-		tglbtnLoop.addActionListener(new ActionListener() {
-			@Override
+		JButton btnPlayMode = new JButton(Messages.getString("GUI.tglbtnLoop.text")); //$NON-NLS-1$
+		btnPlayMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tglbtnLoop.isSelected();
+				switch (playMode) {
+				case 0:
+					playMode = 1;
+					btnPlayMode.setText("G");
+					break;
+				case 1:
+					playMode = 0;
+					btnPlayMode.setText("M");
+					break;
+				}
+				pcmp.setPlayMode(playMode);
 			}
 		});
 
-		// 线程代码
+		JToggleButton btnLoop = new JToggleButton(Messages.getString("GUI.btnLoop.text")); //$NON-NLS-1$
+		btnLoop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pcmp.setLoop(btnLoop.isSelected());
+			}
+		});
+		btnLoop.setSelected(true);
+		panel_1.add(btnLoop);
+		panel_1.add(btnPlayMode);
+
+		// 播放线程代码
 		Runnable musicPlaying = new Runnable() {
 			@Override
 			public void run() {
@@ -281,26 +311,26 @@ public class GUI {
 					BGMPath bgmpath = BGMPath.load();
 					Game g = (Game) gameComboBox.getSelectedItem();
 					Music m = (Music) musicComboBox.getSelectedItem();
-					boolean loop = tglbtnLoop.isSelected();
 					String path = bgmpath.path.get(gameId).path;
+					pcmp.setLoop(btnLoop.isSelected());
+					pcmp.setPlayMode(playMode);
 
 					if (g.format == 0) {
 						// 东方红魔乡格式 = 0
 						int index = g.music.indexOf(m);
-						pcmp.play(path + "/" + Etc.getEoSDFilename(index), m, loop); //$NON-NLS-1$
+						pcmp.play(path + "/" + Etc.getEoSDFilename(index), m); //$NON-NLS-1$
 					} else if (g.format == 1) {
 						// 一般格式 = 1
-						pcmp.play(path, m, loop);
+						pcmp.play(path, m);
 					} else if (g.format == 2) {
 						not.showMessage(Messages.getString("GUI.oggUnsupported")); //$NON-NLS-1$
 						// btnStop.doClick();
-						pcmp.playTFMusic(path, m, loop);
+						pcmp.playTFMusic(path, m);
 					} else {
 						// 不支持的格式
 						not.showWarning(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
-						btnStop.setEnabled(false);
-						btnPlay.setEnabled(true);
 					}
+					btnStop.doClick();
 				} catch (FileNotFoundException e1) {
 					not.showError(Messages.getString("GUI.fileNotFoundError")); //$NON-NLS-1$
 					e1.printStackTrace();
@@ -333,17 +363,12 @@ public class GUI {
 
 				Music m = ((Music) musicComboBox.getSelectedItem());
 
-				progressBar.setMaximum(m.getTotalLength());
-				ht.clear();
-				ht.put((int) m.preludeLength, label);
-
 				// 设置GUI
 				btnStop.setEnabled(true);
 				btnPlay.setEnabled(false);
 				btnPause.setEnabled(true);
 				progressBar.setEnabled(true);
-				lblplaying.setText(m.title);
-				lblLength.setText(Etc.getMusicLengthTime(m.sampleRate, m.getTotalLength()));
+				playing = true;
 			}
 		});
 
@@ -352,8 +377,6 @@ public class GUI {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				// 将正在播放的曲目设置为无
-				lblplaying.setText("-"); //$NON-NLS-1$
 				try {
 					// 尝试停止音乐
 					pcmp.resume();
@@ -372,6 +395,7 @@ public class GUI {
 				btnPause.setEnabled(false);
 				progressBar.setEnabled(false);
 				lblLength.setText(Messages.getString("GUI.time")); //$NON-NLS-1$
+				playing = false;
 			}
 		});
 
@@ -424,4 +448,7 @@ public class GUI {
 
 	}
 
+	protected JLabel getLblplaying() {
+		return lblplaying;
+	}
 }
