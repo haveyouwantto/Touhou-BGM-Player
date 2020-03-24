@@ -7,6 +7,6 @@ import hywt.music.touhou.savedata.BGMData;
 public class Constants {
 	public static BGMData bgmdata;
 	public static void init() throws IOException {
-		bgmdata = BGMData.read();
+		bgmdata = JSONLoader.readBGMData();
 	}
 }

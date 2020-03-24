@@ -147,7 +147,7 @@ public class MusicExporter {
 								Music m = Constants.bgmdata.games.get(i).music.get(j);
 								boolean separate = separateCheckBox.isSelected();
 								File path = filechooser.getSelectedFile();
-								String source = bgmpath.path.get(i).path;
+								String source = bgmpath.path.get(Constants.bgmdata.order.get(i));
 								try {
 									if (format == 0) {
 										PCMSaver.save(path, source + "/" + Etc.getEoSDFilename(j), g, m, separate);

@@ -17,8 +17,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import hywt.music.touhou.Constants;
 import hywt.music.touhou.gui.Messages;
 import hywt.music.touhou.savedata.BGMPath;
-import hywt.music.touhou.savedata.DataPath;
-
 import java.awt.Insets;
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
@@ -86,8 +84,7 @@ public class PathManager {
 			public void actionPerformed(ActionEvent e) {
 				BGMPath b = new BGMPath();
 				for (int i = 0; i < Constants.bgmdata.games.size(); i++) {
-					DataPath d = new DataPath(Constants.bgmdata.games.get(i).no, fields.get(i).getText());
-					b.path.add(d);
+					b.path.put(Constants.bgmdata.games.get(i).no, fields.get(i).getText());
 				}
 				b.save();
 				nof.showMessage(Messages.getString("PathManager.save_dialog")); //$NON-NLS-1$
@@ -164,7 +161,7 @@ public class PathManager {
 			bgmpath = BGMPath.load();
 			for (int i = 0; i < Constants.bgmdata.games.size(); i++) {
 				// 将 path.json 里的路径信息显示至 textField
-				String path = bgmpath.path.get(i).path;
+				String path = bgmpath.path.get(Constants.bgmdata.order.get(i));
 				fields.get(i).setText(path);
 			}
 		} catch (Exception e) {

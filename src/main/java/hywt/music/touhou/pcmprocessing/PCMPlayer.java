@@ -1,8 +1,11 @@
 package hywt.music.touhou.pcmprocessing;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Arrays;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -13,7 +16,12 @@ import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import hywt.music.touhou.Constants;
+import hywt.music.touhou.Etc;
+import hywt.music.touhou.gui.Messages;
+import hywt.music.touhou.savedata.BGMPath;
+import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
+import hywt.music.touhou.savedata.Playlist;
 import hywt.music.touhou.tfpack.TFOggInputStream;
 
 public class PCMPlayer {
@@ -28,20 +36,61 @@ public class PCMPlayer {
 	private int playMode;
 	private boolean loop;
 	private Music music;
+	private String source;
+	private boolean gameList;
 	int playback;
 	int bufferSize = 256;
+	public static final int MUSIC = 0;
+	public static final int LIST = 1;
 
 	public PCMPlayer() {
 		loop = true;
-		playMode = 1;
+		playMode = MUSIC;
 	}
 
-	public void play(String thbgm, Music m) throws IOException, LineUnavailableException, InterruptedException {
+	public void playList(Playlist ply, int start)
+			throws IOException, LineUnavailableException, InterruptedException, UnsupportedAudioFileException {
+		while (true) {
+			for (int i = start; i < ply.ids.size(); i++) {
+				Music m = Constants.bgmdata.getMusicbyId(ply.ids.get(i)[0], ply.ids.get(i)[1]);
+				Game g = Constants.bgmdata.getGamebyMusic(m);
+				play(g, m);
+				if (!playing)
+					break;
+			}
+			if (!loop || !playing)
+				break;
+		}
+	}
+
+	public void play(Game g, Music m)
+			throws IOException, LineUnavailableException, InterruptedException, UnsupportedAudioFileException {
+
+		BGMPath bgmpath = BGMPath.load();
+		pause = false;
+		music = m;
+		source = bgmpath.path.get(g.no);
+
+		if (g.format == 0) {
+			// 东方红魔乡格式 = 0
+			int index = g.music.indexOf(m);
+			play(source + "/" + Etc.getEoSDFilename(index), m); //$NON-NLS-1$
+		} else if (g.format == 1) {
+			// 一般格式 = 1
+			play(source, m);
+		} else if (g.format == 2) {
+			// TH10.5/12.3格式
+			playTFMusic(source, m);
+		}
+	}
+
+	private void play(String thbgm, Music m) throws IOException, LineUnavailableException, InterruptedException {
+		source = thbgm;
 		pause = false;
 		music = m;
 
 		// 打开 thbgm.dat
-		raf = new RandomAccessFile(thbgm, "r");
+		raf = new RandomAccessFile(source, "r");
 
 		// PCM 参数
 		float sampleRate = music.sampleRate;
@@ -79,29 +128,31 @@ public class PCMPlayer {
 
 	public void playTFMusic(String thbgm, Music m)
 			throws LineUnavailableException, IOException, InterruptedException, UnsupportedAudioFileException {
-
+		source = thbgm;
 		pause = false;
 		music = m;
 
-		TFOggInputStream tfois = new TFOggInputStream(thbgm, m);
+		TFOggInputStream tfois = new TFOggInputStream(source, m);
 
 		final AudioInputStream in = AudioSystem.getAudioInputStream(new BufferedInputStream(tfois));
+
 		final AudioFormat outFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, music.sampleRate, 16, 2, 4,
 				music.sampleRate, false);
 		final AudioInputStream ais = AudioSystem.getAudioInputStream(outFormat, in);
 		openSDL(outFormat);
-		byte[] b = new byte[256];
+		final byte[] b = new byte[bufferSize];
 		playback = 0;
+		int len;
 		while (playback < music.getTotalLength()) {
+			if (!playing) {
+				return;
+			}
 			if (pause) {
 				Thread.sleep(50);
 				continue;
 			}
-			if (!playing) {
-				return;
-			}
-			ais.read(b);
-			sdl.write(b, 0, b.length);
+			len = ais.read(b);
+			sdl.write(b, 0, len);
 			playback += bufferSize;
 		}
 	}
@@ -127,35 +178,46 @@ public class PCMPlayer {
 		raf.seek(music.preludePos);
 		while (true) {
 			while (playback < music.getTotalLength()) {
-				if (pause) {
-					Thread.sleep(50);
-					continue;
-				}
 				if (!playing) {
 					raf.close();
 					return;
+				}
+				if (pause) {
+					Thread.sleep(50);
+					continue;
 				}
 				raf.read(b);
 				sdl.write(b, 0, b.length);
 				playback += bufferSize;
 			}
-			if (playMode == 0) {
+			if (playMode == MUSIC) {
 				playback = music.preludeLength;
 				raf.seek(music.loopPos);
-			} else if (playMode == 1) {
-				int[] index = Constants.bgmdata.indexOf(music);
-				try {
-					music = Constants.bgmdata.games.get(index[0]).music.get(index[1] + 1);
-				} catch (IndexOutOfBoundsException e) {
-					if (!loop)
-						break;
-					music = Constants.bgmdata.games.get(index[0]).music.get(0);
-				}
-				playback = 0;
-				raf.seek(music.preludePos);
-				continue;
+			} else if (playMode == LIST) {
+				if (gameList) {
+					int[] index = Constants.bgmdata.indexOf(music);
+					try {
+						music = Constants.bgmdata.games.get(index[0]).music.get(index[1] + 1);
+						if (Constants.bgmdata.games.get(index[0]).no.equals("TH06")) {
+							source = new File(source).getParent() + "/" + Etc.getEoSDFilename(index[1] + 1);
+							raf = new RandomAccessFile(source, "r");
+						}
+					} catch (IndexOutOfBoundsException e) {
+						if (!loop)
+							break;
+						music = Constants.bgmdata.games.get(index[0]).music.get(0);
+						if (Constants.bgmdata.games.get(index[0]).no.equals("TH06")) {
+							source = new File(source).getParent() + "/" + Etc.getEoSDFilename(0);
+							raf = new RandomAccessFile(source, "r");
+						}
+					}
+					playback = 0;
+					raf.seek(music.preludePos);
+					continue;
+				} else
+					break;
 			}
-			if (!loop && playMode == 0) {
+			if (!loop && playMode == LIST) {
 				break;
 			}
 		}
@@ -183,9 +245,10 @@ public class PCMPlayer {
 		return this.pause;
 	}
 
-	public void stop() throws IOException {
+	public void stop() {
 		playing = false;
-		sdl.close();
+		if (sdl != null)
+			sdl.close();
 	}
 
 	public float getVolume() {
@@ -215,15 +278,11 @@ public class PCMPlayer {
 		return playback;
 	}
 
-	// TODO 设置播放进度
-	public void setPlayback(int value) {
+	public int getPreludeLength() {
 		if (!playing)
-			return;
-		if (value < music.preludeLength) {
-
-		} else {
-
-		}
+			return 0;
+		else
+			return music.preludeLength;
 	}
 
 	public int getLength() {
@@ -252,6 +311,14 @@ public class PCMPlayer {
 
 	public void setLoop(boolean loop) {
 		this.loop = loop;
+	}
+
+	public boolean isGameList() {
+		return gameList;
+	}
+
+	public void setGameList(boolean gameList) {
+		this.gameList = gameList;
 	}
 
 }

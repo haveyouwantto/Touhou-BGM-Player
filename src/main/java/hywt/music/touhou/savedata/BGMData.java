@@ -13,6 +13,7 @@ public class BGMData {
 	public int[] date;
 	public List<Game> games;
 	public List<String> comments;
+	public List<String> order;
 
 	public BGMData(int[] date, List<Game> games) {
 		super();
@@ -21,11 +22,7 @@ public class BGMData {
 	}
 
 	public Game getGamebyId(String id) {
-		for (int i = 0; i < games.size(); i++) {
-			if (games.get(i).no.equals(id))
-				return games.get(i);
-		}
-		return null;
+		return games.get(order.indexOf(id));
 	}
 
 	public Music getMusicbyId(String gameId, String musicId) {
@@ -39,12 +36,6 @@ public class BGMData {
 
 	public List<String> getComments() {
 		return comments;
-	}
-
-	public static BGMData read() throws IOException {
-		Gson g = new Gson();
-		String json = FileReader.read(new File("BGM.json"));
-		return g.fromJson(json, BGMData.class);
 	}
 
 	public int[] indexOf(Music m) {

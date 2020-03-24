@@ -35,7 +35,7 @@ public class TFOggInputStream extends InputStream {
 		this.pointer = pos;
 		raf.seek(pos);
 	}
-
+	
 	@Override
 	public void mark(int readlimit) {
 		markpos = pointer;

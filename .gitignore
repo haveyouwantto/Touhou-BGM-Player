@@ -1,7 +1,6 @@
-.gradle/
-.settings/
-.classpath
-.project
+.*/
+build/
+bin/
 path.json
 bin/
 TH*/

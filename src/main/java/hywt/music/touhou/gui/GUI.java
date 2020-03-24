@@ -2,14 +2,17 @@ package hywt.music.touhou.gui;
 
 import java.awt.EventQueue;
 
+import javax.naming.Context;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import javax.swing.JToggleButton;
@@ -22,8 +25,6 @@ import javax.swing.UIManager;
 import java.awt.FlowLayout;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
-
-import com.jcraft.jorbis.JOrbisException;
 
 import hywt.music.touhou.gui.Messages;
 import hywt.music.touhou.pcmprocessing.PCMPlayer;
@@ -46,16 +47,25 @@ import java.awt.event.MouseMotionAdapter;
 public class GUI {
 
 	private JFrame frmTouhouBgmPlayer;
-	private PCMPlayer pcmp = new PCMPlayer();
+	PCMPlayer pcmp = new PCMPlayer();
 	private int gameId = 0;
 	private boolean updateProgressBar = true;
 	private int playMode = 0;
 	private boolean playing;
+	private PlaylistPlayer ply;
+	private Hashtable<Integer, JLabel> ht;
 	/**
 	 * @wbp.nonvisual location=479,34
 	 */
 	private final JLabel label = new JLabel("\u25b2");
 	private JLabel lblplaying;
+	private JButton btnPlay;
+	private JButton btnStop;
+	private JToggleButton btnPause;
+	private JSlider progressBar;
+	private JLabel lblLength;
+	private JToggleButton btnLoop;
+	private JButton btnPlayMode;
 
 	/**
 	 * Launch the application.
@@ -78,6 +88,8 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
+		File f =new File("/");
+		System.out.println(this.getClass().getResource("/").toString());
 		initialize();
 	}
 
@@ -106,6 +118,7 @@ public class GUI {
 		}
 		PathManager pathman = new PathManager();
 		MusicExporter mus = new MusicExporter();
+		ply = new PlaylistPlayer(this);
 
 		JPanel infoPanel = new JPanel();
 		infoPanel.setBorder(new EmptyBorder(0, 5, 5, 5));
@@ -129,7 +142,7 @@ public class GUI {
 		JLabel lblTime = new JLabel(Messages.getString("GUI.lblNewLabel.text"));
 		panel_4.add(lblTime);
 
-		JSlider progressBar = new JSlider();
+		progressBar = new JSlider();
 		progressBar.setEnabled(false);
 		progressBar.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -161,12 +174,12 @@ public class GUI {
 		panel_4.add(progressBar);
 		progressBar.setValue(0);
 
-		Hashtable<Integer, JLabel> ht = new Hashtable<Integer, JLabel>();
+		ht = new Hashtable<Integer, JLabel>();
 		ht.put(0, label);
 		progressBar.setLabelTable(ht);
 		progressBar.setPaintLabels(true);
 
-		JLabel lblLength = new JLabel(Messages.getString("GUI.label.text")); //$NON-NLS-1$
+		lblLength = new JLabel(Messages.getString("GUI.label.text")); //$NON-NLS-1$
 		panel_4.add(lblLength);
 
 		// 播放状态更新线程
@@ -181,11 +194,11 @@ public class GUI {
 							Music m = pcmp.getMusic();
 							progressBar.setValue(pcmp.getPlayback());
 							lblTime.setText(Etc.getMusicLengthTime(m.sampleRate, pcmp.getPlayback()));
-							lblLength.setText(Etc.getMusicLengthTime(m.sampleRate, m.getTotalLength()));
+							lblLength.setText(Etc.getMusicLengthTime(m.sampleRate, pcmp.getLength()));
 							lblplaying.setText(m.title);
 							progressBar.setMaximum(m.getTotalLength());
 							ht.clear();
-							ht.put((int) m.preludeLength, label);
+							ht.put(pcmp.getPreludeLength(), label);
 						}
 						if (!playing) {
 							lblplaying.setText("-"); //$NON-NLS-1$
@@ -254,14 +267,14 @@ public class GUI {
 		playbackControlPanel.add(panel_1);
 
 		// 停止按钮
-		JButton btnStop = new JButton("\u2588"); //$NON-NLS-1$
+		btnStop = new JButton("\u2588"); //$NON-NLS-1$
 		panel_1.add(btnStop);
 
 		// 播放按钮
-		JButton btnPlay = new JButton("\u25b6"); //$NON-NLS-1$
+		btnPlay = new JButton("\u25b6"); //$NON-NLS-1$
 		panel_1.add(btnPlay);
 
-		JToggleButton btnPause = new JToggleButton(Messages.getString("GUI.btnP_1.text")); //$NON-NLS-1$
+		btnPause = new JToggleButton(Messages.getString("GUI.btnP_1.text")); //$NON-NLS-1$
 		panel_1.add(btnPause);
 		btnPause.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -275,24 +288,14 @@ public class GUI {
 		btnPause.setEnabled(false);
 
 		// 循环按钮
-		JButton btnPlayMode = new JButton(Messages.getString("GUI.tglbtnLoop.text")); //$NON-NLS-1$
+		btnPlayMode = new JButton(Messages.getString("GUI.tglbtnLoop.text")); //$NON-NLS-1$
 		btnPlayMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switch (playMode) {
-				case 0:
-					playMode = 1;
-					btnPlayMode.setText("G");
-					break;
-				case 1:
-					playMode = 0;
-					btnPlayMode.setText("M");
-					break;
-				}
-				pcmp.setPlayMode(playMode);
+				toggleModeBtn();
 			}
 		});
 
-		JToggleButton btnLoop = new JToggleButton(Messages.getString("GUI.btnLoop.text")); //$NON-NLS-1$
+		btnLoop = new JToggleButton(Messages.getString("GUI.btnLoop.text")); //$NON-NLS-1$
 		btnLoop.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				pcmp.setLoop(btnLoop.isSelected());
@@ -308,28 +311,17 @@ public class GUI {
 			public void run() {
 				try {
 					// 读取音乐信息
-					BGMPath bgmpath = BGMPath.load();
 					Game g = (Game) gameComboBox.getSelectedItem();
 					Music m = (Music) musicComboBox.getSelectedItem();
-					String path = bgmpath.path.get(gameId).path;
 					pcmp.setLoop(btnLoop.isSelected());
 					pcmp.setPlayMode(playMode);
 
-					if (g.format == 0) {
-						// 东方红魔乡格式 = 0
-						int index = g.music.indexOf(m);
-						pcmp.play(path + "/" + Etc.getEoSDFilename(index), m); //$NON-NLS-1$
-					} else if (g.format == 1) {
-						// 一般格式 = 1
-						pcmp.play(path, m);
-					} else if (g.format == 2) {
-						not.showMessage(Messages.getString("GUI.oggUnsupported")); //$NON-NLS-1$
-						// btnStop.doClick();
-						pcmp.playTFMusic(path, m);
-					} else {
-						// 不支持的格式
-						not.showWarning(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
+					if (g.format == 2) {
+						not.showMessage(Messages.getString("GUI.oggUnsupported")); //$NON-NLS-1$ ;
+					} else if (g.format < 0 || g.format > 2) {
+						not.showError(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
 					}
+					pcmp.play(g, m);
 					btnStop.doClick();
 				} catch (FileNotFoundException e1) {
 					not.showError(Messages.getString("GUI.fileNotFoundError")); //$NON-NLS-1$
@@ -358,17 +350,9 @@ public class GUI {
 		btnPlay.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				pcmp.setGameList(true);
 				new Thread(musicPlaying).start();
-
-				Music m = ((Music) musicComboBox.getSelectedItem());
-
-				// 设置GUI
-				btnStop.setEnabled(true);
-				btnPlay.setEnabled(false);
-				btnPause.setEnabled(true);
-				progressBar.setEnabled(true);
-				playing = true;
+				setStart();
 			}
 		});
 
@@ -376,26 +360,7 @@ public class GUI {
 		btnStop.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				try {
-					// 尝试停止音乐
-					pcmp.resume();
-					pcmp.stop();
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-
-				ht.clear();
-				ht.put(0, label);
-
-				// 设置GUI
-				btnStop.setEnabled(false);
-				btnPlay.setEnabled(true);
-				btnPause.setSelected(false);
-				btnPause.setEnabled(false);
-				progressBar.setEnabled(false);
-				lblLength.setText(Messages.getString("GUI.time")); //$NON-NLS-1$
-				playing = false;
+				setStop();
 			}
 		});
 
@@ -425,6 +390,14 @@ public class GUI {
 		flowLayout_2.setVgap(0);
 		controlPanel.add(panel_2);
 
+		JButton btnNewButton = new JButton(Messages.getString("GUI.btnNewButton.text")); //$NON-NLS-1$
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ply.show();
+			}
+		});
+		panel_2.add(btnNewButton);
+
 		// 显示路径管理器按钮
 		JButton btnP = new JButton(Messages.getString("GUI.PathManager.text")); //$NON-NLS-1$
 		panel_2.add(btnP);
@@ -450,5 +423,99 @@ public class GUI {
 
 	protected JLabel getLblplaying() {
 		return lblplaying;
+	}
+
+	public int getPlayMode() {
+		return playMode;
+	}
+
+	public boolean isPlaying() {
+		return playing;
+	}
+
+	public void setPlayMode(int playMode) {
+		this.playMode = playMode;
+		setModeBtn();
+	}
+
+	public void setPlaying(boolean playing) {
+		this.playing = playing;
+	}
+
+	public JButton getBtnPlay() {
+		return btnPlay;
+	}
+
+	public JButton getBtnStop() {
+		return btnStop;
+	}
+
+	public JToggleButton getBtnPause() {
+		return btnPause;
+	}
+
+	public void setStart() {
+		// 设置GUI
+		btnStop.setEnabled(true);
+		btnPlay.setEnabled(false);
+		ply.getBtnPlay().setEnabled(false);
+		ply.getBtnStop().setEnabled(true);
+		btnPause.setEnabled(true);
+		progressBar.setEnabled(true);
+		playing = true;
+	}
+
+	public void setStop() {
+
+		// 设置GUI
+		pcmp.stop();
+		btnStop.setEnabled(false);
+		btnPlay.setEnabled(true);
+		ply.getBtnPlay().setEnabled(true);
+		ply.getBtnStop().setEnabled(false);
+		btnPause.setSelected(false);
+		btnPause.setEnabled(false);
+		progressBar.setEnabled(false);
+		lblLength.setText(Messages.getString("GUI.time")); //$NON-NLS-1$
+		playing = false;
+		ht.clear();
+		ht.put(0, label);
+	}
+
+	public JSlider getProgressBar() {
+		return progressBar;
+	}
+
+	public JLabel getLblLength() {
+		return lblLength;
+	}
+	public JToggleButton getBtnLoop() {
+		return btnLoop;
+	}
+	
+	protected void setModeBtn() {
+		switch (playMode) {
+		case PCMPlayer.MUSIC:
+			btnPlayMode.setText("单曲");
+			break;
+		case PCMPlayer.LIST:
+			btnPlayMode.setText("列表");
+			break;
+		}
+		pcmp.setPlayMode(playMode);
+	}
+	
+	protected void toggleModeBtn() {
+		switch (playMode) {
+		case PCMPlayer.MUSIC:
+			playMode = PCMPlayer.LIST;
+			btnPlayMode.setText("列表");
+			break;
+		case PCMPlayer.LIST:
+			playMode = PCMPlayer.MUSIC;
+			btnPlayMode.setText("单曲");
+			break;
+		}
+		pcmp.setPlayMode(playMode);
 	}
 }
