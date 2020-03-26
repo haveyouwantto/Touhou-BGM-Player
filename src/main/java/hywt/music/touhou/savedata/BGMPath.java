@@ -2,11 +2,8 @@ package hywt.music.touhou.savedata;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
-
 import com.google.gson.Gson;
 
 import hywt.music.touhou.FileReader;

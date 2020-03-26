@@ -8,7 +8,6 @@ import hywt.music.touhou.savedata.Music;
 
 // 绯想天/非想天则 ogg 提取
 public class TFOggInputStream extends InputStream {
-	private Music m;
 	private File file;
 	private RandomAccessFile raf;
 	private int xor;
@@ -16,7 +15,6 @@ public class TFOggInputStream extends InputStream {
 	private long markpos;
 
 	public TFOggInputStream(String path, Music m) throws IOException {
-		this.m = m;
 		file = new File(path);
 		raf = new RandomAccessFile(file, "r");
 		raf.seek(m.preludePos);

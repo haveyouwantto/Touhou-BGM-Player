@@ -2,17 +2,14 @@ package hywt.music.touhou.gui;
 
 import java.awt.EventQueue;
 
-import javax.naming.Context;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import javax.swing.JToggleButton;
@@ -28,7 +25,6 @@ import javax.swing.event.ChangeListener;
 
 import hywt.music.touhou.gui.Messages;
 import hywt.music.touhou.pcmprocessing.PCMPlayer;
-import hywt.music.touhou.savedata.BGMPath;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
 import hywt.music.touhou.Constants;
@@ -88,8 +84,6 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
-		File f =new File("/");
-		System.out.println(this.getClass().getResource("/").toString());
 		initialize();
 	}
 
@@ -196,7 +190,7 @@ public class GUI {
 							lblTime.setText(Etc.getMusicLengthTime(m.sampleRate, pcmp.getPlayback()));
 							lblLength.setText(Etc.getMusicLengthTime(m.sampleRate, pcmp.getLength()));
 							lblplaying.setText(m.title);
-							progressBar.setMaximum(m.getTotalLength());
+							progressBar.setMaximum((int) pcmp.getLength());
 							ht.clear();
 							ht.put(pcmp.getPreludeLength(), label);
 						}
@@ -316,9 +310,7 @@ public class GUI {
 					pcmp.setLoop(btnLoop.isSelected());
 					pcmp.setPlayMode(playMode);
 
-					if (g.format == 2) {
-						not.showMessage(Messages.getString("GUI.oggUnsupported")); //$NON-NLS-1$ ;
-					} else if (g.format < 0 || g.format > 2) {
+					if (g.format < 0 || g.format > 2) {
 						not.showError(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
 					}
 					pcmp.play(g, m);

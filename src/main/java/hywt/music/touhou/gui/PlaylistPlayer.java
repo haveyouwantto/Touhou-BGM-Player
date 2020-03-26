@@ -7,11 +7,6 @@ import java.io.IOException;
 import javax.swing.JFrame;
 
 import hywt.music.touhou.Constants;
-import hywt.music.touhou.Etc;
-import hywt.music.touhou.pcmprocessing.PCMPlayer;
-import hywt.music.touhou.savedata.BGMData;
-import hywt.music.touhou.savedata.BGMPath;
-import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
 import hywt.music.touhou.savedata.Playlist;
 import hywt.music.touhou.savedata.PlaylistList;
@@ -24,10 +19,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 
-import java.awt.FlowLayout;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import java.awt.Color;

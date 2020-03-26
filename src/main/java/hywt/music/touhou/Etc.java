@@ -21,10 +21,10 @@ public class Etc {
 		return filename;
 	}
 
-	public static String getMusicLengthTime(int sampleRate, int length) {
-		int lengthSec = length / (sampleRate * 16 * 2 / 8);
-		int second = lengthSec % 60;
-		int minute = lengthSec / 60 % 60;
+	public static String getMusicLengthTime(int sampleRate, long l) {
+		long lengthSec = l / (sampleRate * 16 * 2 / 8);
+		long second = lengthSec % 60;
+		long minute = lengthSec / 60 % 60;
 		return new DecimalFormat("00").format(minute) + ":" + new DecimalFormat("00").format(second);
 	}
 

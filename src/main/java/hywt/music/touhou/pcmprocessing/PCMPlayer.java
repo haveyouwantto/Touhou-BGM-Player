@@ -1,11 +1,8 @@
 package hywt.music.touhou.pcmprocessing;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.Arrays;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -17,7 +14,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import hywt.music.touhou.Constants;
 import hywt.music.touhou.Etc;
-import hywt.music.touhou.gui.Messages;
 import hywt.music.touhou.savedata.BGMPath;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
@@ -134,26 +130,33 @@ public class PCMPlayer {
 
 		TFOggInputStream tfois = new TFOggInputStream(source, m);
 
-		final AudioInputStream in = AudioSystem.getAudioInputStream(new BufferedInputStream(tfois));
+		final AudioInputStream in = AudioSystem.getAudioInputStream(tfois);
 
 		final AudioFormat outFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, music.sampleRate, 16, 2, 4,
 				music.sampleRate, false);
 		final AudioInputStream ais = AudioSystem.getAudioInputStream(outFormat, in);
 		openSDL(outFormat);
 		final byte[] b = new byte[bufferSize];
-		playback = 0;
 		int len;
-		while (playback < music.getTotalLength()) {
-			if (!playing) {
-				return;
+
+		while (true) {
+			playback = 0;
+			while (playback < music.loopPos+music.loopLength) {
+				if (!playing) {
+					return;
+				}
+				if (pause) {
+					Thread.sleep(50);
+					continue;
+				}
+				len = ais.read(b);
+				sdl.write(b, 0, len);
+				playback += bufferSize;
 			}
-			if (pause) {
-				Thread.sleep(50);
-				continue;
-			}
-			len = ais.read(b);
-			sdl.write(b, 0, len);
-			playback += bufferSize;
+			if (loop)
+				playback = 0;
+			else
+				break;
 		}
 	}
 
@@ -285,12 +288,15 @@ public class PCMPlayer {
 			return music.preludeLength;
 	}
 
-	public int getLength() {
+	public long getLength() {
 		if (music == null)
 			return 0;
 		if (!playing)
 			return 0;
-		return music.getTotalLength();
+		if (Constants.bgmdata.getGamebyMusic(music).format == 2)
+			return music.loopPos + music.loopLength;
+		else
+			return music.getTotalLength();
 	}
 
 	public Music getMusic() {

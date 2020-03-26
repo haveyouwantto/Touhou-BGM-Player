@@ -1,13 +1,7 @@
 package hywt.music.touhou.savedata;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-
-import com.google.gson.Gson;
-
-import hywt.music.touhou.FileReader;
 
 public class BGMData {
 	public int[] date;
