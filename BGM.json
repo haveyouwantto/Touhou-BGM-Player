@@ -1,9 +1,4 @@
 {
-    "date": [
-        2020,
-        2,
-        15
-    ],
     "order": [
         "TH06",
         "TH07",
@@ -1551,6 +1546,14 @@
                     "preludeLength": 5381088,
                     "loopPos": 345960296,
                     "loopLength": 9540576
+                },
+                {
+                    "title": "プレイヤーズスコア",
+                    "sampleRate": 44100,
+                    "preludePos": 355500872,
+                    "preludeLength": 1879240,
+                    "loopPos": 357380112,
+                    "loopLength": 4861944
                 }
             ]
         },
