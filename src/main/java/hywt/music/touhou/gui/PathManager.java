@@ -1,31 +1,31 @@
 package hywt.music.touhou.gui;
 
-import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.GridBagLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.GridBagConstraints;
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import hywt.music.touhou.Constants;
-import hywt.music.touhou.gui.Messages;
 import hywt.music.touhou.savedata.BGMPath;
-import java.awt.Insets;
-import javax.swing.JScrollPane;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
 
 public class PathManager {
 

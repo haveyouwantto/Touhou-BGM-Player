@@ -3,8 +3,6 @@ package hywt.music.touhou.gui;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import hywt.music.touhou.gui.Messages;
-
 public class Notification {
 	public JFrame frame;
 

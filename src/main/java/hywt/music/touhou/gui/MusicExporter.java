@@ -3,10 +3,25 @@ package hywt.music.touhou.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
@@ -16,23 +31,6 @@ import hywt.music.touhou.pcmprocessing.PCMSaver;
 import hywt.music.touhou.savedata.BGMPath;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
-
-import javax.swing.JScrollPane;
-import javax.swing.UIManager;
-import javax.swing.WindowConstants;
-import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.awt.event.ActionEvent;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import javax.swing.JButton;
 
 public class MusicExporter {
 

@@ -16,7 +16,7 @@ public class BGMData {
 	}
 
 	public Game getGamebyId(String id) {
-		return games.get(order.indexOf(id));
+		return games.get(order.indexOf(id.toUpperCase()));
 	}
 
 	public Music getMusicbyId(String gameId, String musicId) {

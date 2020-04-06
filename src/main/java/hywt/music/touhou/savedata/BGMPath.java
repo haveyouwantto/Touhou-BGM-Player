@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+
 import com.google.gson.Gson;
 
 import hywt.music.touhou.FileReader;

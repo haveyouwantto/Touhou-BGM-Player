@@ -1,44 +1,42 @@
 package hywt.music.touhou.gui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Hashtable;
-import java.awt.event.ActionEvent;
-import javax.swing.JToggleButton;
 import java.awt.Color;
-import java.awt.Toolkit;
-import javax.swing.JLabel;
-import javax.swing.border.TitledBorder;
-import java.awt.GridLayout;
-import javax.swing.UIManager;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import javax.swing.JSlider;
-import javax.swing.event.ChangeListener;
-
-import hywt.music.touhou.gui.Messages;
-import hywt.music.touhou.pcmprocessing.PCMPlayer;
-import hywt.music.touhou.savedata.Game;
-import hywt.music.touhou.savedata.Music;
-import hywt.music.touhou.Constants;
-import hywt.music.touhou.Etc;
-
-import javax.swing.event.ChangeEvent;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.BoxLayout;
-import javax.swing.border.EmptyBorder;
-import javax.swing.SwingConstants;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Hashtable;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
+import hywt.music.touhou.Constants;
+import hywt.music.touhou.Etc;
+import hywt.music.touhou.pcmprocessing.PCMPlayer;
+import hywt.music.touhou.savedata.Game;
+import hywt.music.touhou.savedata.Music;
 
 public class GUI {
 

@@ -3,6 +3,7 @@ package hywt.music.touhou;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;

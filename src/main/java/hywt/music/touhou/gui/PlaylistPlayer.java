@@ -1,31 +1,30 @@
 package hywt.music.touhou.gui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
 
 import hywt.music.touhou.Constants;
 import hywt.music.touhou.savedata.Music;
 import hywt.music.touhou.savedata.Playlist;
 import hywt.music.touhou.savedata.PlaylistList;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JComboBox;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Toolkit;
-import javax.swing.DefaultListModel;
-
-import javax.swing.border.TitledBorder;
-import javax.swing.UIManager;
-import java.awt.Color;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
 
 public class PlaylistPlayer {
 

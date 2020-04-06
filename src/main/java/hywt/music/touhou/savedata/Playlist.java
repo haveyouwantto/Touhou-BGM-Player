@@ -2,7 +2,6 @@ package hywt.music.touhou.savedata;
 
 import java.util.List;
 
-
 public class Playlist {
 	public String name;
 	public String author;

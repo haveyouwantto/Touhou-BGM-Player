@@ -1,8 +1,10 @@
 package hywt.music.touhou.pcmprocessing;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -32,6 +34,7 @@ public class PCMPlayer {
 	private int playMode;
 	private boolean loop;
 	private Music music;
+	private Game game;
 	private String source;
 	private boolean gameList;
 	int playback;
@@ -135,13 +138,16 @@ public class PCMPlayer {
 		final AudioFormat outFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, music.sampleRate, 16, 2, 4,
 				music.sampleRate, false);
 		final AudioInputStream ais = AudioSystem.getAudioInputStream(outFormat, in);
+		BufferedInputStream bufferedIn = new BufferedInputStream(ais);
 		openSDL(outFormat);
 		final byte[] b = new byte[bufferSize];
 		int len;
 
+		bufferedIn.mark(0x7fffffff);
+
+		playback = 0;
 		while (true) {
-			playback = 0;
-			while (playback < music.loopPos+music.loopLength) {
+			while (playback < music.loopPos + music.loopLength) {
 				if (!playing) {
 					return;
 				}
@@ -149,14 +155,21 @@ public class PCMPlayer {
 					Thread.sleep(50);
 					continue;
 				}
-				len = ais.read(b);
-				sdl.write(b, 0, len);
-				playback += bufferSize;
+				len = bufferedIn.read(b);
+				if (len > 0)
+					sdl.write(b, 0, len);
+				playback += len;
 			}
-			if (loop)
-				playback = 0;
-			else
+			if (loop) {
+				playback = (int) music.loopPos;
+				bufferedIn.reset();
+				bufferedIn.skip(music.loopPos);
+			} else {
+				ais.close();
+				in.close();
+				tfois.close();
 				break;
+			}
 		}
 	}
 
@@ -171,6 +184,7 @@ public class PCMPlayer {
 		this.setVolume(this.volume);
 
 		playing = true;
+		setGame();
 
 	}
 
@@ -233,6 +247,8 @@ public class PCMPlayer {
 				pos++;
 			playback = pos;
 			raf.seek(music.preludePos + pos);
+		} else if (format == 2) {
+			// TODO: support ogg seeking
 		}
 	}
 
@@ -284,8 +300,14 @@ public class PCMPlayer {
 	public int getPreludeLength() {
 		if (!playing)
 			return 0;
-		else
-			return music.preludeLength;
+		else {
+			if (game.format == 0 || game.format == 1) {
+				return music.preludeLength;
+			} else if (game.format == 2) {
+				return (int) music.loopPos;
+			}
+		}
+		return -1;
 	}
 
 	public long getLength() {
@@ -325,6 +347,10 @@ public class PCMPlayer {
 
 	public void setGameList(boolean gameList) {
 		this.gameList = gameList;
+	}
+
+	private void setGame(){
+		game = Constants.bgmdata.getGamebyMusic(music);
 	}
 
 }
