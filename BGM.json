@@ -14,6 +14,7 @@
         "TH12.5",
         "TH12.8",
         "TH13",
+        "TH13.5",
         "TH14",
         "TH14.3",
         "TH15",
@@ -2309,6 +2310,202 @@
                     "preludeLength": 1199440,
                     "loopPos": 473708184,
                     "loopLength": 11570240
+                }
+            ]
+        },
+        {
+            "format": 3,
+            "no": "TH13.5",
+            "title": "東方心綺楼 ～ Hopeless Masquerade",
+            "music": [
+                {
+                    "title": "塵界不変のペシミズム",
+                    "sampleRate": 44100,
+                    "preludePos": 174014852,
+                    "preludeLength": 1148172,
+                    "loopPos": 0,
+                    "loopLength": 8346312,
+                    "metadata": "F8A2701B0DDE6773BC76AC768C8297F7"
+                },
+                {
+                    "title": "心綺楼囃子",
+                    "sampleRate": 44100,
+                    "preludePos": 181698273,
+                    "preludeLength": 2605111,
+                    "loopPos": 792576,
+                    "loopLength": 16934408,
+                    "metadata": "BE801C5EBB2F95B5715E62C402D611C6"
+                },
+                {
+                    "title": "春色小径 ～ Colorful Path",
+                    "sampleRate": 44100,
+                    "preludePos": 175163024,
+                    "preludeLength": 2846908,
+                    "loopPos": 1198576,
+                    "loopLength": 18372180,
+                    "metadata": "69397CE63F5DB52854B915D524D1314F"
+                },
+                {
+                    "title": "メイガスナイト",
+                    "sampleRate": 44100,
+                    "preludePos": 163794089,
+                    "preludeLength": 3228378,
+                    "loopPos": 993396,
+                    "loopLength": 21168000,
+                    "metadata": "0201B47858557AE784971BD6B9448050"
+                },
+                {
+                    "title": "時代親父とハイカラ少女",
+                    "sampleRate": 44100,
+                    "preludePos": 142350428,
+                    "preludeLength": 2753031,
+                    "loopPos": 354096,
+                    "loopLength": 18580784,
+                    "metadata": "420BCADC962B08125AA95BE94E7E9D2D"
+                },
+                {
+                    "title": "感情の摩天楼 ～ Cosmic Mind",
+                    "sampleRate": 44100,
+                    "preludePos": 138870213,
+                    "preludeLength": 3480111,
+                    "loopPos": 2503608,
+                    "loopLength": 22130160,
+                    "metadata": "34DA1885FABB992AE1699FFB03A20A4C"
+                },
+                {
+                    "title": "大神神話伝",
+                    "sampleRate": 44100,
+                    "preludePos": 135643849,
+                    "preludeLength": 3226262,
+                    "loopPos": 813076,
+                    "loopLength": 21552892,
+                    "metadata": "66280FB2AB2C2DC8A18E9ACF00AF8FEA"
+                },
+                {
+                    "title": "聖徳伝説 ～ True Administrator",
+                    "sampleRate": 44100,
+                    "preludePos": 167022571,
+                    "preludeLength": 3912900,
+                    "loopPos": 6710924,
+                    "loopLength": 20921848,
+                    "metadata": "922E42E6FE46D0C263620930FE4FBF57"
+                },
+                {
+                    "title": "芥川龍之介の河童 ～ Candid Friend",
+                    "sampleRate": 44100,
+                    "preludePos": 170935573,
+                    "preludeLength": 3079175,
+                    "loopPos": 1904908,
+                    "loopLength": 19634624,
+                    "metadata": "FB23E451BC5D532C2C00A05DDC9F57A3"
+                },
+                {
+                    "title": "ハルトマンの妖怪少女",
+                    "sampleRate": 44100,
+                    "preludePos": 151075056,
+                    "preludeLength": 3091653,
+                    "loopPos": 1020752,
+                    "loopLength": 20798564,
+                    "metadata": "363810BF346170C4E1DA8978195C9169"
+                },
+                {
+                    "title": "佐渡のニッ岩",
+                    "sampleRate": 44100,
+                    "preludePos": 160658553,
+                    "preludeLength": 3135430,
+                    "loopPos": 892784,
+                    "loopLength": 21168800,
+                    "metadata": "C5CB75A5E169F2833FC56968E6400200"
+                },
+                {
+                    "title": "幻想郷の二ッ岩",
+                    "sampleRate": 44100,
+                    "preludePos": 130371826,
+                    "preludeLength": 3274200,
+                    "loopPos": 2486748,
+                    "loopLength": 20034096,
+                    "metadata": "0DB0D96027F59092D0826278D2AA25BD"
+                },
+                {
+                    "title": "亡失のエモーション",
+                    "sampleRate": 44100,
+                    "preludePos": 154166813,
+                    "preludeLength": 6491636,
+                    "loopPos": 2022692,
+                    "loopLength": 44223648,
+                    "metadata": "BE60DBC2AC296BDD7921D63E65F8D051"
+                },
+                {
+                    "title": "人気のある場所",
+                    "sampleRate": 44100,
+                    "preludePos": 145103565,
+                    "preludeLength": 1810954,
+                    "loopPos": 483768,
+                    "loopLength": 11289604,
+                    "metadata": "428A078659B6030A5FE433247EFBBA26"
+                },
+                {
+                    "title": "人気のない場所",
+                    "sampleRate": 44100,
+                    "preludePos": 146914727,
+                    "preludeLength": 1803140,
+                    "loopPos": 499996,
+                    "loopLength": 11289592,
+                    "metadata": "FA7B182651EF20645CD77A574C1862DA"
+                },
+                {
+                    "title": "丑三つ時の里",
+                    "sampleRate": 44100,
+                    "preludePos": 149486213,
+                    "preludeLength": 1588739,
+                    "loopPos": 1607272,
+                    "loopLength": 8980356,
+                    "metadata": "864144DEBCF52F3397004117D9344150"
+                },
+                {
+                    "title": "暁雲",
+                    "sampleRate": 44100,
+                    "preludePos": 133646132,
+                    "preludeLength": 1997617,
+                    "loopPos": 611428,
+                    "loopLength": 12700800,
+                    "metadata": "CE8201F9B5223F855CC0CA351B44EC4F"
+                },
+                {
+                    "title": "官板黄昏新聞",
+                    "sampleRate": 44100,
+                    "preludePos": 178010036,
+                    "preludeLength": 1722805,
+                    "loopPos": 0,
+                    "loopLength": 12668872,
+                    "metadata": "B5B25165CC2838DB9C6D7581CB8537CB"
+                },
+                {
+                    "title": "本日の一面記事 未使用Ver",
+                    "sampleRate": 44100,
+                    "preludePos": 184303486,
+                    "preludeLength": 893466,
+                    "loopPos": 1765444,
+                    "loopLength": 3763196,
+                    "metadata": "68AD2B69ADB7E1C47D1D8F7DE87AAD75"
+                },
+                {
+                    "title": "心綺楼囃子ED Ver",
+                    "sampleRate": 44100,
+                    "preludePos": 179732841,
+                    "preludeLength": 1965432,
+                    "loopPos": 0,
+                    "loopLength": 14178476,
+                    "metadata": "3635C98898D867D766159DF2AE0C3E38"
+                },
+                {
+                    "title": "本日の一面記事Interval",
+                    "sampleRate": 44100,
+                    "preludePos": 148717971,
+                    "preludeLength": 768138,
+                    "loopPos": 912016,
+                    "loopLength": 3763276,
+                    "metadata": "B54CDE40350D7628D2CE3065B192187D"
                 }
             ]
         },

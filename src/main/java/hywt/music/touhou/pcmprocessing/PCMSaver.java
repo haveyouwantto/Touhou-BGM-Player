@@ -140,14 +140,10 @@ public class PCMSaver {
 
 				FileOutputStream fos = new FileOutputStream(file);
 				byte[] b = new byte[256];
-				int pointer = 0;
-				while (pointer < music.preludeLength - 256) {
-					tfois.read(b);
-					fos.write(b);
-					pointer += 256;
+				int len = 0;
+				while ((len = tfois.read(b)) != -1) {
+					fos.write(b, 0, len);
 				}
-				tfois.read(b);
-				fos.write(b);
 				fos.close();
 				tfois.close();
 			}

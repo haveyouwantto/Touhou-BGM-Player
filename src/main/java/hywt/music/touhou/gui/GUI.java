@@ -308,7 +308,7 @@ public class GUI {
 					pcmp.setLoop(btnLoop.isSelected());
 					pcmp.setPlayMode(playMode);
 
-					if (g.format < 0 || g.format > 2) {
+					if (g.format < 0 || g.format > 3) {
 						not.showError(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
 					}
 					pcmp.play(g, m);

@@ -20,6 +20,7 @@ import hywt.music.touhou.savedata.BGMPath;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
 import hywt.music.touhou.savedata.Playlist;
+import hywt.music.touhou.tfpack.TF2OggInputStream;
 import hywt.music.touhou.tfpack.TFOggInputStream;
 
 public class PCMPlayer {
@@ -80,6 +81,9 @@ public class PCMPlayer {
 		} else if (g.format == 2) {
 			// TH10.5/12.3格式
 			playTFMusic(source, m);
+		} else if (g.format == 3) {
+			// TH10.5/12.3格式
+			playTF2Music(source, m);
 		}
 	}
 
@@ -156,15 +160,67 @@ public class PCMPlayer {
 					continue;
 				}
 				len = bufferedIn.read(b);
-				if (len > 0)
+				if (len > 0) {
 					sdl.write(b, 0, len);
-				playback += len;
+					playback += len;
+				}
 			}
 			if (loop) {
 				playback = (int) music.loopPos;
 				bufferedIn.reset();
 				bufferedIn.skip(music.loopPos);
 			} else {
+				bufferedIn.close();
+				ais.close();
+				in.close();
+				tfois.close();
+				break;
+			}
+		}
+	}
+
+	public void playTF2Music(String thbgm, Music m)
+			throws LineUnavailableException, IOException, InterruptedException, UnsupportedAudioFileException {
+		source = thbgm;
+		pause = false;
+		music = m;
+
+		TF2OggInputStream tfois = new TF2OggInputStream(source, m);
+
+		final AudioInputStream in = AudioSystem.getAudioInputStream(tfois);
+
+		final AudioFormat outFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, music.sampleRate, 16, 2, 4,
+				music.sampleRate, false);
+		final AudioInputStream ais = AudioSystem.getAudioInputStream(outFormat, in);
+		BufferedInputStream bufferedIn = new BufferedInputStream(ais);
+		openSDL(outFormat);
+		final byte[] b = new byte[bufferSize];
+		int len;
+
+		bufferedIn.mark(0x7fffffff);
+
+		playback = 0;
+		while (true) {
+			while (playback < music.loopPos + music.loopLength) {
+				if (!playing) {
+					return;
+				}
+				if (pause) {
+					Thread.sleep(50);
+					continue;
+				}
+				len = bufferedIn.read(b);
+				if (len > 0) {
+					sdl.write(b, 0, len);
+					playback += len;
+				}
+			}
+			if (loop) {
+				playback = (int) music.loopPos;
+				bufferedIn.reset();
+				bufferedIn.skip(music.loopPos);
+			} else {
+				bufferedIn.close();
 				ais.close();
 				in.close();
 				tfois.close();
@@ -241,13 +297,12 @@ public class PCMPlayer {
 	}
 
 	public void seek(int pos) throws IOException {
-		int format = Constants.bgmdata.getGamebyMusic(music).format;
-		if (format == 0 || format == 1) {
+		if (game.format == 0 || game.format == 1) {
 			if (pos % 2 == 1)
 				pos++;
 			playback = pos;
 			raf.seek(music.preludePos + pos);
-		} else if (format == 2) {
+		} else if (game.format == 2 || game.format == 3) {
 			// TODO: support ogg seeking
 		}
 	}
@@ -303,7 +358,7 @@ public class PCMPlayer {
 		else {
 			if (game.format == 0 || game.format == 1) {
 				return music.preludeLength;
-			} else if (game.format == 2) {
+			} else if (game.format == 2 || game.format == 3) {
 				return (int) music.loopPos;
 			}
 		}
@@ -315,7 +370,7 @@ public class PCMPlayer {
 			return 0;
 		if (!playing)
 			return 0;
-		if (Constants.bgmdata.getGamebyMusic(music).format == 2)
+		if (game.format == 2 || game.format == 3)
 			return music.loopPos + music.loopLength;
 		else
 			return music.getTotalLength();
@@ -349,7 +404,7 @@ public class PCMPlayer {
 		this.gameList = gameList;
 	}
 
-	private void setGame(){
+	private void setGame() {
 		game = Constants.bgmdata.getGamebyMusic(music);
 	}
 

@@ -13,10 +13,12 @@ public class TFOggInputStream extends InputStream {
 	private int xor;
 	private long pointer;
 	private long markpos;
+	private Music music;
 
 	public TFOggInputStream(String path, Music m) throws IOException {
 		file = new File(path);
 		raf = new RandomAccessFile(file, "r");
+		this.music = m;
 		raf.seek(m.preludePos);
 		int b = raf.read();
 		xor = b ^ 0x4f;
@@ -26,14 +28,17 @@ public class TFOggInputStream extends InputStream {
 	@Override
 	public int read() throws IOException {
 		pointer++;
-		return raf.read() ^ xor;
+		if (pointer < music.preludeLength)
+			return raf.read() ^ xor;
+		else
+			return -1;
 	}
-	
+
 	public void seek(long pos) throws IOException {
 		this.pointer = pos;
 		raf.seek(pos);
 	}
-	
+
 	@Override
 	public void mark(int readlimit) {
 		markpos = pointer;

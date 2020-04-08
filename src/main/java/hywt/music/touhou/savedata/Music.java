@@ -7,8 +7,9 @@ public class Music {
 	public int preludeLength;
 	public long loopPos;
 	public int loopLength;
+	public String metadata;
 
-	public Music(String title, int sampleRate, long preludePos, int preludeLength, long loopPos, int loopLength) {
+	public Music(String title, int sampleRate, long preludePos, int preludeLength, long loopPos, int loopLength,String metadata) {
 		super();
 		this.title = title;
 		this.sampleRate = sampleRate;
@@ -16,6 +17,7 @@ public class Music {
 		this.preludeLength = preludeLength;
 		this.loopPos = loopPos;
 		this.loopLength = loopLength;
+		this.metadata = metadata;
 	}
 
 	@Override
