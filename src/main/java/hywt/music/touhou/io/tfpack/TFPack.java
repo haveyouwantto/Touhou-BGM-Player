@@ -12,18 +12,18 @@ public class TFPack {
     private Game game;
     private Music music;
 
-    public TFPack(Game g, Music m, String file) {
+    public TFPack(Game g, Music m, File file) {
         this.game = g;
         this.music = m;
-        this.pack = new File(file);
+        this.pack = file;
     }
 
     public TFPackInputStream getInputStream() throws IOException {
         switch (game.format) {
             case GameFormats.TFPACK_1:
-                return new TFOggInputStream(pack, music);
+                return new TFOggInputStream(music, pack);
             case GameFormats.TFPACK_2:
-                return new TF2OggInputStream(pack, music);
+                return new TF2OggInputStream(music, pack);
         }
         return null;
     }

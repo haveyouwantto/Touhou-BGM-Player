@@ -24,8 +24,4 @@ public class Music {
 	public String toString() {
 		return title;
 	}
-
-	public int getTotalLength() {
-		return preludeLength + loopLength;
-	}
 }

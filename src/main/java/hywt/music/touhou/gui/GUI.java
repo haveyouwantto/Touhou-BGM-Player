@@ -173,7 +173,6 @@ public class GUI {
 
         // 播放状态更新线程
         Runnable r2 = () -> {
-            // TODO Auto-generated method stub
             while (true) {
                 try {
                     if (updateProgressBar) {

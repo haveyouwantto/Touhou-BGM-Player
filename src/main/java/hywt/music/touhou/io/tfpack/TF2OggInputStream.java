@@ -1,5 +1,6 @@
 package hywt.music.touhou.io.tfpack;
 
+import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
 
 import java.io.File;
@@ -10,7 +11,7 @@ public class TF2OggInputStream extends TFPackInputStream {
     private byte[] key;
     private byte[] buffer;
 
-    public TF2OggInputStream(File file, Music m) throws IOException {
+    public TF2OggInputStream(Music m, File file) throws IOException {
         this.raf = new RandomAccessFile(file, "r");
         this.key = new byte[16];
         this.buffer = new byte[16];
@@ -64,7 +65,7 @@ public class TF2OggInputStream extends TFPackInputStream {
         super.close();
     }
 
-    public long getPointer(){
+    public long getPointer() {
         return pointer;
     }
 }

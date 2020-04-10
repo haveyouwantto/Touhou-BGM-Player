@@ -149,10 +149,8 @@ public class MusicExporter {
 								try {
 									if (format == 0) {
 										PCMSaver.save(path, source + "/" + StringFormatter.formatFileName(g.metadata, j), g, m, separate);
-									} else if (format == 1) {
+									} else{
 										PCMSaver.save(path, source, g, m, separate);
-									} else if (format == 2 || format == 3) {
-										PCMSaver.save2(path, source, g, m, separate);
 									}
 								} catch (FileNotFoundException e1) {
 									// TODO Auto-generated catch block
