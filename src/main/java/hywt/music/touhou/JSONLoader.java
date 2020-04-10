@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import com.google.gson.Gson;
 
+import hywt.music.touhou.io.FileReader;
 import hywt.music.touhou.savedata.BGMData;
 
 public class JSONLoader {

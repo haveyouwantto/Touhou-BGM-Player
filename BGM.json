@@ -27,6 +27,8 @@
             "format": 0,
             "no": "TH06",
             "title": "東方紅魔郷 ～ the Embodiment of Scarlet Devil",
+            "fileName":"BGM",
+            "metadata":"th06_%s.wav",
             "music": [
                 {
                     "title": "赤より紅い夢",
@@ -170,6 +172,7 @@
             "format": 1,
             "no": "TH07",
             "title": "東方妖々夢 ～ Perfect Cherry Blossom",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "妖々夢　～ Snow or Cherry Petal",
@@ -337,6 +340,7 @@
             "format": 1,
             "no": "TH07.5",
             "title": "東方萃夢想 ～ Immaterial and Missing Power",
+            "fileName":"th075bgm.dat",
             "music": [
                 {
                     "title": "萃夢想",
@@ -616,6 +620,7 @@
             "format": 1,
             "no": "TH08",
             "title": "東方永夜抄 ～ Imperishable Night",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "永夜抄　～ Eastern Night",
@@ -791,6 +796,7 @@
             "format": 1,
             "no": "TH09",
             "title": "東方花映塚 ～ Phantasmagoria of Flower View",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "花映塚　～ Higan Retour ",
@@ -950,6 +956,7 @@
             "format": 1,
             "no": "TH09.5",
             "title": "東方文花帖 ～ Shoot the Bullet",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "天狗の手帖　～ Mysterious Note",
@@ -1005,6 +1012,7 @@
             "format": 1,
             "no": "TH10",
             "title": "東方風神録 ～ Mountain of Faith",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "封印されし神々",
@@ -1156,6 +1164,7 @@
             "format": 2,
             "no": "TH10.5",
             "title": "東方緋想天 ～ Scarlet Weather Rhapsody",
+            "fileName":"th105b.dat",
             "music": [
                 {
                     "title": "緋想天",
@@ -1411,6 +1420,7 @@
             "format": 1,
             "no": "TH11",
             "title": "東方地霊殿 ～ Subterranean Animism",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "地霊達の起床",
@@ -1562,6 +1572,7 @@
             "format": 1,
             "no": "TH12",
             "title": "東方星蓮船 ～ Undefined Fantastic Object",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "青空の影",
@@ -1713,6 +1724,7 @@
             "format": 2,
             "no": "TH12.3",
             "title": "東方非想天則 ～ 超弩級ギニョルの謎を追え",
+            "fileName":"th123b.dat",
             "music": [
                 {
                     "title": "君はあの影を見たか？",
@@ -1912,6 +1924,7 @@
             "format": 1,
             "no": "TH12.5",
             "title": "ダブルスポイラー ～ 東方文花帖",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "ニュースハウンド",
@@ -1975,6 +1988,7 @@
             "format": 1,
             "no": "TH12.8",
             "title": "妖精大戦争 ～ 東方三月精",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "春の氷精",
@@ -2317,6 +2331,7 @@
             "format": 3,
             "no": "TH13.5",
             "title": "東方心綺楼 ～ Hopeless Masquerade",
+            "fileName":"th135.pak",
             "music": [
                 {
                     "title": "塵界不変のペシミズム",
@@ -2513,6 +2528,7 @@
             "format": 1,
             "no": "TH14",
             "title": "東方輝針城 ～ Double Dealing Character.",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "不思議なお祓い棒",
@@ -2664,6 +2680,7 @@
             "format": 1,
             "no": "TH14.3",
             "title": "弹幕天邪鬼 ～ Impossible Spell Card.",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "反則の狼煙を上げろ",
@@ -2743,6 +2760,7 @@
             "format": 1,
             "no": "TH15",
             "title": "東方紺珠伝 ～ Legacy of Lunatic Kingdom.",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "宇宙巫女現る",
@@ -2894,6 +2912,7 @@
             "format": 1,
             "no": "TH16",
             "title": "東方天空璋 ～ Hidden Star in Four Seasons.",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "桜舞い散る天空",
@@ -3045,6 +3064,7 @@
             "format": 1,
             "no": "TH16.5",
             "title": "秘封ナイトメアダイアリー ～ Violet Detector.",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "悪夢日記",
@@ -3116,6 +3136,7 @@
             "format": 1,
             "no": "TH17",
             "title": "東方鬼形獣 ～ Wily Beast and Weakest Creature.",
+            "fileName":"thbgm.dat",
             "music": [
                 {
                     "title": "物言わぬ獣の霊",

@@ -26,7 +26,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import hywt.music.touhou.Constants;
-import hywt.music.touhou.Etc;
+import hywt.music.touhou.StringFormatter;
 import hywt.music.touhou.pcmprocessing.PCMSaver;
 import hywt.music.touhou.savedata.BGMPath;
 import hywt.music.touhou.savedata.Game;
@@ -148,10 +148,10 @@ public class MusicExporter {
 								String source = bgmpath.path.get(Constants.bgmdata.order.get(i));
 								try {
 									if (format == 0) {
-										PCMSaver.save(path, source + "/" + Etc.getEoSDFilename(j), g, m, separate);
+										PCMSaver.save(path, source + "/" + StringFormatter.formatFileName(g.metadata, j), g, m, separate);
 									} else if (format == 1) {
 										PCMSaver.save(path, source, g, m, separate);
-									} else if (format == 2) {
+									} else if (format == 2 || format == 3) {
 										PCMSaver.save2(path, source, g, m, separate);
 									}
 								} catch (FileNotFoundException e1) {

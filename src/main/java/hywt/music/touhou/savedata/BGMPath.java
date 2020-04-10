@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 
 import com.google.gson.Gson;
 
-import hywt.music.touhou.FileReader;
+import hywt.music.touhou.io.FileReader;
 
 public class BGMPath {
 	public HashMap<String,String> path;

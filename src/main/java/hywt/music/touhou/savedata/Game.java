@@ -7,13 +7,17 @@ public class Game {
 	public String title;
 	public int format;
 	public List<Music> music;
+	public String fileName;
+	public String metadata;
 
-	public Game(String no, String titie, int format, List<Music> music) {
+	public Game(String no, String titie, int format,String fileName, List<Music> music, String metadata) {
 		super();
 		this.no = no;
 		this.title = titie;
 		this.format = format;
 		this.music = music;
+		this.fileName = fileName;
+		this.metadata = metadata;
 	}
 
 	@Override

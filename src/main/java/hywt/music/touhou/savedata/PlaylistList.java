@@ -8,7 +8,7 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
-import hywt.music.touhou.FileReader;
+import hywt.music.touhou.io.FileReader;
 
 public class PlaylistList {
 	public List<Playlist> list;

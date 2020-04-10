@@ -1,27 +1,23 @@
-package hywt.music.touhou.tfpack;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
+package hywt.music.touhou.io.tfpack;
 
 import hywt.music.touhou.savedata.Music;
 
-public class TF2OggInputStream extends InputStream {
-    private RandomAccessFile raf;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+public class TF2OggInputStream extends TFPackInputStream {
     private byte[] key;
     private byte[] buffer;
-    private long pos;
-    private long markpos;
-    private Music music;
 
-    public TF2OggInputStream(String file, Music m) throws IOException {
-        raf = new RandomAccessFile(file, "r");
-        key = new byte[16];
-        buffer = new byte[16];
+    public TF2OggInputStream(File file, Music m) throws IOException {
+        this.raf = new RandomAccessFile(file, "r");
+        this.key = new byte[16];
+        this.buffer = new byte[16];
         this.music = m;
 
         raf.seek(m.preludePos);
-        pos = -1;
+        pointer = -1;
 
         String hex = music.metadata;
         for (int i = 0; i < 32; i += 2) {
@@ -31,15 +27,15 @@ public class TF2OggInputStream extends InputStream {
 
     @Override
     public int read() throws IOException {
-        pos++;
-        if (pos % 16 == 0) {
+        pointer++;
+        if (pointer % 16 == 0) {
             raf.read(buffer);
             for (int i = 0; i < 16; i++) {
                 buffer[i] = (byte) ((buffer[i] ^ key[i]) + 128);
             }
         }
-        if (pos < music.preludeLength) {
-            int data = buffer[(int) (pos % 16)];
+        if (pointer < music.preludeLength) {
+            int data = buffer[(int) (pointer % 16)];
             if (data < 0)
                 data = 256 + data;
             return data;
@@ -48,13 +44,13 @@ public class TF2OggInputStream extends InputStream {
     }
 
     public void seek(long pos) throws IOException {
-        this.pos = pos;
+        this.pointer = pos;
         raf.seek(pos);
     }
 
     @Override
     public void mark(int readlimit) {
-        markpos = pos;
+        markpos = pointer;
     }
 
     @Override
@@ -68,7 +64,7 @@ public class TF2OggInputStream extends InputStream {
         super.close();
     }
 
-    public long getPos(){
-        return pos;
+    public long getPointer(){
+        return pointer;
     }
 }

@@ -1,4 +1,4 @@
-package hywt.music.touhou;
+package hywt.music.touhou.io;
 
 import java.io.File;
 import java.io.FileInputStream;

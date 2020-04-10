@@ -3,6 +3,7 @@ package hywt.music.touhou.pcmprocessing;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.RandomAccessFile;
 
 import javax.sound.sampled.AudioFormat;
@@ -15,13 +16,15 @@ import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import hywt.music.touhou.Constants;
-import hywt.music.touhou.Etc;
+import hywt.music.touhou.StringFormatter;
+import hywt.music.touhou.io.tfpack.TFPack;
+import hywt.music.touhou.io.tfpack.TFPackInputStream;
 import hywt.music.touhou.savedata.BGMPath;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
 import hywt.music.touhou.savedata.Playlist;
-import hywt.music.touhou.tfpack.TF2OggInputStream;
-import hywt.music.touhou.tfpack.TFOggInputStream;
+import hywt.music.touhou.io.tfpack.TF2OggInputStream;
+import hywt.music.touhou.io.tfpack.TFOggInputStream;
 
 public class PCMPlayer {
 	private AudioFormat af;
@@ -74,16 +77,13 @@ public class PCMPlayer {
 		if (g.format == 0) {
 			// 东方红魔乡格式 = 0
 			int index = g.music.indexOf(m);
-			play(source + "/" + Etc.getEoSDFilename(index), m); //$NON-NLS-1$
+			play(source + "/" + StringFormatter.formatFileName(g.metadata, index), m); //$NON-NLS-1$
 		} else if (g.format == 1) {
 			// 一般格式 = 1
 			play(source, m);
-		} else if (g.format == 2) {
-			// TH10.5/12.3格式
-			playTFMusic(source, m);
-		} else if (g.format == 3) {
-			// TH10.5/12.3格式
-			playTF2Music(source, m);
+		} else if (g.format == 2 || g.format == 3) {
+			// TH10.5/12.3/13.5格式
+			playTFMusic(g, m,source);
 		}
 	}
 
@@ -108,125 +108,22 @@ public class PCMPlayer {
 		playFile();
 	}
 
-	public void playMusic(AudioInputStream f)
-			throws LineUnavailableException, IOException, InterruptedException, UnsupportedAudioFileException {
-		final AudioFormat outFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100, 16, 2, 4, 44100, false);
-		final AudioInputStream ais = AudioSystem.getAudioInputStream(outFormat, f);
-		openSDL(outFormat);
-		byte[] b = new byte[bufferSize];
-		playback = 0;
-		while (f.available() > 0) {
-			if (pause) {
-				Thread.sleep(50);
-				continue;
-			}
-			if (!playing) {
-				return;
-			}
-			ais.read(b);
-			sdl.write(b, 0, b.length);
-			playback += bufferSize;
-		}
-	}
-
-	public void playTFMusic(String thbgm, Music m)
+	public void playTFMusic(Game g, Music m,String thbgm)
 			throws LineUnavailableException, IOException, InterruptedException, UnsupportedAudioFileException {
 		source = thbgm;
 		pause = false;
 		music = m;
 
-		TFOggInputStream tfois = new TFOggInputStream(source, m);
+		TFPack tfp = new TFPack(g,m,source);
+		TFPackInputStream tfpis = tfp.getInputStream();
 
-		final AudioInputStream in = AudioSystem.getAudioInputStream(tfois);
-
-		final AudioFormat outFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, music.sampleRate, 16, 2, 4,
-				music.sampleRate, false);
-		final AudioInputStream ais = AudioSystem.getAudioInputStream(outFormat, in);
-		BufferedInputStream bufferedIn = new BufferedInputStream(ais);
-		openSDL(outFormat);
-		final byte[] b = new byte[bufferSize];
-		int len;
-
-		bufferedIn.mark(0x7fffffff);
-
-		playback = 0;
-		while (true) {
-			while (playback < music.loopPos + music.loopLength) {
-				if (!playing) {
-					return;
-				}
-				if (pause) {
-					Thread.sleep(50);
-					continue;
-				}
-				len = bufferedIn.read(b);
-				if (len > 0) {
-					sdl.write(b, 0, len);
-					playback += len;
-				}
-			}
-			if (loop) {
-				playback = (int) music.loopPos;
-				bufferedIn.reset();
-				bufferedIn.skip(music.loopPos);
-			} else {
-				bufferedIn.close();
-				ais.close();
-				in.close();
-				tfois.close();
-				break;
-			}
-		}
-	}
-
-	public void playTF2Music(String thbgm, Music m)
-			throws LineUnavailableException, IOException, InterruptedException, UnsupportedAudioFileException {
-		source = thbgm;
-		pause = false;
-		music = m;
-
-		TF2OggInputStream tfois = new TF2OggInputStream(source, m);
-
-		final AudioInputStream in = AudioSystem.getAudioInputStream(tfois);
+		final AudioInputStream in = AudioSystem.getAudioInputStream(tfpis);
 
 		final AudioFormat outFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, music.sampleRate, 16, 2, 4,
 				music.sampleRate, false);
 		final AudioInputStream ais = AudioSystem.getAudioInputStream(outFormat, in);
 		BufferedInputStream bufferedIn = new BufferedInputStream(ais);
-		openSDL(outFormat);
-		final byte[] b = new byte[bufferSize];
-		int len;
-
-		bufferedIn.mark(0x7fffffff);
-
-		playback = 0;
-		while (true) {
-			while (playback < music.loopPos + music.loopLength) {
-				if (!playing) {
-					return;
-				}
-				if (pause) {
-					Thread.sleep(50);
-					continue;
-				}
-				len = bufferedIn.read(b);
-				if (len > 0) {
-					sdl.write(b, 0, len);
-					playback += len;
-				}
-			}
-			if (loop) {
-				playback = (int) music.loopPos;
-				bufferedIn.reset();
-				bufferedIn.skip(music.loopPos);
-			} else {
-				bufferedIn.close();
-				ais.close();
-				in.close();
-				tfois.close();
-				break;
-			}
-		}
+		playFile(bufferedIn, outFormat);
 	}
 
 	private void openSDL(AudioFormat af) throws LineUnavailableException {
@@ -270,17 +167,17 @@ public class PCMPlayer {
 				if (gameList) {
 					int[] index = Constants.bgmdata.indexOf(music);
 					try {
-						music = Constants.bgmdata.games.get(index[0]).music.get(index[1] + 1);
-						if (Constants.bgmdata.games.get(index[0]).no.equals("TH06")) {
-							source = new File(source).getParent() + "/" + Etc.getEoSDFilename(index[1] + 1);
+						music = game.music.get(index[1] + 1);
+						if (game.no.equals("TH06")) {
+							source = new File(source).getParent() + "/" + StringFormatter.formatFileName(game.metadata, index[1] + 1);
 							raf = new RandomAccessFile(source, "r");
 						}
 					} catch (IndexOutOfBoundsException e) {
 						if (!loop)
 							break;
-						music = Constants.bgmdata.games.get(index[0]).music.get(0);
-						if (Constants.bgmdata.games.get(index[0]).no.equals("TH06")) {
-							source = new File(source).getParent() + "/" + Etc.getEoSDFilename(0);
+						music = game.music.get(0);
+						if (game.no.equals("TH06")) {
+							source = new File(source).getParent() + "/" + StringFormatter.formatFileName(game.metadata,0);
 							raf = new RandomAccessFile(source, "r");
 						}
 					}
@@ -291,6 +188,41 @@ public class PCMPlayer {
 					break;
 			}
 			if (!loop && playMode == LIST) {
+				break;
+			}
+		}
+	}
+
+	public void playFile(InputStream is, AudioFormat af)
+			throws LineUnavailableException, InterruptedException, IOException {
+		openSDL(af);
+		final byte[] b = new byte[bufferSize];
+		int len;
+
+		is.mark(0x7fffffff);
+
+		playback = 0;
+		while (true) {
+			while (playback < music.loopPos + music.loopLength) {
+				if (!playing) {
+					return;
+				}
+				if (pause) {
+					Thread.sleep(50);
+					continue;
+				}
+				len = is.read(b);
+				if (len > 0) {
+					sdl.write(b, 0, len);
+					playback += len;
+				}
+			}
+			if (loop) {
+				playback = (int) music.loopPos;
+				is.reset();
+				is.skip(music.loopPos);
+			} else {
+				is.close();
 				break;
 			}
 		}

@@ -26,6 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import hywt.music.touhou.Constants;
 import hywt.music.touhou.savedata.BGMPath;
+import hywt.music.touhou.savedata.Game;
 
 public class PathManager {
 
@@ -123,30 +124,22 @@ public class PathManager {
 
 					JFileChooser filechooser = new JFileChooser("."); //$NON-NLS-1$
 
-					String filename;
+					Game g = Constants.bgmdata.games.get(i2);
+					String[] names = g.fileName.split("\\.");
 
-					if (i2 == 0) { // TH06
-						filename = "BGM"; //$NON-NLS-1$
+					if (g.format == 0) { // TH06
 						filechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-					} else if (i2 == 2) { // TH07.5
-						filename = "th075bgm.dat"; //$NON-NLS-1$
-					} else if (i2 == 7) { // TH10.5
-						filename = "th105b.dat"; //$NON-NLS-1$
-					} else if (i2 == 10) { // TH12.3
-						filename = "th123b.dat"; //$NON-NLS-1$
-					} else {
-						filename = "thbgm.dat"; //$NON-NLS-1$
 					}
-
-					FileNameExtensionFilter Filter = new FileNameExtensionFilter(filename, "dat"); //$NON-NLS-1$
-
+					
+					FileNameExtensionFilter Filter = new FileNameExtensionFilter(g.fileName, names[names.length-1]); //$NON-NLS-1$
+	
 					filechooser.setFileFilter(Filter);
 					filechooser.setAcceptAllFileFilterUsed(false);
 
 					int returnVal = filechooser.showOpenDialog(frmBgmPathManager);
 
 					if (returnVal == JFileChooser.APPROVE_OPTION) {
-						// 设置field文本
+						// 将选择的文件路径显示至textField
 						fields.get(i2).setText(filechooser.getSelectedFile().getPath());
 					}
 				}
