@@ -1,6 +1,5 @@
 package hywt.music.touhou.io.tfpack;
 
-import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
 
 import java.io.File;
@@ -8,10 +7,10 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 // 绯想天/非想天则 ogg 提取
-public class TFOggInputStream extends TFPackInputStream {
+public class TFV1OggInputStream extends TFPackInputStream {
     protected int key;
 
-    public TFOggInputStream(Music m, File file) throws IOException {
+    public TFV1OggInputStream(Music m, File file) throws IOException {
         this.music = m;
         this.raf = new RandomAccessFile(file, "r");
 
@@ -48,5 +47,10 @@ public class TFOggInputStream extends TFPackInputStream {
     @Override
     public void close() throws IOException {
         raf.close();
+    }
+
+    @Override
+    public int available(){
+        return (int) (music.preludeLength - pointer);
     }
 }

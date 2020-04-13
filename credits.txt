@@ -1,7 +1,11 @@
-
-
-Icon: 
+图标:
 FREE TO USE Touhou Icons 
 by MahoxyShoujo
 
 https://www.deviantart.com/mahoxyshoujo/gallery/41141542/FREE-TO-USE-Touhou-Icons
+
+BGM数据：
+野风信子BGM For All
+foo_thbgm (https://github.com/nyfair/foo_thbgm)
+
+心绮楼、深秘录解密代码：https://github.com/brliron/135tk/

@@ -21,10 +21,13 @@ public class TFPack {
     public TFPackInputStream getInputStream() throws IOException {
         switch (game.format) {
             case GameFormats.TFPACK_1:
-                return new TFOggInputStream(music, pack);
+                return new TFV1OggInputStream(music, pack);
             case GameFormats.TFPACK_2:
-                return new TF2OggInputStream(music, pack);
+                return new TFV2OggInputStream(music, pack);
+            case GameFormats.TFPACK_3:
+                return new TFV3OggInputStream(music, pack);
+            default:
+                return null;
         }
-        return null;
     }
 }

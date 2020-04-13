@@ -54,8 +54,6 @@ public class MusicExporter {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		frmMusicExporter.setContentPane(contentPane);
 
-		BGMPath bgmpath = BGMPath.load();
-
 		JPanel selectionPanel = new JPanel();
 		contentPane.add(selectionPanel, BorderLayout.CENTER);
 		selectionPanel.setLayout(new GridLayout(0, 2, 0, 0));
@@ -133,6 +131,7 @@ public class MusicExporter {
 				int returnVal = filechooser.showSaveDialog(frmMusicExporter);
 
 				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					BGMPath bgmpath = BGMPath.load();
 					for (int i = 0; i < gameCheckboxes.size(); i++) {
 						int format = Constants.bgmdata.games.get(i).format;
 						for (int j = 0; j < musicCheckboxLists.get(i).size(); j++) {

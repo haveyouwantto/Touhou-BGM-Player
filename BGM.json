@@ -17,6 +17,7 @@
         "TH13.5",
         "TH14",
         "TH14.3",
+        "TH14.5",
         "TH15",
         "TH16",
         "TH16.5",
@@ -27,8 +28,11 @@
             "format": 0,
             "no": "TH06",
             "title": "東方紅魔郷 ～ the Embodiment of Scarlet Devil",
-            "fileName":"BGM",
-            "metadata":"th06_%s.wav",
+            "fileName": "BGM",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
+            "metadata": "th06_%s.wav",
             "music": [
                 {
                     "title": "赤より紅い夢",
@@ -172,7 +176,10 @@
             "format": 1,
             "no": "TH07",
             "title": "東方妖々夢 ～ Perfect Cherry Blossom",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "妖々夢　～ Snow or Cherry Petal",
@@ -340,7 +347,11 @@
             "format": 1,
             "no": "TH07.5",
             "title": "東方萃夢想 ～ Immaterial and Missing Power",
-            "fileName":"th075bgm.dat",
+            "fileName": "th075bgm.dat",
+            "artist": [
+                "上海アリス幻樂団",
+                "黄昏フロンティア"
+            ],
             "music": [
                 {
                     "title": "萃夢想",
@@ -620,7 +631,10 @@
             "format": 1,
             "no": "TH08",
             "title": "東方永夜抄 ～ Imperishable Night",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "永夜抄　～ Eastern Night",
@@ -796,7 +810,10 @@
             "format": 1,
             "no": "TH09",
             "title": "東方花映塚 ～ Phantasmagoria of Flower View",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "花映塚　～ Higan Retour ",
@@ -956,7 +973,10 @@
             "format": 1,
             "no": "TH09.5",
             "title": "東方文花帖 ～ Shoot the Bullet",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "天狗の手帖　～ Mysterious Note",
@@ -1012,7 +1032,10 @@
             "format": 1,
             "no": "TH10",
             "title": "東方風神録 ～ Mountain of Faith",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "封印されし神々",
@@ -1164,7 +1187,11 @@
             "format": 2,
             "no": "TH10.5",
             "title": "東方緋想天 ～ Scarlet Weather Rhapsody",
-            "fileName":"th105b.dat",
+            "fileName": "th105b.dat",
+            "artist": [
+                "上海アリス幻樂団",
+                "黄昏フロンティア"
+            ],
             "music": [
                 {
                     "title": "緋想天",
@@ -1420,7 +1447,10 @@
             "format": 1,
             "no": "TH11",
             "title": "東方地霊殿 ～ Subterranean Animism",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "地霊達の起床",
@@ -1572,7 +1602,10 @@
             "format": 1,
             "no": "TH12",
             "title": "東方星蓮船 ～ Undefined Fantastic Object",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "青空の影",
@@ -1724,7 +1757,11 @@
             "format": 2,
             "no": "TH12.3",
             "title": "東方非想天則 ～ 超弩級ギニョルの謎を追え",
-            "fileName":"th123b.dat",
+            "fileName": "th123b.dat",
+            "artist": [
+                "上海アリス幻樂団",
+                "黄昏フロンティア"
+            ],
             "music": [
                 {
                     "title": "君はあの影を見たか？",
@@ -1924,7 +1961,10 @@
             "format": 1,
             "no": "TH12.5",
             "title": "ダブルスポイラー ～ 東方文花帖",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "ニュースハウンド",
@@ -1988,7 +2028,10 @@
             "format": 1,
             "no": "TH12.8",
             "title": "妖精大戦争 ～ 東方三月精",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "春の氷精",
@@ -2076,6 +2119,10 @@
             "format": 1,
             "no": "TH13",
             "title": "東方神霊廟 ～ Ten Desires",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "欲深き霊魂",
@@ -2331,7 +2378,11 @@
             "format": 3,
             "no": "TH13.5",
             "title": "東方心綺楼 ～ Hopeless Masquerade",
-            "fileName":"th135.pak",
+            "fileName": "th135.pak",
+            "artist": [
+                "上海アリス幻樂団",
+                "黄昏フロンティア"
+            ],
             "music": [
                 {
                     "title": "塵界不変のペシミズム",
@@ -2528,7 +2579,10 @@
             "format": 1,
             "no": "TH14",
             "title": "東方輝針城 ～ Double Dealing Character.",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "不思議なお祓い棒",
@@ -2680,7 +2734,10 @@
             "format": 1,
             "no": "TH14.3",
             "title": "弹幕天邪鬼 ～ Impossible Spell Card.",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "反則の狼煙を上げろ",
@@ -2757,10 +2814,484 @@
             ]
         },
         {
+            "format": 4,
+            "no": "TH14.5",
+            "title": "東方深秘録 ～ Urban Legend in Limbo",
+            "fileName": "th145.pak",
+            "artist": [
+                "上海アリス幻樂団",
+                "黄昏フロンティア"
+            ],
+            "music": [
+                {
+                    "title": "二色蓮花蝶 ～ Red and White",
+                    "sampleRate": 44100,
+                    "preludePos": 331724033,
+                    "preludeLength": 3548760,
+                    "loopPos": 943288,
+                    "loopLength": 23520000,
+                    "metadata": "1A02E9FF62F1BA932AA2EE3A6CBD1D6B"
+                },
+                {
+                    "title": "恋色マスタースパーク",
+                    "sampleRate": 44100,
+                    "preludePos": 313721851,
+                    "preludeLength": 4037489,
+                    "loopPos": 2417512,
+                    "loopLength": 24903532,
+                    "metadata": "8137B902DAE60F63BC549E284136A5E7"
+                },
+                {
+                    "title": "時代親父とハイカラ少女",
+                    "sampleRate": 44100,
+                    "preludePos": 292074118,
+                    "preludeLength": 3106946,
+                    "loopPos": 635100,
+                    "loopLength": 21273644,
+                    "metadata": "E6788644821049E5859891CEB489BAB6"
+                },
+                {
+                    "title": "感情の摩天楼 ～ Cosmic Mind",
+                    "sampleRate": 44100,
+                    "preludePos": 287863323,
+                    "preludeLength": 3692886,
+                    "loopPos": 3295960,
+                    "loopLength": 23049472,
+                    "metadata": "C9395A77D5C07533552A03F1581D190E"
+                },
+                {
+                    "title": "大神神話伝",
+                    "sampleRate": 44100,
+                    "preludePos": 283642923,
+                    "preludeLength": 3699134,
+                    "loopPos": 867348,
+                    "loopLength": 24424488,
+                    "metadata": "6EFEDA95DC410C6D7E925FED791311E3"
+                },
+                {
+                    "title": "聖徳伝説 ～ True Administrator",
+                    "sampleRate": 44100,
+                    "preludePos": 318298275,
+                    "preludeLength": 4057341,
+                    "loopPos": 4248960,
+                    "loopLength": 24303996,
+                    "metadata": "56281879D9C9D83F9AD9698E107001D0"
+                },
+                {
+                    "title": "芥川龍之介の河童 ～ Candid Friend",
+                    "sampleRate": 44100,
+                    "preludePos": 327823554,
+                    "preludeLength": 3347386,
+                    "loopPos": 323112,
+                    "loopLength": 23237092,
+                    "metadata": "571CD43DB03057F92A6CB367EB5CA9AF"
+                },
+                {
+                    "title": "ハルトマンの妖怪少女",
+                    "sampleRate": 44100,
+                    "preludePos": 300132249,
+                    "preludeLength": 3091996,
+                    "loopPos": 405324,
+                    "loopLength": 20951996,
+                    "metadata": "5DDFCAD832BFE47E0318F536EA4F185D"
+                },
+                {
+                    "title": "幻想郷の二ッ岩",
+                    "sampleRate": 44100,
+                    "preludePos": 310242070,
+                    "preludeLength": 2894229,
+                    "loopPos": 423032,
+                    "loopLength": 19619120,
+                    "metadata": "5D6D060D5CA57BED54D8E707FC92D117"
+                },
+                {
+                    "title": "亡失のエモーション",
+                    "sampleRate": 44100,
+                    "preludePos": 303788460,
+                    "preludeLength": 5903127,
+                    "loopPos": 2424980,
+                    "loopLength": 39674884,
+                    "metadata": "F7521451611124D27B2116F7A83AE557"
+                },
+                {
+                    "title": "月まで届け、不死の煙",
+                    "sampleRate": 44100,
+                    "preludePos": 322955481,
+                    "preludeLength": 4351739,
+                    "loopPos": 1852492,
+                    "loopLength": 29030400,
+                    "metadata": "DF38354B8AABC98ACED65FADFC790BE0"
+                },
+                {
+                    "title": "輝く針の小人族 ～ Little Princess",
+                    "sampleRate": 44100,
+                    "preludePos": 337143381,
+                    "preludeLength": 3886099,
+                    "loopPos": 2979428,
+                    "loopLength": 23427528,
+                    "metadata": "57396D1664B1EB537E0B6A6631B1E15E"
+                },
+                {
+                    "title": "心揺さぶる都市伝説",
+                    "sampleRate": 44100,
+                    "preludePos": 373856141,
+                    "preludeLength": 2377849,
+                    "loopPos": 940020,
+                    "loopLength": 15876000,
+                    "metadata": "F52A432479BFAD4337E884A9C28A6E7C"
+                },
+                {
+                    "title": "幻想郷ふしぎ発見",
+                    "sampleRate": 44100,
+                    "preludePos": 335824954,
+                    "preludeLength": 1304311,
+                    "loopPos": 1036048,
+                    "loopLength": 7976364,
+                    "metadata": "302263B5C621F0359CC00A1FB79ABA54"
+                },
+                {
+                    "title": "ボールのある日常",
+                    "sampleRate": 44100,
+                    "preludePos": 362383445,
+                    "preludeLength": 1683556,
+                    "loopPos": 2313292,
+                    "loopLength": 9236952,
+                    "metadata": "5D49312A500C9576EF364FA173863644"
+                },
+                {
+                    "title": "顕現した伝承の形",
+                    "sampleRate": 44100,
+                    "preludePos": 360504530,
+                    "preludeLength": 1861085,
+                    "loopPos": 1413904,
+                    "loopLength": 11289600,
+                    "metadata": "94AB42AD356C2C71DD9F90390B5E8950"
+                },
+                {
+                    "title": "時代の風の訪れ",
+                    "sampleRate": 44100,
+                    "preludePos": 365655611,
+                    "preludeLength": 1396183,
+                    "loopPos": 842332,
+                    "loopLength": 8467160,
+                    "metadata": "8707B6334726331411FDBF4DC8B64D1B"
+                },
+                {
+                    "title": "価値がわからない",
+                    "sampleRate": 44100,
+                    "preludePos": 364083792,
+                    "preludeLength": 1554034,
+                    "loopPos": 373032,
+                    "loopLength": 10160640,
+                    "metadata": "3906A57F3079982C5CD4E8F358604AC2"
+                },
+                {
+                    "title": "可能性を信じて",
+                    "sampleRate": 44100,
+                    "preludePos": 368867453,
+                    "preludeLength": 1978206,
+                    "loopPos": 1309040,
+                    "loopLength": 11907008,
+                    "metadata": "F901CB13861ADED0A68DEF102DA6368F"
+                },
+                {
+                    "title": "真実を知る者",
+                    "sampleRate": 44100,
+                    "preludePos": 367068159,
+                    "preludeLength": 1783720,
+                    "loopPos": 2165216,
+                    "loopLength": 10368004,
+                    "metadata": "CFF8CD2394752867FAECE9E237D92A95"
+                },
+                {
+                    "title": "外界フォークロア",
+                    "sampleRate": 44100,
+                    "preludePos": 370862211,
+                    "preludeLength": 1674646,
+                    "loopPos": 610580,
+                    "loopLength": 10281588,
+                    "metadata": "E6CD388672AE517B37753F3E0363D0AC"
+                },
+                {
+                    "title": "各々の結末",
+                    "sampleRate": 44100,
+                    "preludePos": 281954316,
+                    "preludeLength": 1676720,
+                    "loopPos": 1205544,
+                    "loopLength": 9976156,
+                    "metadata": "13A22D4A1FFA2D8BB4006DE6EDBF2172"
+                },
+                {
+                    "title": "明かされる深秘",
+                    "sampleRate": 44100,
+                    "preludePos": 358433322,
+                    "preludeLength": 2057465,
+                    "loopPos": 0,
+                    "loopLength": 15068296,
+                    "metadata": "18508A84457A0FC6256D633D922B9AEE"
+                },
+                {
+                    "title": "オカルトアラカルト",
+                    "sampleRate": 44100,
+                    "preludePos": 345465298,
+                    "preludeLength": 2737408,
+                    "loopPos": 1460260,
+                    "loopLength": 17660152,
+                    "metadata": "A226449516FBA956C567288A69206B94"
+                },
+                {
+                    "title": "七玉蒐集ショウダウン",
+                    "sampleRate": 44100,
+                    "preludePos": 341572210,
+                    "preludeLength": 3301708,
+                    "loopPos": 1256012,
+                    "loopLength": 19710800,
+                    "metadata": "D3CE234E5E358164D552F229BB30847C"
+                },
+                {
+                    "title": "公正なる奪い合い",
+                    "sampleRate": 44100,
+                    "preludePos": 348758095,
+                    "preludeLength": 2600172,
+                    "loopPos": 2096124,
+                    "loopLength": 15941516,
+                    "metadata": "F28B2D451DBB111EADD407A3CC5E4BB0"
+                },
+                {
+                    "title": "対蹠地の鐘",
+                    "sampleRate": 44100,
+                    "preludePos": 351878339,
+                    "preludeLength": 2800791,
+                    "loopPos": 2572112,
+                    "loopLength": 16873064,
+                    "metadata": "55F208E64ECF5F74364C987CEF9CFC99"
+                },
+                {
+                    "title": "竹林インフレイム",
+                    "sampleRate": 44100,
+                    "preludePos": 355198423,
+                    "preludeLength": 2696585,
+                    "loopPos": 1765588,
+                    "loopLength": 16934384,
+                    "metadata": "2B688BBD545D2A226255CBE650AF4A64"
+                },
+                {
+                    "title": "華狭間のバトルフィールド",
+                    "sampleRate": 44100,
+                    "preludePos": 295700580,
+                    "preludeLength": 3839066,
+                    "loopPos": 996308,
+                    "loopLength": 25899680,
+                    "metadata": "41C081051BC61B9C9F27BEEF231FDFE4"
+                },
+                {
+                    "title": "ラストオカルティズム ～ 現し世の秘術師",
+                    "sampleRate": 44100,
+                    "preludePos": 376248743,
+                    "preludeLength": 6368585,
+                    "loopPos": 3023508,
+                    "loopLength": 40449468,
+                    "metadata": "E0C40E94D99A4D8EF4698181629B7559"
+                },
+                {
+                    "title": "二色蓮花蝶 ～ Red and White【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 335299567,
+                    "preludeLength": 525387,
+                    "loopPos": 0,
+                    "loopLength": 3766896,
+                    "metadata": "C8D8DAA064E3E39ED015ED8DAA4D5397"
+                },
+                {
+                    "title": "恋色マスタースパーク【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 317773426,
+                    "preludeLength": 524849,
+                    "loopPos": 0,
+                    "loopLength": 3847632,
+                    "metadata": "EF684E2A8AFB65C3FDF33AB89CC249E5"
+                },
+                {
+                    "title": "時代親父とハイカラ少女【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 295211067,
+                    "preludeLength": 489513,
+                    "loopPos": 0,
+                    "loopLength": 3557992,
+                    "metadata": "F130F6E040D48779A79E46FA7768D295"
+                },
+                {
+                    "title": "感情の摩天楼 ～ Cosmic Mind【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 291580223,
+                    "preludeLength": 493895,
+                    "loopPos": 0,
+                    "loopLength": 3587800,
+                    "metadata": "1E89670E96972964E44BCA46F2A77189"
+                },
+                {
+                    "title": "大神神話伝【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 287354836,
+                    "preludeLength": 508487,
+                    "loopPos": 0,
+                    "loopLength": 3663168,
+                    "metadata": "34AA654F095DC4FE0539FDBFF042870B"
+                },
+                {
+                    "title": "聖徳伝説 ～ True Administrator【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 322379296,
+                    "preludeLength": 576185,
+                    "loopPos": 0,
+                    "loopLength": 4180948,
+                    "metadata": "E9DEF43606E58E24B4BC8776D70BF272"
+                },
+                {
+                    "title": "芥川龍之介の河童 ～ Candid Friend【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 331189838,
+                    "preludeLength": 534195,
+                    "loopPos": 0,
+                    "loopLength": 3851148,
+                    "metadata": "76E1BF0DD1E387516D433A30D583F0A5"
+                },
+                {
+                    "title": "ハルトマンの妖怪少女【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 303245843,
+                    "preludeLength": 542617,
+                    "loopPos": 0,
+                    "loopLength": 3960940,
+                    "metadata": "330C74CC7D4B616EA20E005D4AEE31AB"
+                },
+                {
+                    "title": "幻想郷の二ッ岩【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 313155886,
+                    "preludeLength": 565965,
+                    "loopPos": 0,
+                    "loopLength": 4132256,
+                    "metadata": "F2625776DDC65415596B242004844E1B"
+                },
+                {
+                    "title": "亡失のエモーション【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 309712684,
+                    "preludeLength": 529386,
+                    "loopPos": 0,
+                    "loopLength": 3869864,
+                    "metadata": "3F1FB91F5DA28CD43F231E3BFB0F8B5B"
+                },
+                {
+                    "title": "月まで届け、不死の煙【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 327322593,
+                    "preludeLength": 500961,
+                    "loopPos": 0,
+                    "loopLength": 3629632,
+                    "metadata": "A21112FE79F0E17204B7C4AB07D1A655"
+                },
+                {
+                    "title": "輝く針の小人族 ～ Little Princess【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 341050782,
+                    "preludeLength": 521428,
+                    "loopPos": 0,
+                    "loopLength": 3805632,
+                    "metadata": "C702E2E08EE0222D7C634A2D3162538A"
+                },
+                {
+                    "title": "オカルトアラカルト【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 348220114,
+                    "preludeLength": 537981,
+                    "loopPos": 0,
+                    "loopLength": 3874088,
+                    "metadata": "32399ABE4A994FA202E0FDA5307A92C0"
+                },
+                {
+                    "title": "七玉蒐集ショウダウン【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 344891791,
+                    "preludeLength": 573507,
+                    "loopPos": 0,
+                    "loopLength": 4065716,
+                    "metadata": "51CB2CB256DE8F32AF9A3FF038BD9359"
+                },
+                {
+                    "title": "公正なる奪い合い【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 351375563,
+                    "preludeLength": 502776,
+                    "loopPos": 0,
+                    "loopLength": 3659232,
+                    "metadata": "4A8C8C95E65D03B7ED77C2EAE11B3EF8"
+                },
+                {
+                    "title": "対蹠地の鐘【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 354696626,
+                    "preludeLength": 501797,
+                    "loopPos": 0,
+                    "loopLength": 3679800,
+                    "metadata": "928B21EEEA0095B58D84D7975E147C1F"
+                },
+                {
+                    "title": "竹林インフレイム【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 357911615,
+                    "preludeLength": 521707,
+                    "loopPos": 0,
+                    "loopLength": 3850184,
+                    "metadata": "0750F46CA271B7115376EADE69BB44F8"
+                },
+                {
+                    "title": "華狭間のバトルフィールド【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 299555315,
+                    "preludeLength": 576934,
+                    "loopPos": 0,
+                    "loopLength": 4117212,
+                    "metadata": "651B6C0AABE92AD20EC7A08223F7F3D8"
+                },
+                {
+                    "title": "ラストオカルティズム ～ 現し世の秘術師【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 382637998,
+                    "preludeLength": 557216,
+                    "loopPos": 0,
+                    "loopLength": 3985312,
+                    "metadata": "41A91D2FD6768B4A8724415D11D23B34"
+                },
+                {
+                    "title": "Secret BGM1",
+                    "sampleRate": 44100,
+                    "preludePos": 372552603,
+                    "preludeLength": 661558,
+                    "loopPos": 0,
+                    "loopLength": 4838396,
+                    "metadata": "CB70F71992FD232003DE6AE8C5E48689"
+                },
+                {
+                    "title": "Secret BGM2",
+                    "sampleRate": 44100,
+                    "preludePos": 373214161,
+                    "preludeLength": 641878,
+                    "loopPos": 507800,
+                    "loopLength": 2116800,
+                    "metadata": "D66F2EA43B2B31A4D3E355C2C8E27608"
+                }
+            ]
+        },
+        {
             "format": 1,
             "no": "TH15",
             "title": "東方紺珠伝 ～ Legacy of Lunatic Kingdom.",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "宇宙巫女現る",
@@ -2912,7 +3443,10 @@
             "format": 1,
             "no": "TH16",
             "title": "東方天空璋 ～ Hidden Star in Four Seasons.",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "桜舞い散る天空",
@@ -3064,7 +3598,10 @@
             "format": 1,
             "no": "TH16.5",
             "title": "秘封ナイトメアダイアリー ～ Violet Detector.",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "悪夢日記",
@@ -3136,7 +3673,10 @@
             "format": 1,
             "no": "TH17",
             "title": "東方鬼形獣 ～ Wily Beast and Weakest Creature.",
-            "fileName":"thbgm.dat",
+            "fileName": "thbgm.dat",
+            "artist": [
+                "上海アリス幻樂団"
+            ],
             "music": [
                 {
                     "title": "物言わぬ獣の霊",

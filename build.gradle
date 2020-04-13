@@ -17,4 +17,7 @@ jar {
 dependencies {
    implementation 'com.google.code.gson:gson:2.8.5'
    implementation "com.googlecode.soundlibs:vorbisspi:1.0.3.3"
+    compile group: 'net.sourceforge.javaflacencoder', name: 'java-flac-encoder', version: '0.3.7'
+    compile group: 'org', name: 'jaudiotagger', version: '2.0.3'
+
 }

@@ -8,15 +8,17 @@ public class Game {
 	public int format;
 	public List<Music> music;
 	public String fileName;
+	public List<String> artist;
 	public String metadata;
 
-	public Game(String no, String titie, int format,String fileName, List<Music> music, String metadata) {
+	public Game(String no, String titie, int format,String fileName, List<Music> music, String metadata,List<String> artist) {
 		super();
 		this.no = no;
 		this.title = titie;
 		this.format = format;
 		this.music = music;
 		this.fileName = fileName;
+		this.artist = artist;
 		this.metadata = metadata;
 	}
 

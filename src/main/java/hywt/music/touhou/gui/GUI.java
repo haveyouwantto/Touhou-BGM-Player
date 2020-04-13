@@ -299,10 +299,6 @@ public class GUI {
                 Music m = (Music) musicComboBox.getSelectedItem();
                 pcmp.setLoop(btnLoop.isSelected());
                 pcmp.setPlayMode(playMode);
-
-                if (g.format < 0 || g.format > 3) {
-                    not.showError(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
-                }
                 pcmp.play(g, m);
                 btnStop.doClick();
             } catch (FileNotFoundException e1) {
@@ -320,7 +316,7 @@ public class GUI {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch (UnsupportedAudioFileException e) {
-                // TODO Auto-generated catch block
+                not.showError(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
                 e.printStackTrace();
             }
         };

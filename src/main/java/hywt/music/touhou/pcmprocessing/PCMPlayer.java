@@ -21,22 +21,28 @@ import hywt.music.touhou.savedata.Music;
 import hywt.music.touhou.savedata.Playlist;
 
 public class PCMPlayer {
+
+    private MusicInputStream musicIn;
     private AudioFormat af;
     private SourceDataLine.Info info;
     private SourceDataLine sdl;
     private FloatControl volumeControl;
+
     private boolean playing = false;
     private boolean pause;
     private float volume = 1;
     private int playMode;
     private boolean loop;
+
     private Music music;
     private Game game;
+
     private String source;
     private boolean gameList;
-    private MusicInputStream musicIn;
+
     int playback;
     int bufferSize = 256;
+
     public static final int MUSIC = 0;
     public static final int LIST = 1;
 
@@ -70,8 +76,10 @@ public class PCMPlayer {
         source = bgmpath.path.get(g.no);
         if (g.format == 0) {
             int index = g.music.indexOf(m);
-            musicIn = MusicSystem.getInputStream(g, m, new File(source + "/" + StringFormatter.formatFileName(g.metadata, index)));
-        } else musicIn = MusicSystem.getInputStream(g, m, new File(source));
+            musicIn = MusicSystem.getInputStream(g, m,
+                    new File(source + "/" + StringFormatter.formatFileName(g.metadata, index)));
+        } else
+            musicIn = MusicSystem.getInputStream(g, m, new File(source));
 
         // PCM 参数
         float sampleRate = music.sampleRate;
@@ -127,13 +135,15 @@ public class PCMPlayer {
                 long loopPos = MusicSystem.getLoopPos(musicIn);
                 playback = (int) loopPos;
                 musicIn.seek(loopPos);
-            } else break;
+            } else
+                break;
         }
     }
 
     public void seek(int pos) throws IOException {
         if (game.format == 0 || game.format == 1) {
-            if (pos % 2 == 1) pos++;
+            if (pos % 2 == 1)
+                pos++;
             playback = pos;
             musicIn.seek(pos);
         } else if (game.format == 2 || game.format == 3) {
@@ -189,20 +199,12 @@ public class PCMPlayer {
     public int getPreludeLength() {
         if (!playing)
             return 0;
-        else {
-            if (game.format == 0 || game.format == 1) {
-                return music.preludeLength;
-            } else if (game.format == 2 || game.format == 3) {
-                return (int) music.loopPos;
-            }
-        }
-        return -1;
+        else
+            return MusicSystem.getPreludeLength(musicIn);
     }
 
     public long getLength() {
-        if (music == null)
-            return 0;
-        if (!playing)
+        if (music == null || !playing)
             return 0;
         return MusicSystem.getLength(musicIn);
     }
