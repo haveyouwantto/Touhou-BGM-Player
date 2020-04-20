@@ -3,6 +3,7 @@ package hywt.music.touhou.io;
 import hywt.music.touhou.io.tfpack.TFPack;
 import hywt.music.touhou.io.tfpack.TFPackInputStream;
 import hywt.music.touhou.savedata.Game;
+import hywt.music.touhou.savedata.GameFormats;
 import hywt.music.touhou.savedata.Music;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -12,11 +13,11 @@ import java.io.IOException;
 public class MusicSystem {
 
     public static MusicInputStream getInputStream(Game g, Music m, File f) throws IOException, UnsupportedAudioFileException {
-        if (g.format == 0) {
+        if (g.format == GameFormats.BGM_FOLDER) {
             return new PCMInputStream(g, m, f);
-        } else if (g.format == 1) {
+        } else if (g.format == GameFormats.RAW_PCM) {
             return new PCMInputStream(g, m, f);
-        } else if (g.format == 2 || g.format == 3 || g.format == 4) {
+        } else if (GameFormats.isTFPack(g.format)) {
             TFPack tfp = new TFPack(g, m, f);
             TFPackInputStream tfs = tfp.getInputStream();
             return new OggInputStream(g, m, f, tfs);
@@ -27,7 +28,7 @@ public class MusicSystem {
     public static int getPreludeLength(MusicInputStream musicIn){
         int format = musicIn.game.format;
         Music music = musicIn.music;
-        if (format == 0 || format == 1) {
+        if (format == GameFormats.BGM_FOLDER || format == GameFormats.RAW_PCM) {
             return music.preludeLength;
         } else {
             return (int) music.loopPos;
@@ -37,7 +38,7 @@ public class MusicSystem {
     public static long getLength(MusicInputStream musicIn) {
         int format = musicIn.game.format;
         Music music = musicIn.music;
-        if (format == 0 || format == 1) {
+        if (format == GameFormats.BGM_FOLDER || format == GameFormats.RAW_PCM) {
             return music.preludeLength + music.loopLength;
         } else {
             return music.loopPos + music.loopLength;
@@ -47,7 +48,7 @@ public class MusicSystem {
     public static long getLoopPos(MusicInputStream musicIn){
         int format = musicIn.game.format;
         Music music = musicIn.music;
-        if (format == 0 || format == 1) {
+        if (format == GameFormats.BGM_FOLDER || format == GameFormats.RAW_PCM) {
             return music.preludeLength;
         } else {
             return music.loopPos;

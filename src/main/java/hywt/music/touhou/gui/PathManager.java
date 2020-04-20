@@ -158,7 +158,7 @@ public class PathManager {
 				fields.get(i).setText(path);
 			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 		frmBgmPathManager.setVisible(true);
 	}

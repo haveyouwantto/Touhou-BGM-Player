@@ -10,6 +10,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 
+import hywt.music.touhou.savedata.GameFormats;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
@@ -42,7 +43,7 @@ public class PCMSaver {
                 outAlbum.mkdirs();
             }
 
-            if (game.format >= 2) {
+            if (GameFormats.isTFPack(game.format)) {
                 File f = new File(outAlbum.getAbsolutePath() + "/" + (game.music.indexOf(music) + 1) + " - "
                         + music.title + ".ogg");
                 FileOutputStream fos = new FileOutputStream(f);

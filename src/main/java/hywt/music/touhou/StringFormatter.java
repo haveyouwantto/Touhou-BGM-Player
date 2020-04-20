@@ -7,9 +7,8 @@ public class StringFormatter {
         ++index;
 
         String id = new DecimalFormat("00").format(index);
-        String filename = String.format(template, id);
 
-        return filename;
+        return String.format(template, id);
     }
 
     public static String getMusicLengthTime(int sampleRate, long l) {

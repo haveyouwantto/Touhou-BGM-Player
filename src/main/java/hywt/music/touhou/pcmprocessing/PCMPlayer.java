@@ -15,10 +15,7 @@ import hywt.music.touhou.Constants;
 import hywt.music.touhou.StringFormatter;
 import hywt.music.touhou.io.MusicInputStream;
 import hywt.music.touhou.io.MusicSystem;
-import hywt.music.touhou.savedata.BGMPath;
-import hywt.music.touhou.savedata.Game;
-import hywt.music.touhou.savedata.Music;
-import hywt.music.touhou.savedata.Playlist;
+import hywt.music.touhou.savedata.*;
 
 public class PCMPlayer {
 
@@ -141,12 +138,12 @@ public class PCMPlayer {
     }
 
     public void seek(int pos) throws IOException {
-        if (game.format == 0 || game.format == 1) {
+        if (game.format == GameFormats.BGM_FOLDER || game.format == GameFormats.RAW_PCM) {
             if (pos % 2 == 1)
                 pos++;
             playback = pos;
             musicIn.seek(pos);
-        } else if (game.format == 2 || game.format == 3) {
+        } else if (GameFormats.isTFPack(game.format)) {
             // TODO: support ogg seeking
         }
     }

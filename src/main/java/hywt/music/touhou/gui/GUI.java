@@ -192,8 +192,7 @@ public class GUI {
                 } catch (InterruptedException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
-                } catch (NullPointerException e2) {
-
+                } catch (NullPointerException ignored) {
                 }
             }
         };

@@ -6,4 +6,8 @@ public class GameFormats {
     public static final int TFPACK_1 = 2;
     public static final int TFPACK_2 = 3;
     public static final int TFPACK_3 = 4;
+    
+    public static boolean isTFPack (int format) {
+        return format >= 2;
+    }
 }

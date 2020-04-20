@@ -19,6 +19,7 @@
         "TH14.3",
         "TH14.5",
         "TH15",
+        "TH15.5",
         "TH16",
         "TH16.5",
         "TH17"
@@ -3436,6 +3437,909 @@
                     "preludeLength": 1879240,
                     "loopPos": 485579784,
                     "loopLength": 4861944
+                }
+            ]
+        },
+        {
+            "format": 4,
+            "no": "TH15.5",
+            "title": "東方憑依華 ～ Antinomy of Common Flowers",
+            "fileName": "th155.pak",
+            "artist": [
+                "上海アリス幻樂団",
+                "黄昏フロンティア"
+            ],
+            "music": [
+                {
+                    "title": "二色蓮花蝶 ～ Red and White",
+                    "sampleRate": 44100,
+                    "preludePos": 442839052,
+                    "preludeLength": 3548760,
+                    "loopPos": 943288,
+                    "loopLength": 23520000,
+                    "metadata": "48256ED1BD235C05A75C89181DC52C70"
+                },
+                {
+                    "title": "恋色マスタースパーク",
+                    "sampleRate": 44100,
+                    "preludePos": 424908493,
+                    "preludeLength": 4037489,
+                    "loopPos": 2417512,
+                    "loopLength": 24903532,
+                    "metadata": "2777F74ED52854E7004805D3CF6C754D"
+                },
+                {
+                    "title": "時代親父とハイカラ少女",
+                    "sampleRate": 44100,
+                    "preludePos": 403640731,
+                    "preludeLength": 3106946,
+                    "loopPos": 635100,
+                    "loopLength": 21273644,
+                    "metadata": "9CBBBF936B9010326883D90ED7B90CAC"
+                },
+                {
+                    "title": "感情の摩天楼 ～ Cosmic Mind",
+                    "sampleRate": 44100,
+                    "preludePos": 399453846,
+                    "preludeLength": 3692886,
+                    "loopPos": 3295960,
+                    "loopLength": 23049472,
+                    "metadata": "8C627648D9977FFB37EF6D764AA9CA66"
+                },
+                {
+                    "title": "大神神話伝",
+                    "sampleRate": 44100,
+                    "preludePos": 395246123,
+                    "preludeLength": 3699134,
+                    "loopPos": 867348,
+                    "loopLength": 24424488,
+                    "metadata": "7C452AC8CCD5557799B73D7716DCBDCC"
+                },
+                {
+                    "title": "聖徳伝説 ～ True Administrator",
+                    "sampleRate": 44100,
+                    "preludePos": 429470935,
+                    "preludeLength": 4057341,
+                    "loopPos": 4248960,
+                    "loopLength": 24303996,
+                    "metadata": "8328DEFB8BA0C95AFFB3D4C1E37A33DD"
+                },
+                {
+                    "title": "芥川龍之介の河童 ～ Candid Friend",
+                    "sampleRate": 44100,
+                    "preludePos": 438957367,
+                    "preludeLength": 3347386,
+                    "loopPos": 323112,
+                    "loopLength": 23237092,
+                    "metadata": "F859DACE8A0578675C2E52E8FC46186B"
+                },
+                {
+                    "title": "ハルトマンの妖怪少女",
+                    "sampleRate": 44100,
+                    "preludePos": 411385526,
+                    "preludeLength": 3091996,
+                    "loopPos": 405324,
+                    "loopLength": 20951996,
+                    "metadata": "55B4256191CC606B568B401B43BDDCF7"
+                },
+                {
+                    "title": "幻想郷の二ッ岩",
+                    "sampleRate": 44100,
+                    "preludePos": 421448193,
+                    "preludeLength": 2894229,
+                    "loopPos": 423032,
+                    "loopLength": 19619120,
+                    "metadata": "C77AE070CE55FBF5BB1091EC453455FB"
+                },
+                {
+                    "title": "亡失のエモーション",
+                    "sampleRate": 44100,
+                    "preludePos": 415020243,
+                    "preludeLength": 5898329,
+                    "loopPos": 2421788,
+                    "loopLength": 39674608,
+                    "metadata": "73DF10D14F9AE476F1AA7DC775CE4B33"
+                },
+                {
+                    "title": "月まで届け、不死の煙",
+                    "sampleRate": 44100,
+                    "preludePos": 434104563,
+                    "preludeLength": 4351739,
+                    "loopPos": 1852492,
+                    "loopLength": 29030400,
+                    "metadata": "21136810D2BFC5B1DB45F52EB41EAB4C"
+                },
+                {
+                    "title": "輝く針の小人族 ～ Little Princess",
+                    "sampleRate": 44100,
+                    "preludePos": 446913303,
+                    "preludeLength": 3592393,
+                    "loopPos": 954884,
+                    "loopLength": 23875540,
+                    "metadata": "D24A922A7CFD54EC0D5824AF9C5E295A"
+                },
+                {
+                    "title": "華狭間のバトルフィールド",
+                    "sampleRate": 44100,
+                    "preludePos": 407237296,
+                    "preludeLength": 3658673,
+                    "loopPos": 2320132,
+                    "loopLength": 22640556,
+                    "metadata": "CF7F62A3F17560181C732008F6D94B19"
+                },
+                {
+                    "title": "ラストオカルティズム ～ 現し世の秘術師",
+                    "sampleRate": 44100,
+                    "preludePos": 460129389,
+                    "preludeLength": 3368784,
+                    "loopPos": 2005648,
+                    "loopLength": 21836468,
+                    "metadata": "C118D09BD852ED38F269FE47E76C2DBE"
+                },
+                {
+                    "title": "狂気の瞳 ～ Invisible Full Moon",
+                    "sampleRate": 44100,
+                    "preludePos": 455595812,
+                    "preludeLength": 4045501,
+                    "loopPos": 6120260,
+                    "loopLength": 21168140,
+                    "metadata": "00DBCDF090FDBF57FE7766947185DB92"
+                },
+                {
+                    "title": "永遠の春夢",
+                    "sampleRate": 44100,
+                    "preludePos": 390134459,
+                    "preludeLength": 4627085,
+                    "loopPos": 3528148,
+                    "loopLength": 28766768,
+                    "metadata": "6B11864D5BF86A823ED80C7E3BEC142C"
+                },
+                {
+                    "title": "有頂天変 ～ Wonderful Heaven",
+                    "sampleRate": 44100,
+                    "preludePos": 450989094,
+                    "preludeLength": 4053372,
+                    "loopPos": 661940,
+                    "loopLength": 28578396,
+                    "metadata": "90A07EE0D2DAC7C08ED44A39C64FEFAC"
+                },
+                {
+                    "title": "夜が降りてくる ～ Evening Star",
+                    "sampleRate": 44100,
+                    "preludePos": 463980219,
+                    "preludeLength": 3344418,
+                    "loopPos": 960760,
+                    "loopLength": 22331300,
+                    "metadata": "D470571CC7AFB60E780A232ACB47C9A0"
+                },
+                {
+                    "title": "地の色は黄色 ～ Primrose",
+                    "sampleRate": 44100,
+                    "preludePos": 467815213,
+                    "preludeLength": 2644213,
+                    "loopPos": 1484648,
+                    "loopLength": 15288020,
+                    "metadata": "446BF27B9FF7984A926C3862DA4A3C48"
+                },
+                {
+                    "title": "マッシュルームワルツ",
+                    "sampleRate": 44100,
+                    "preludePos": 470951948,
+                    "preludeLength": 2770527,
+                    "loopPos": 1739468,
+                    "loopLength": 17075612,
+                    "metadata": "DA197B96B3D7D496490181DB416E9CC6"
+                },
+                {
+                    "title": "聖輦船空を往く",
+                    "sampleRate": 44100,
+                    "preludePos": 474214314,
+                    "preludeLength": 2874369,
+                    "loopPos": 1587960,
+                    "loopLength": 17352828,
+                    "metadata": "69E8F5E8761DBD3E7386A94EEF41C6A4"
+                },
+                {
+                    "title": "法力の下の平等",
+                    "sampleRate": 44100,
+                    "preludePos": 477586602,
+                    "preludeLength": 2679413,
+                    "loopPos": 1128372,
+                    "loopLength": 16357160,
+                    "metadata": "2A823BCB6CB6C47110DA3A3A97919FBF"
+                },
+                {
+                    "title": "恒常不変の参廟祀",
+                    "sampleRate": 44100,
+                    "preludePos": 480757995,
+                    "preludeLength": 2652879,
+                    "loopPos": 2148724,
+                    "loopLength": 15875984,
+                    "metadata": "9A7221207FBFAB636BA4C3EFB5F1CF4D"
+                },
+                {
+                    "title": "光輝く天球儀",
+                    "sampleRate": 44100,
+                    "preludePos": 483937737,
+                    "preludeLength": 2484523,
+                    "loopPos": 2026428,
+                    "loopLength": 14761896,
+                    "metadata": "59010A4CA39DF89192A0E167FCA32A8E"
+                },
+                {
+                    "title": "沢の河童の技術力",
+                    "sampleRate": 44100,
+                    "preludePos": 486910058,
+                    "preludeLength": 2635873,
+                    "loopPos": 750028,
+                    "loopLength": 15952708,
+                    "metadata": "401DF7E79E4CD93AD9CF38C3D94BC9FD"
+                },
+                {
+                    "title": "地底に咲く薔薇",
+                    "sampleRate": 44100,
+                    "preludePos": 490041048,
+                    "preludeLength": 2618449,
+                    "loopPos": 1372236,
+                    "loopLength": 16046712,
+                    "metadata": "A466CA68BA05E746E8441E871F39CFF6"
+                },
+                {
+                    "title": "深緑の狸森にて",
+                    "sampleRate": 44100,
+                    "preludePos": 493160812,
+                    "preludeLength": 2734504,
+                    "loopPos": 1362576,
+                    "loopLength": 16412884,
+                    "metadata": "9750DD7434946ADB0D643C87B4893B85"
+                },
+                {
+                    "title": "心綺楼演舞",
+                    "sampleRate": 44100,
+                    "preludePos": 496420875,
+                    "preludeLength": 2511995,
+                    "loopPos": 629256,
+                    "loopLength": 15795804,
+                    "metadata": "F9EC33602692E4FDE0EE32F3788158A7"
+                },
+                {
+                    "title": "不滅のレッドソウル",
+                    "sampleRate": 44100,
+                    "preludePos": 499421635,
+                    "preludeLength": 2847627,
+                    "loopPos": 2748580,
+                    "loopLength": 16934384,
+                    "metadata": "FB1FA3C84C7592871A7215A9B8799590"
+                },
+                {
+                    "title": "落日に映える逆さ城",
+                    "sampleRate": 44100,
+                    "preludePos": 502842447,
+                    "preludeLength": 2506392,
+                    "loopPos": 650056,
+                    "loopLength": 16091912,
+                    "metadata": "B858BF21039556DC70510BCAC79743CB"
+                },
+                {
+                    "title": "千の試練を超えて",
+                    "sampleRate": 44100,
+                    "preludePos": 505857898,
+                    "preludeLength": 3011643,
+                    "loopPos": 4589428,
+                    "loopLength": 16019012,
+                    "metadata": "1622B1D3A9D3EBDB5D1535FE19E5245B"
+                },
+                {
+                    "title": "夢世界フォークロア",
+                    "sampleRate": 44100,
+                    "preludePos": 509362479,
+                    "preludeLength": 2995163,
+                    "loopPos": 1909336,
+                    "loopLength": 17735336,
+                    "metadata": "364A8800DCC0CD1D629C98B4C2A88351"
+                },
+                {
+                    "title": "永遠に続く回廊",
+                    "sampleRate": 44100,
+                    "preludePos": 512835322,
+                    "preludeLength": 2650619,
+                    "loopPos": 3089428,
+                    "loopLength": 15876000,
+                    "metadata": "37DDF439AF26C0738F29FC119CB7872A"
+                },
+                {
+                    "title": "スリープシープパレード",
+                    "sampleRate": 44100,
+                    "preludePos": 515973250,
+                    "preludeLength": 2584504,
+                    "loopPos": 309372,
+                    "loopLength": 15645928,
+                    "metadata": "489BD43F354C5F0D4FCAEF824EED1AD1"
+                },
+                {
+                    "title": "至る有頂天",
+                    "sampleRate": 44100,
+                    "preludePos": 519064027,
+                    "preludeLength": 2670365,
+                    "loopPos": 2300756,
+                    "loopLength": 15952708,
+                    "metadata": "35C455177DF100E0696652F57F9E4492"
+                },
+                {
+                    "title": "憑坐は夢と現の間に ～ Necro-Fantasia",
+                    "sampleRate": 44100,
+                    "preludePos": 530918837,
+                    "preludeLength": 3849249,
+                    "loopPos": 2064600,
+                    "loopLength": 24120756,
+                    "metadata": "521E25A9B07B7885A75CF505CBD57A72"
+                },
+                {
+                    "title": "今宵は飄逸なエゴイスト(Live ver) ～ Egoistic Flowers.",
+                    "sampleRate": 44100,
+                    "preludePos": 524191683,
+                    "preludeLength": 6237223,
+                    "loopPos": 3011276,
+                    "loopLength": 41180360,
+                    "metadata": "E000D86C3451D2B48DDC251D5A512718"
+                },
+                {
+                    "title": "オカルトアトラクト",
+                    "sampleRate": 44100,
+                    "preludePos": 374557476,
+                    "preludeLength": 2800533,
+                    "loopPos": 975164,
+                    "loopLength": 17660216,
+                    "metadata": "D0627FA7FE6A1566BBB2B396FB5BC252"
+                },
+                {
+                    "title": "ネオ竹林インフレイム",
+                    "sampleRate": 44100,
+                    "preludePos": 377900086,
+                    "preludeLength": 2584704,
+                    "loopPos": 466028,
+                    "loopLength": 16206756,
+                    "metadata": "0BF0868C26F9A05E3CA553EA91062AAF"
+                },
+                {
+                    "title": "億万劫の鐘",
+                    "sampleRate": 44100,
+                    "preludePos": 380979088,
+                    "preludeLength": 3021070,
+                    "loopPos": 969096,
+                    "loopLength": 17639976,
+                    "metadata": "6705F3AFEF0AFB172F4D808D30364919"
+                },
+                {
+                    "title": "アンノウンX ～ Occultly Madness",
+                    "sampleRate": 44100,
+                    "preludePos": 384537721,
+                    "preludeLength": 5062923,
+                    "loopPos": 7698004,
+                    "loopLength": 27181664,
+                    "metadata": "A590862690A9897E177764A5C979B157"
+                },
+                {
+                    "title": "憑依投合",
+                    "sampleRate": 44100,
+                    "preludePos": 542215978,
+                    "preludeLength": 1689870,
+                    "loopPos": 832088,
+                    "loopLength": 10791524,
+                    "metadata": "75294C5CD12767658C0E81CEF461D53A"
+                },
+                {
+                    "title": "連帯責人",
+                    "sampleRate": 44100,
+                    "preludePos": 543905952,
+                    "preludeLength": 1982951,
+                    "loopPos": 1533580,
+                    "loopLength": 11245500,
+                    "metadata": "F1E5D9054D4028890E60A7F6F38B312F"
+                },
+                {
+                    "title": "合縁奇縁",
+                    "sampleRate": 44100,
+                    "preludePos": 545889007,
+                    "preludeLength": 1800887,
+                    "loopPos": 529940,
+                    "loopLength": 11007360,
+                    "metadata": "40535945496D2CA69C83DF39230CF8E5"
+                },
+                {
+                    "title": "異心同体",
+                    "sampleRate": 44100,
+                    "preludePos": 547689998,
+                    "preludeLength": 1718221,
+                    "loopPos": 332560,
+                    "loopLength": 11245500,
+                    "metadata": "E29E8F68D23E5EC62AC69580BA7D2C1E"
+                },
+                {
+                    "title": "壮言大語",
+                    "sampleRate": 44100,
+                    "preludePos": 549408323,
+                    "preludeLength": 2006234,
+                    "loopPos": 637608,
+                    "loopLength": 11007356,
+                    "metadata": "3D902F9EBD47C5E210F3495C8C2E5992"
+                },
+                {
+                    "title": "知略縦横",
+                    "sampleRate": 44100,
+                    "preludePos": 551414661,
+                    "preludeLength": 1685607,
+                    "loopPos": 767636,
+                    "loopLength": 11113192,
+                    "metadata": "CE1C398CCAD0C6F4153884A8F60231A4"
+                },
+                {
+                    "title": "意気揚々",
+                    "sampleRate": 44100,
+                    "preludePos": 553100372,
+                    "preludeLength": 1801090,
+                    "loopPos": 766148,
+                    "loopLength": 11995188,
+                    "metadata": "DC6839D7AE53DD3BE6A83C5343110C34"
+                },
+                {
+                    "title": "開演間近",
+                    "sampleRate": 44100,
+                    "preludePos": 554901566,
+                    "preludeLength": 1957335,
+                    "loopPos": 1299184,
+                    "loopLength": 10904712,
+                    "metadata": "4F14A052F5D6F438B606AB7DADBC3EE3"
+                },
+                {
+                    "title": "天衣無縫 ～ Yellow Lily",
+                    "sampleRate": 44100,
+                    "preludePos": 556859005,
+                    "preludeLength": 2144069,
+                    "loopPos": 1858916,
+                    "loopLength": 11289584,
+                    "metadata": "323B4ECD8E1BD102A4FF3AE1BAE66E88"
+                },
+                {
+                    "title": "異変の種子",
+                    "sampleRate": 44100,
+                    "preludePos": 559003178,
+                    "preludeLength": 2268019,
+                    "loopPos": 2118256,
+                    "loopLength": 13230000,
+                    "metadata": "EA021F2F532A34329E1371CB021B34F9"
+                },
+                {
+                    "title": "疑惑の芽生え",
+                    "sampleRate": 44100,
+                    "preludePos": 561271303,
+                    "preludeLength": 2243431,
+                    "loopPos": 2118456,
+                    "loopLength": 13230004,
+                    "metadata": "F95E16E4DDDD0DA1AE68BD48076F13A9"
+                },
+                {
+                    "title": "真相へ繋がる枝葉",
+                    "sampleRate": 44100,
+                    "preludePos": 563514840,
+                    "preludeLength": 2253947,
+                    "loopPos": 2118428,
+                    "loopLength": 13230000,
+                    "metadata": "2DEB3475EC4F347BDA068262C51A6E41"
+                },
+                {
+                    "title": "舞い散る憑依華吹雪",
+                    "sampleRate": 44100,
+                    "preludePos": 565768893,
+                    "preludeLength": 2256321,
+                    "loopPos": 2118496,
+                    "loopLength": 13230000,
+                    "metadata": "28A3E00FA89B44E6E9D5D19B63E16C38"
+                },
+                {
+                    "title": "行雲流水",
+                    "sampleRate": 44100,
+                    "preludePos": 522220518,
+                    "preludeLength": 1971061,
+                    "loopPos": 941996,
+                    "loopLength": 12334344,
+                    "metadata": "79BCE1C7A54A79521263A61A4D18A468"
+                },
+                {
+                    "title": "未だ蕾む憑依華",
+                    "sampleRate": 44100,
+                    "preludePos": 535295324,
+                    "preludeLength": 2084709,
+                    "loopPos": 0,
+                    "loopLength": 15254060,
+                    "metadata": "B93D6D61D78FC059DE0B388AA1B10FC3"
+                },
+                {
+                    "title": "咲き誇る憑依華",
+                    "sampleRate": 44100,
+                    "preludePos": 537380033,
+                    "preludeLength": 2469723,
+                    "loopPos": 0,
+                    "loopLength": 17902368,
+                    "metadata": "8EAE4CA4FA1646E1C8053CA671C0A2E9"
+                },
+                {
+                    "title": "悠久の蒸気機関",
+                    "sampleRate": 44100,
+                    "preludePos": 539849756,
+                    "preludeLength": 2366222,
+                    "loopPos": 0,
+                    "loopLength": 17275412,
+                    "metadata": "2AACD2099A84101A781CAF8733D10B35"
+                },
+                {
+                    "title": "二色蓮花蝶 ～ Red and White【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 446387916,
+                    "preludeLength": 525387,
+                    "loopPos": 0,
+                    "loopLength": 3766896,
+                    "metadata": "B643DF8DBC5C3B3A5F73C45EDC71C470"
+                },
+                {
+                    "title": "恋色マスタースパーク【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 428946086,
+                    "preludeLength": 524849,
+                    "loopPos": 0,
+                    "loopLength": 3847632,
+                    "metadata": "8285457137CD0D28D870953644A5CC35"
+                },
+                {
+                    "title": "時代親父とハイカラ少女【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 406747783,
+                    "preludeLength": 489513,
+                    "loopPos": 0,
+                    "loopLength": 3557992,
+                    "metadata": "5DA241D6EC3564C090F0DC930588B414"
+                },
+                {
+                    "title": "感情の摩天楼 ～ Cosmic Mind【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 403146836,
+                    "preludeLength": 493895,
+                    "loopPos": 0,
+                    "loopLength": 3587800,
+                    "metadata": "16D111F437EAC66A82EF170EC2C554CB"
+                },
+                {
+                    "title": "大神神話伝【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 398945359,
+                    "preludeLength": 508487,
+                    "loopPos": 0,
+                    "loopLength": 3663168,
+                    "metadata": "5A66DF90CD77446D69E268B14D529B3A"
+                },
+                {
+                    "title": "聖徳伝説 ～ True Administrator【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 433528378,
+                    "preludeLength": 576185,
+                    "loopPos": 0,
+                    "loopLength": 4180948,
+                    "metadata": "35726944296E3407340558C4C6135E6A"
+                },
+                {
+                    "title": "芥川龍之介の河童 ～ Candid Friend【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 442304857,
+                    "preludeLength": 534195,
+                    "loopPos": 0,
+                    "loopLength": 3851148,
+                    "metadata": "7E8EE923908422132F7C5C0304E98598"
+                },
+                {
+                    "title": "ハルトマンの妖怪少女【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 414477626,
+                    "preludeLength": 542617,
+                    "loopPos": 0,
+                    "loopLength": 3960940,
+                    "metadata": "A1EDB35C7893E6FDABC7B160FAE04208"
+                },
+                {
+                    "title": "幻想郷の二ッ岩【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 424342528,
+                    "preludeLength": 565965,
+                    "loopPos": 0,
+                    "loopLength": 4132256,
+                    "metadata": "D40D16C551C46331E9A227EF3067C95A"
+                },
+                {
+                    "title": "亡失のエモーション【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 420918676,
+                    "preludeLength": 529517,
+                    "loopPos": 0,
+                    "loopLength": 3872572,
+                    "metadata": "637BE30901CE9214AC433075F2740CEB"
+                },
+                {
+                    "title": "月まで届け、不死の煙【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 438456406,
+                    "preludeLength": 500961,
+                    "loopPos": 0,
+                    "loopLength": 3629632,
+                    "metadata": "4F2B6C999B82F2BCF29E8E6370D9AA91"
+                },
+                {
+                    "title": "輝く針の小人族 ～ Little Princess【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 450505808,
+                    "preludeLength": 483286,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "BFEFEE31627E28B26F78B4A25063D580"
+                },
+                {
+                    "title": "華狭間のバトルフィールド【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 410896075,
+                    "preludeLength": 489451,
+                    "loopPos": 0,
+                    "loopLength": 3528004,
+                    "metadata": "2F27160CFE63FFF1B065DA2B170759B9"
+                },
+                {
+                    "title": "ラストオカルティズム ～ 現し世の秘術師【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 463498279,
+                    "preludeLength": 481940,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "FC9CBC80B43F7346937E9594FD5B4FC8"
+                },
+                {
+                    "title": "狂気の瞳 ～ Invisible Full Moon【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 459641417,
+                    "preludeLength": 487972,
+                    "loopPos": 0,
+                    "loopLength": 3491224,
+                    "metadata": "D2501F0E421F83EF34316E5BA3D931A9"
+                },
+                {
+                    "title": "永遠の春夢【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 394761652,
+                    "preludeLength": 484471,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "73A9352FF62BE67AFDBE796EB9E7BDC7"
+                },
+                {
+                    "title": "有頂天変 ～ Wonderful Heaven【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 455042574,
+                    "preludeLength": 553238,
+                    "loopPos": 0,
+                    "loopLength": 4057200,
+                    "metadata": "816A61189BD3D7DEAB1E17560E743C7E"
+                },
+                {
+                    "title": "夜が降りてくる ～ Evening Star【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 467324745,
+                    "preludeLength": 487301,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "901C2470B9C6D7F1E0D4765C6FFE01DC"
+                },
+                {
+                    "title": "地の色は黄色 ～ Primrose【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 470459530,
+                    "preludeLength": 492418,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "E6EA7753BC547489CE0248F71EEAFE7D"
+                },
+                {
+                    "title": "マッシュルームワルツ【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 473722579,
+                    "preludeLength": 491735,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "A43B45193491F659641A38446895EA1F"
+                },
+                {
+                    "title": "聖輦船空を往く【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 477088787,
+                    "preludeLength": 497815,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "7419C04006C70846F5B86FE2281C2B4B"
+                },
+                {
+                    "title": "法力の下の平等【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 480266119,
+                    "preludeLength": 491876,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "50CC048896042C7ADCB029E9F6D38347"
+                },
+                {
+                    "title": "恒常不変の参廟祀【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 483410978,
+                    "preludeLength": 526759,
+                    "loopPos": 0,
+                    "loopLength": 3859688,
+                    "metadata": "95E0329132097E387C6110126F151DC8"
+                },
+                {
+                    "title": "光輝く天球儀【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 486422364,
+                    "preludeLength": 487694,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "FDABE0D8FD6A7642765F7E9E1B705E90"
+                },
+                {
+                    "title": "沢の河童の技術力【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 489546035,
+                    "preludeLength": 495013,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "50EBD58B6048B59CC5A24456A747D942"
+                },
+                {
+                    "title": "地底に咲く薔薇【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 492659601,
+                    "preludeLength": 501211,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "998D6CD6CE5D39B752058F634C06D4B0"
+                },
+                {
+                    "title": "深緑の狸森にて【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 495895420,
+                    "preludeLength": 525455,
+                    "loopPos": 0,
+                    "loopLength": 3756520,
+                    "metadata": "74C4D1CE871C51EDCA0A5CE59353D14D"
+                },
+                {
+                    "title": "心綺楼演舞【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 498932974,
+                    "preludeLength": 488661,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "C2EBAD9BC8975DCA5C284CBC19BCC5CA"
+                },
+                {
+                    "title": "不滅のレッドソウル【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 502269366,
+                    "preludeLength": 573081,
+                    "loopPos": 0,
+                    "loopLength": 4117808,
+                    "metadata": "592AD29183ABDC1CFDED65EE2E4B059F"
+                },
+                {
+                    "title": "落日に映える逆さ城【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 505348943,
+                    "preludeLength": 508955,
+                    "loopPos": 0,
+                    "loopLength": 3761280,
+                    "metadata": "C8B62185FCFA6B08673D36799B2969BC"
+                },
+                {
+                    "title": "千の試練を超えて【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 508869645,
+                    "preludeLength": 492834,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "B5DCD896F304423034A0A47E738BAA3E"
+                },
+                {
+                    "title": "夢世界フォークロア【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 512357746,
+                    "preludeLength": 477576,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "36C9BB3AAFB33F1DD48D70BCE10ECAE4"
+                },
+                {
+                    "title": "永遠に続く回廊【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 515486045,
+                    "preludeLength": 487205,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "574CBA9EA01487379D5F4C0ED67F09BB"
+                },
+                {
+                    "title": "スリープシープパレード【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 518557858,
+                    "preludeLength": 506169,
+                    "loopPos": 0,
+                    "loopLength": 3678948,
+                    "metadata": "4E3DD867437957861073B8C03A284BEF"
+                },
+                {
+                    "title": "至る有頂天【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 521734496,
+                    "preludeLength": 486022,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "351709E864FAB04EB00D936B54C3611F"
+                },
+                {
+                    "title": "憑坐は夢と現の間に ～ Necro-Fantasia【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 534768190,
+                    "preludeLength": 527134,
+                    "loopPos": 0,
+                    "loopLength": 3880800,
+                    "metadata": "08660222FCABD25072AD56E687F1DD7D"
+                },
+                {
+                    "title": "今宵は飄逸なエゴイスト(Live ver) ～ Egoistic Flowers.【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 530429012,
+                    "preludeLength": 489825,
+                    "loopPos": 0,
+                    "loopLength": 3528000,
+                    "metadata": "33EAB2B279B50FE59FDD92CFB35A6050"
+                },
+                {
+                    "title": "オカルトアトラクト【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 377358113,
+                    "preludeLength": 541973,
+                    "loopPos": 0,
+                    "loopLength": 3890504,
+                    "metadata": "559D0E98291E9E79ED585CCFCFAFEDAF"
+                },
+                {
+                    "title": "ネオ竹林インフレイム【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 380484894,
+                    "preludeLength": 494194,
+                    "loopPos": 0,
+                    "loopLength": 3622408,
+                    "metadata": "CA79DEAA5283139960E9D88A6CDBEF26"
+                },
+                {
+                    "title": "億万劫の鐘【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 384000262,
+                    "preludeLength": 537459,
+                    "loopPos": 0,
+                    "loopLength": 3848224,
+                    "metadata": "74946A33468FDE33173702FAA0EFCBD1"
+                },
+                {
+                    "title": "アンノウンX ～ Occultly Madness【20秒版】",
+                    "sampleRate": 44100,
+                    "preludePos": 389600746,
+                    "preludeLength": 533713,
+                    "loopPos": 0,
+                    "loopLength": 3847080,
+                    "metadata": "CC2AC3B78915BCFCBA4802F41658F4D3"
                 }
             ]
         },

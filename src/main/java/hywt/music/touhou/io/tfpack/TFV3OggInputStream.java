@@ -12,8 +12,7 @@ public class TFV3OggInputStream extends TFV2OggInputStream {
     public TFV3OggInputStream(Music m, File file) throws IOException {
         super(m, file);
         aux = new byte[4];
-        for (int i = 0; i < 4; ++i)
-            aux[i] = key[i];
+        System.arraycopy(key, 0, aux, 0, 4);
     }
 
     @Override

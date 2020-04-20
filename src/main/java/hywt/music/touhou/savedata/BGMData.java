@@ -36,8 +36,7 @@ public class BGMData {
 		for (int i = 0; i < games.size(); i++) {
 			int index = games.get(i).indexOf(m);
 			if (index != -1) {
-				int[] out = { i, index };
-				return out;
+				return new int[]{ i, index };
 			}
 		}
 		return null;
