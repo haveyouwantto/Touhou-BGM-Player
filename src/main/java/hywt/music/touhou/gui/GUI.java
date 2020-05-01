@@ -31,6 +31,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.MouseInputAdapter;
 
 import hywt.music.touhou.Constants;
 import hywt.music.touhou.StringFormatter;
@@ -107,6 +108,7 @@ public class GUI {
         }
         PathManager pathman = new PathManager();
         MusicExporter mus = new MusicExporter();
+        Visualizer vis = new Visualizer(pcmp.getBuffer().length);
         ply = new PlaylistPlayer(this);
 
         JPanel infoPanel = new JPanel();
@@ -120,6 +122,13 @@ public class GUI {
         // 正在播放
         JLabel lblNowPlaying = new JLabel(Messages.getString("GUI.lblNowPlaying.text")); //$NON-NLS-1$
         panel_3.add(lblNowPlaying);
+
+        lblNowPlaying.addMouseListener(new MouseInputAdapter() {
+            @Override
+            public void mouseReleased(final MouseEvent e) {
+                vis.setVisible(true);
+            }
+        });
 
         lblplaying = new JLabel("-"); //$NON-NLS-1$
         panel_3.add(lblplaying);
@@ -137,7 +146,8 @@ public class GUI {
             @Override
             public void mouseDragged(MouseEvent e) {
                 if (progressBar.isEnabled())
-                    lblTime.setText(StringFormatter.getMusicLengthTime(pcmp.getMusic().sampleRate, progressBar.getValue()));
+                    lblTime.setText(
+                            StringFormatter.getMusicLengthTime(pcmp.getMusic().sampleRate, progressBar.getValue()));
             }
         });
         progressBar.addMouseListener(new MouseAdapter() {
@@ -177,13 +187,16 @@ public class GUI {
                 try {
                     if (updateProgressBar) {
                         Music m = pcmp.getMusic();
-                        progressBar.setValue(pcmp.getPlayback());
+                        progressBar.setValue((int) pcmp.getPlayback());
                         lblTime.setText(StringFormatter.getMusicLengthTime(m.sampleRate, pcmp.getPlayback()));
                         lblLength.setText(StringFormatter.getMusicLengthTime(m.sampleRate, pcmp.getLength()));
                         lblplaying.setText(m.title);
                         progressBar.setMaximum((int) pcmp.getLength());
                         ht.clear();
                         ht.put(pcmp.getPreludeLength(), label);
+                        if (vis.isVisible()) {
+                            vis.update(pcmp.getBuffer(), pcmp.getProgress());
+                        }
                     }
                     if (!playing) {
                         lblplaying.setText("-"); //$NON-NLS-1$
@@ -444,9 +457,7 @@ public class GUI {
     }
 
     public void setStop() {
-
         // 设置GUI
-        pcmp.stop();
         btnStop.setEnabled(false);
         btnPlay.setEnabled(true);
         ply.getBtnPlay().setEnabled(true);
@@ -454,6 +465,7 @@ public class GUI {
         btnPause.setSelected(false);
         btnPause.setEnabled(false);
         progressBar.setEnabled(false);
+        pcmp.stop();
         lblLength.setText(Messages.getString("GUI.time")); //$NON-NLS-1$
         playing = false;
         ht.clear();

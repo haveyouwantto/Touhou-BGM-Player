@@ -6,13 +6,16 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-// 绯想天/非想天则 ogg 提取
+// TH10.5 | TH12.3
 public class TFV1OggInputStream extends TFPackInputStream {
     protected int key;
 
     public TFV1OggInputStream(Music m, File file) throws IOException {
         this.music = m;
         this.raf = new RandomAccessFile(file, "r");
+
+        buffer = new byte[16];
+        pointer = -1;
 
         raf.seek(m.preludePos);
         int b = raf.read();
@@ -23,8 +26,15 @@ public class TFV1OggInputStream extends TFPackInputStream {
     @Override
     public int read() throws IOException {
         pointer++;
+        if (pointer % 16 == 0) {
+            raf.read(buffer);
+            for (int i = 0; i < 16; i++) {
+                buffer[i] = (byte) (buffer[i] ^ key);
+            }
+        }
         if (pointer < music.preludeLength) {
-            return raf.read() ^ key;
+            byte data = buffer[(int) (pointer % 16)];
+            return data & 0xff;
         } else
             return -1;
     }

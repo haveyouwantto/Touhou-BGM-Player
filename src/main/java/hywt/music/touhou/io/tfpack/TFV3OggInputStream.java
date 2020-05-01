@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import hywt.music.touhou.savedata.Music;
 
+// TH14.5 | TH15.5
 public class TFV3OggInputStream extends TFV2OggInputStream {
 
     private byte[] aux;
@@ -27,10 +28,8 @@ public class TFV3OggInputStream extends TFV2OggInputStream {
             }
         }
         if (pointer < music.preludeLength) {
-            int data = buffer[(int) (pointer % 16)];
-            if (data < 0)
-                data = 256 + data;
-            return data;
+            byte data = buffer[(int) (pointer % 16)];
+            return data & 0xff;
         } else
             return -1;
     }

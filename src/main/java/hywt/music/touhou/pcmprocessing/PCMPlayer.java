@@ -37,19 +37,23 @@ public class PCMPlayer {
     private String source;
     private boolean gameList;
 
-    int playback;
-    int bufferSize = 256;
+    long playback;
+    int bufferSize = 1024;
 
     public static final int MUSIC = 0;
     public static final int LIST = 1;
 
+    private byte[] buffer;
+
     public PCMPlayer() {
         loop = true;
         playMode = MUSIC;
+        buffer = new byte[bufferSize];
     }
 
     public void playList(Playlist ply, int start)
             throws IOException, LineUnavailableException, InterruptedException, UnsupportedAudioFileException {
+        // TODO reimplement playlist
         while (true) {
             for (int i = start; i < ply.ids.size(); i++) {
                 Music m = Constants.bgmdata.getMusicbyId(ply.ids.get(i)[0], ply.ids.get(i)[1]);
@@ -95,7 +99,7 @@ public class PCMPlayer {
         info = new DataLine.Info(SourceDataLine.class, af, bufferSize);
         sdl = (SourceDataLine) AudioSystem.getLine(info);
 
-        sdl.open(af);
+        sdl.open(af, music.sampleRate / 2);
         sdl.start();
 
         volumeControl = (FloatControl) sdl.getControl(FloatControl.Type.MASTER_GAIN);
@@ -107,7 +111,6 @@ public class PCMPlayer {
     }
 
     private void play() throws IOException, InterruptedException {
-        byte[] b = new byte[bufferSize];
         playback = 0;
         musicIn.seek(0);
 
@@ -122,15 +125,15 @@ public class PCMPlayer {
                     Thread.sleep(50);
                     continue;
                 }
-                len = musicIn.read(b);
+                len = musicIn.read(buffer);
                 if (len > -1) {
-                    sdl.write(b, 0, len);
+                    sdl.write(buffer, 0, len);
                     playback += len;
                 }
             }
             if (loop) {
                 long loopPos = MusicSystem.getLoopPos(musicIn);
-                playback = (int) loopPos;
+                playback = loopPos;
                 musicIn.seek(loopPos);
             } else
                 break;
@@ -139,10 +142,9 @@ public class PCMPlayer {
 
     public void seek(int pos) throws IOException {
         if (game.format == GameFormats.BGM_FOLDER || game.format == GameFormats.RAW_PCM) {
-            if (pos % 2 == 1)
-                pos++;
-            playback = pos;
-            musicIn.seek(pos);
+        	long pos2 = MusicSystem.roundByte(pos, af.getFrameSize());
+            playback = pos2;
+            musicIn.seek(pos2);
         } else if (GameFormats.isTFPack(game.format)) {
             // TODO: support ogg seeking
         }
@@ -187,7 +189,7 @@ public class PCMPlayer {
         }
     }
 
-    public int getPlayback() {
+    public long getPlayback() {
         if (!playing)
             return 0;
         return playback;
@@ -236,6 +238,14 @@ public class PCMPlayer {
 
     private void setGame() {
         game = Constants.bgmdata.getGamebyMusic(music);
+    }
+
+    public byte[] getBuffer() {
+        return buffer;
+    }
+
+    public float getProgress() {
+        return playing ? playback * 1f / MusicSystem.getLength(musicIn) : 0;
     }
 
 }

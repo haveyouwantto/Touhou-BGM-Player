@@ -6,9 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+// TH13.5
 public class TFV2OggInputStream extends TFPackInputStream {
     protected byte[] key;
-    protected byte[] buffer;
 
     public TFV2OggInputStream(Music m, File file) throws IOException {
         this.raf = new RandomAccessFile(file, "r");
@@ -35,10 +35,8 @@ public class TFV2OggInputStream extends TFPackInputStream {
             }
         }
         if (pointer < music.preludeLength) {
-            int data = buffer[(int) (pointer % 16)];
-            if (data < 0)
-                data = 256 + data;
-            return data;
+            byte data = buffer[(int) (pointer % 16)];
+            return data & 0xff;
         } else
             return -1;
     }

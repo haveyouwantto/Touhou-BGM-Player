@@ -10,4 +10,5 @@ public abstract class TFPackInputStream extends InputStream {
     protected RandomAccessFile raf;
     protected long markpos;
     protected Music music;
+    protected byte[] buffer;
 }

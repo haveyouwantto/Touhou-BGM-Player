@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BGMData {
+	// TODO auto load order
 	public int[] date;
 	public List<Game> games;
 	public List<String> comments;

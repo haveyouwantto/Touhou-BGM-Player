@@ -21,19 +21,19 @@ public class Test {
 		try {
 			Constants.init();
 			System.out.println(Constants.bgmdata.getGamebyId("th07"));
-			Game g= Constants.bgmdata.getGamebyId("th14.5");
+			Game g = Constants.bgmdata.getGamebyId("th14.5");
 			Music m = g.music.get(0);
 			TFPack tfp = new TFPack(g, m, new File("E:\\正作\\th145\\th145.pak"));
-			TFPackInputStream tfs= tfp.getInputStream();
+			TFPackInputStream tfs = tfp.getInputStream();
 			byte[] b = new byte[256];
 			int len;
 			FileInputStream fis = new FileInputStream("E:\\正作\\th145\\th145.pak");
 			FileOutputStream fos = new FileOutputStream("test.bin");
-			int pointer=0;
-			//tfs.read(b);
+			int pointer = 0;
+			// tfs.read(b);
 			System.out.println(Arrays.toString(b));
-			
-			while((len = tfs.read(b))!=-1){
+
+			while ((len = tfs.read(b)) != -1) {
 				fos.write(b, 0, len);
 			}
 			tfs.close();
