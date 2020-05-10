@@ -14,7 +14,9 @@ public class MusicSystem {
 
 	public static MusicInputStream getInputStream(Game g, Music m, File f)
 			throws IOException, UnsupportedAudioFileException {
-		if (g.format == GameFormats.BGM_FOLDER) {
+		if (g.format == GameFormats.WAVE_FILE) {
+			return new PCMInputStream(g, m, new File(f, m.metadata));
+		} else if (g.format == GameFormats.BGM_FOLDER) {
 			return new PCMInputStream(g, m, f);
 		} else if (g.format == GameFormats.RAW_PCM) {
 			return new PCMInputStream(g, m, f);

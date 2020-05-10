@@ -141,8 +141,9 @@ public class PCMPlayer {
     }
 
     public void seek(int pos) throws IOException {
-        if (game.format == GameFormats.BGM_FOLDER || game.format == GameFormats.RAW_PCM) {
-        	long pos2 = MusicSystem.roundByte(pos, af.getFrameSize());
+        if (game.format == GameFormats.WAVE_FILE || game.format == GameFormats.BGM_FOLDER
+                || game.format == GameFormats.RAW_PCM) {
+            long pos2 = MusicSystem.roundByte(pos, af.getFrameSize());
             playback = pos2;
             musicIn.seek(pos2);
         } else if (GameFormats.isTFPack(game.format)) {
@@ -190,22 +191,15 @@ public class PCMPlayer {
     }
 
     public long getPlayback() {
-        if (!playing)
-            return 0;
-        return playback;
+        return playing ? playback : 0;
     }
 
     public int getPreludeLength() {
-        if (!playing)
-            return 0;
-        else
-            return MusicSystem.getPreludeLength(musicIn);
+        return playing ? MusicSystem.getPreludeLength(musicIn) : 0;
     }
 
     public long getLength() {
-        if (music == null || !playing)
-            return 0;
-        return MusicSystem.getLength(musicIn);
+        return (music == null || !playing) ? 0 : MusicSystem.getLength(musicIn);
     }
 
     public Music getMusic() {

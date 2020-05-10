@@ -1,30 +1,4 @@
 {
-    "order": [
-        "TH06",
-        "TH07",
-        "TH07.5",
-        "TH08",
-        "TH09",
-        "TH09.5",
-        "TH10",
-        "TH10.5",
-        "TH11",
-        "TH12",
-        "TH12.3",
-        "TH12.5",
-        "TH12.8",
-        "TH13",
-        "TH13.5",
-        "TH13.5b",
-        "TH14",
-        "TH14.3",
-        "TH14.5",
-        "TH15",
-        "TH15.5",
-        "TH16",
-        "TH16.5",
-        "TH17"
-    ],
     "games": [
         {
             "format": 0,
@@ -2586,111 +2560,125 @@
                 "上海アリス幻樂団",
                 "黄昏フロンティア"
             ],
-            "music": [{
-                "title": "本日の一面記事",
-                "sampleRate": 44100,
-                "preludePos": 36236770,
-                "preludeLength": 895314,
-                "loopPos": 1766072,
-                "loopLength": 3763148,
-                "metadata": "5863ACBF66EC15688B0E0412A10E57E8"
-            }, {
-                "title": "演者選択",
-                "sampleRate": 44100,
-                "preludePos": 27763381,
-                "preludeLength": 2084493,
-                "loopPos": 1313276,
-                "loopLength": 12884880,
-                "metadata": "2E125A1F1D3C789DD35FE0806E0C3DEF"
-            }, {
-                "title": "春色小径～Colorful Path ■MAXタイム",
-                "sampleRate": 44100,
-                "preludePos": 35720635,
-                "preludeLength": 516135,
-                "loopPos": 0,
-                "loopLength": 3792136,
-                "metadata": "B18D60C222D9195D4175563B0E8BDBB6"
-            }, {
-                "title": "メイガスナイト ■MAXタイム",
-                "sampleRate": 44100,
-                "preludePos": 32936215,
-                "preludeLength": 517076,
-                "loopPos": 0,
-                "loopLength": 3792384,
-                "metadata": "10E6CA38D895746D63ED2B77A0F96162"
-            }, {
-                "title": "時代親父とハイカラ少女 ■MAXタイム",
-                "sampleRate": 44100,
-                "preludePos": 30872993,
-                "preludeLength": 511833,
-                "loopPos": 0,
-                "loopLength": 3792492,
-                "metadata": "6F79A4206A4A670964C3AB3DB345004D"
-            }, {
-                "title": "感情の摩天楼～Cosmic Mind ■MAXタイム",
-                "sampleRate": 44100,
-                "preludePos": 30362527,
-                "preludeLength": 510466,
-                "loopPos": 0,
-                "loopLength": 3792436,
-                "metadata": "9A0C4ECA220E69F6AA58EC6CFFA0F398"
-            }, {
-                "title": "大神神話伝 ■MAXタイム",
-                "sampleRate": 44100,
-                "preludePos": 29847980,
-                "preludeLength": 514547,
-                "loopPos": 0,
-                "loopLength": 3792432,
-                "metadata": "13D929B8D285CBAE58872D38EBA8FB6E"
-            }, {
-                "title": "聖徳伝説～True Administrator ■MAXタイム",
-                "sampleRate": 44100,
-                "preludePos": 34694628,
-                "preludeLength": 513792,
-                "loopPos": 0,
-                "loopLength": 3792424,
-                "metadata": "50C0677888EBB91E781863E549676B64"
-            }, {
-                "title": "芥川龍之介の河童～Candid Friend ■MAXタイム",
-                "sampleRate": 44100,
-                "preludePos": 35208420,
-                "preludeLength": 512215,
-                "loopPos": 0,
-                "loopLength": 3792476,
-                "metadata": "CD93464A83BBA859B2CE95FAC654AAAC"
-            }, {
-                "title": "ハルトマンの妖怪少女 ■MAXタイム",
-                "sampleRate": 44100,
-                "preludePos": 31384826,
-                "preludeLength": 514983,
-                "loopPos": 0,
-                "loopLength": 3792292,
-                "metadata": "37DB57F5993D2393DC6EC1D15FB928C6"
-            }, {
-                "title": "佐渡のニッ岩 ■MAXタイム",
-                "sampleRate": 44100,
-                "preludePos": 32419406,
-                "preludeLength": 516809,
-                "loopPos": 0,
-                "loopLength": 3792364,
-                "metadata": "A44BCB47701621F922C147A282C3FBA1"
-            }, {
-                "title": "亡失のエモーション ■MAXタイム",
-                "sampleRate": 44100,
-                "preludePos": 31899809,
-                "preludeLength": 519597,
-                "loopPos": 0,
-                "loopLength": 3792380,
-                "metadata": "0EE74A38DBFC40E6E71379CA06B1B376"
-            }, {
-                "title": "ラストワード発動",
-                "sampleRate": 44100,
-                "preludePos": 33453291,
-                "preludeLength": 1241233,
-                "loopPos": 678372,
-                "loopLength": 7384180,
-                "metadata": "B0254D44A202D3EAD73D3B0B6462170E"
-            }]
+            "music": [
+                {
+                    "title": "本日の一面記事",
+                    "sampleRate": 44100,
+                    "preludePos": 36236770,
+                    "preludeLength": 895314,
+                    "loopPos": 1766072,
+                    "loopLength": 3763148,
+                    "metadata": "5863ACBF66EC15688B0E0412A10E57E8"
+                },
+                {
+                    "title": "演者選択",
+                    "sampleRate": 44100,
+                    "preludePos": 27763381,
+                    "preludeLength": 2084493,
+                    "loopPos": 1313276,
+                    "loopLength": 12884880,
+                    "metadata": "2E125A1F1D3C789DD35FE0806E0C3DEF"
+                },
+                {
+                    "title": "春色小径～Colorful Path ■MAXタイム",
+                    "sampleRate": 44100,
+                    "preludePos": 35720635,
+                    "preludeLength": 516135,
+                    "loopPos": 0,
+                    "loopLength": 3792136,
+                    "metadata": "B18D60C222D9195D4175563B0E8BDBB6"
+                },
+                {
+                    "title": "メイガスナイト ■MAXタイム",
+                    "sampleRate": 44100,
+                    "preludePos": 32936215,
+                    "preludeLength": 517076,
+                    "loopPos": 0,
+                    "loopLength": 3792384,
+                    "metadata": "10E6CA38D895746D63ED2B77A0F96162"
+                },
+                {
+                    "title": "時代親父とハイカラ少女 ■MAXタイム",
+                    "sampleRate": 44100,
+                    "preludePos": 30872993,
+                    "preludeLength": 511833,
+                    "loopPos": 0,
+                    "loopLength": 3792492,
+                    "metadata": "6F79A4206A4A670964C3AB3DB345004D"
+                },
+                {
+                    "title": "感情の摩天楼～Cosmic Mind ■MAXタイム",
+                    "sampleRate": 44100,
+                    "preludePos": 30362527,
+                    "preludeLength": 510466,
+                    "loopPos": 0,
+                    "loopLength": 3792436,
+                    "metadata": "9A0C4ECA220E69F6AA58EC6CFFA0F398"
+                },
+                {
+                    "title": "大神神話伝 ■MAXタイム",
+                    "sampleRate": 44100,
+                    "preludePos": 29847980,
+                    "preludeLength": 514547,
+                    "loopPos": 0,
+                    "loopLength": 3792432,
+                    "metadata": "13D929B8D285CBAE58872D38EBA8FB6E"
+                },
+                {
+                    "title": "聖徳伝説～True Administrator ■MAXタイム",
+                    "sampleRate": 44100,
+                    "preludePos": 34694628,
+                    "preludeLength": 513792,
+                    "loopPos": 0,
+                    "loopLength": 3792424,
+                    "metadata": "50C0677888EBB91E781863E549676B64"
+                },
+                {
+                    "title": "芥川龍之介の河童～Candid Friend ■MAXタイム",
+                    "sampleRate": 44100,
+                    "preludePos": 35208420,
+                    "preludeLength": 512215,
+                    "loopPos": 0,
+                    "loopLength": 3792476,
+                    "metadata": "CD93464A83BBA859B2CE95FAC654AAAC"
+                },
+                {
+                    "title": "ハルトマンの妖怪少女 ■MAXタイム",
+                    "sampleRate": 44100,
+                    "preludePos": 31384826,
+                    "preludeLength": 514983,
+                    "loopPos": 0,
+                    "loopLength": 3792292,
+                    "metadata": "37DB57F5993D2393DC6EC1D15FB928C6"
+                },
+                {
+                    "title": "佐渡のニッ岩 ■MAXタイム",
+                    "sampleRate": 44100,
+                    "preludePos": 32419406,
+                    "preludeLength": 516809,
+                    "loopPos": 0,
+                    "loopLength": 3792364,
+                    "metadata": "A44BCB47701621F922C147A282C3FBA1"
+                },
+                {
+                    "title": "亡失のエモーション ■MAXタイム",
+                    "sampleRate": 44100,
+                    "preludePos": 31899809,
+                    "preludeLength": 519597,
+                    "loopPos": 0,
+                    "loopLength": 3792380,
+                    "metadata": "0EE74A38DBFC40E6E71379CA06B1B376"
+                },
+                {
+                    "title": "ラストワード発動",
+                    "sampleRate": 44100,
+                    "preludePos": 33453291,
+                    "preludeLength": 1241233,
+                    "loopPos": 678372,
+                    "loopLength": 7384180,
+                    "metadata": "B0254D44A202D3EAD73D3B0B6462170E"
+                }
+            ]
         },
         {
             "format": 1,

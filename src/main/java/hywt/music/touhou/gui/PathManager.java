@@ -127,7 +127,7 @@ public class PathManager {
 					Game g = Constants.bgmdata.games.get(i2);
 					String[] names = g.fileName.split("\\.");
 
-					if (g.format == 0) { // TH06
+					if (g.format == 0 || g.format == -1) { // TH06
 						filechooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 					}
 					

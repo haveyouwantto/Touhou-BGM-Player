@@ -36,15 +36,15 @@ public class PCMSaver {
         try {
 
             // 输出文件夹
-            File outAlbum = new File(outFolder.getAbsolutePath() + "/" + game.toString() + "/");
+            File outAlbum = new File(outFolder, game.toString());
+            // new File(outFolder.getAbsolutePath() + "/" + game.toString() + "/");
 
             if (!outAlbum.exists()) {
                 outAlbum.mkdirs();
             }
 
             if (GameFormats.isTFPack(game.format)) {
-                File f = new File(outAlbum.getAbsolutePath() + "/" + (game.music.indexOf(music) + 1) + " - "
-                        + music.title + ".ogg");
+                File f = new File(outAlbum, (game.music.indexOf(music) + 1) + " - " + music.title + ".ogg");
                 FileOutputStream fos = new FileOutputStream(f);
                 TFPack tfp = new TFPack(game, music, new File(thbgm));
                 TFPackInputStream tfs = tfp.getInputStream();
@@ -79,17 +79,14 @@ public class PCMSaver {
                 AudioInputStream ais2 = new AudioInputStream(musicIn, af, time2);
 
                 // wav 文件
-                File outPath = new File(
-                        outAlbum.getAbsolutePath() + "/" + (game.music.indexOf(music) + 1) + " - " + music.title + "/");
+                File outPath = new File(outAlbum, (game.music.indexOf(music) + 1) + " - " + music.title + ".ogg");
 
                 if (!outPath.exists()) {
                     outPath.mkdirs();
                 }
 
-                File file1 = new File(outPath.getAbsolutePath() + "/" + (game.music.indexOf(music) + 1) + ".1 - "
-                        + music.title + ".flac");
-                File file2 = new File(outPath.getAbsolutePath() + "/" + (game.music.indexOf(music) + 1) + ".2 - "
-                        + music.title + ".flac");
+                File file1 = new File(outPath, (game.music.indexOf(music) + 1) + ".1 - " + music.title + ".flac");
+                File file2 = new File(outPath, (game.music.indexOf(music) + 1) + ".2 - " + music.title + ".flac");
 
                 AudioSystem.write(ais1, FLACFileWriter.FLAC, file1);
                 AudioSystem.write(ais2, FLACFileWriter.FLAC, file2);
@@ -111,8 +108,7 @@ public class PCMSaver {
                 AudioInputStream ais = new AudioInputStream(musicIn, af, time);
 
                 // 写文件
-                File file = new File(outAlbum.getAbsolutePath() + "/" + (game.music.indexOf(music) + 1) + " - "
-                        + music.title + ".flac");
+                File file = new File(outAlbum, (game.music.indexOf(music) + 1) + " - " + music.title + ".flac");
 
                 AudioSystem.write(ais, FLACFileWriter.FLAC, file);
                 ais.close();
@@ -136,7 +132,11 @@ public class PCMSaver {
         tag.setField(FieldKey.ALBUM, game.title);
         tag.setField(FieldKey.TITLE, music.title);
         tag.setField(FieldKey.TRACK, String.valueOf(game.music.indexOf(music) + 1));
-        tag.setField(Artwork.createArtworkFromFile(new File("Cover/" + game.no + ".jpg")));
+        try {
+            tag.setField(Artwork.createArtworkFromFile(new File("Cover/" + game.no + ".jpg")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         f.commit();
     }
 }
