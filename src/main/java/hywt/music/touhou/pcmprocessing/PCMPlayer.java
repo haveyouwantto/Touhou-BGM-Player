@@ -12,6 +12,7 @@ import javax.sound.sampled.SourceDataLine;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import hywt.music.touhou.Constants;
+import hywt.music.touhou.Playlist;
 import hywt.music.touhou.StringFormatter;
 import hywt.music.touhou.io.MusicInputStream;
 import hywt.music.touhou.io.MusicSystem;
@@ -53,18 +54,13 @@ public class PCMPlayer {
 
     public void playList(Playlist ply, int start)
             throws IOException, LineUnavailableException, InterruptedException, UnsupportedAudioFileException {
-        // TODO reimplement playlist
-        while (true) {
-            for (int i = start; i < ply.ids.size(); i++) {
-                Music m = Constants.bgmdata.getMusicbyId(ply.ids.get(i)[0], ply.ids.get(i)[1]);
-                Game g = Constants.bgmdata.getGamebyMusic(m);
-                play(g, m);
-                if (!playing)
-                    break;
-            }
-            if (!loop || !playing)
-                break;
-        }
+        ply.setPos(start);
+        do {
+            Music m = ply.next();
+            System.out.println(m);
+            Game g = Constants.bgmdata.getGamebyMusic(m);
+            play(g, m);
+        } while (loop && playing);
     }
 
     public void play(Game g, Music m)
@@ -75,12 +71,12 @@ public class PCMPlayer {
         game = g;
         music = m;
         source = bgmpath.path.get(g.no);
-        if (g.format == 0) {
+        if (g.format == GameFormat.BGM_FOLDER) {
             int index = g.music.indexOf(m);
-            musicIn = MusicSystem.getInputStream(g, m,
+            musicIn = g.format.getInputStream(g, m,
                     new File(source + "/" + StringFormatter.formatFileName(g.metadata, index)));
         } else
-            musicIn = MusicSystem.getInputStream(g, m, new File(source));
+            musicIn = g.format.getInputStream(g, m, new File(source));
 
         // PCM 参数
         float sampleRate = music.sampleRate;
@@ -131,7 +127,7 @@ public class PCMPlayer {
                     playback += len;
                 }
             }
-            if (loop) {
+            if (loop && playMode == MUSIC) {
                 long loopPos = MusicSystem.getLoopPos(musicIn);
                 playback = loopPos;
                 musicIn.seek(loopPos);
@@ -141,12 +137,12 @@ public class PCMPlayer {
     }
 
     public void seek(int pos) throws IOException {
-        if (game.format == GameFormats.WAVE_FILE || game.format == GameFormats.BGM_FOLDER
-                || game.format == GameFormats.RAW_PCM) {
+        if (game.format == GameFormat.WAVE_FILE || game.format == GameFormat.BGM_FOLDER
+                || game.format == GameFormat.THBGM) {
             long pos2 = MusicSystem.roundByte(pos, af.getFrameSize());
             playback = pos2;
             musicIn.seek(pos2);
-        } else if (GameFormats.isTFPack(game.format)) {
+        } else if (GameFormat.isTFPack(game.format)) {
             // TODO: support ogg seeking
         }
     }
@@ -185,7 +181,7 @@ public class PCMPlayer {
                 this.volume = volume;
                 volumeControl.setValue((float) (Math.log10(Math.pow(this.volume, 4)) * 10));
             }
-        } catch (NullPointerException e) {
+        } catch (NullPointerException ignored) {
 
         }
     }

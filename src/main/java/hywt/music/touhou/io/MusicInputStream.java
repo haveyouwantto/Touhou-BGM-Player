@@ -12,7 +12,7 @@ public abstract class MusicInputStream extends InputStream {
     protected Music music;
     protected File file;
 
-    public MusicInputStream(Game game, Music music,File file) {
+    public MusicInputStream(Game game, Music music, File file) {
         this.game = game;
         this.music = music;
         this.file = file;

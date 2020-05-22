@@ -1,18 +1,16 @@
 package hywt.music.touhou.gui;
 
-import java.awt.Dimension;
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.JFrame;
-
-public class Visualizer{
-    /**
-     *
-     */
-    private static final long serialVersionUID = 185239470341954L;
+public class LoopEditorWindow {
     final BaseFrame jframe;
-    final WaveGraph img;
+    final LoopEditor img;
+    private KeyboardListener keyboardListener;
 
-    public Visualizer(int bufferSize) {
+    public LoopEditorWindow(File file) throws IOException {
         jframe = new BaseFrame();
         jframe.setTitle(Messages.getString("Visualizer.title"));
         jframe.getContentPane().setPreferredSize(new Dimension(512, 517));
@@ -20,8 +18,13 @@ public class Visualizer{
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
-        img = new WaveGraph(bufferSize);
+        keyboardListener = new KeyboardListener();
+        jframe.addKeyListener(keyboardListener);
+
+        img = new LoopEditor(file, keyboardListener);
         jframe.add(img);
+
+
     }
 
     public boolean isVisible() {
@@ -32,12 +35,7 @@ public class Visualizer{
         jframe.setVisible(visible);
     }
 
-    public void update(final byte[] b, final float progress) {
-        img.setData(b, progress);
-        img.repaint();
-    }
-
-    public WaveGraph getWaveGraph() {
+    public LoopEditor getWaveGraph() {
         return img;
     }
 

@@ -8,7 +8,7 @@ import hywt.music.touhou.Etc;
 
 import java.awt.Graphics;
 
-public class ImagePanel extends JPanel {
+public class WaveGraph extends JPanel {
 
     /**
      *
@@ -16,17 +16,18 @@ public class ImagePanel extends JPanel {
     private static final long serialVersionUID = -6452859177867402541L;
     byte[] b;
     int[] ints;
-
-    final Color black = new Color(0, 0, 0);
-    final Color gray = new Color(128, 128, 128);
-    final Color white = new Color(255, 255, 255);
+    float marker1;
+    float marker2;
 
     float progress;
 
-    public ImagePanel(final int bufferSize) {
+    public WaveGraph(final int bufferSize) {
         this.ints = new int[bufferSize / 2];
         b = new byte[bufferSize];
         this.progress = 0;
+
+        marker1 = 0;
+        marker2 = 0;
     }
 
     public void setData(final byte[] b, final float progress) {
@@ -38,22 +39,41 @@ public class ImagePanel extends JPanel {
     }
 
     public void paintComponent(final Graphics g) {
-        g.setColor(black);
+        g.setColor(Color.black);
         g.fillRect(0, 0, 512, 517);
         if (progress > 0) {
-            g.setColor(gray);
+            g.setColor(Color.gray);
             int i;
             for (i = 0; i < ints.length - 3; i++) {
                 int offset = i % 2 == 0 ? 128 : 384;
                 g.drawLine(i, ints[i] / 2 + offset, i + 2, ints[i + 2] / 2 + offset);
             }
-            for (i = 0; i < ints.length >> 1; i += 2) {
+            for (i = 0; i < ints.length - 3; i += 2) {
                 g.setColor(Etc.gen(i << 1));
                 g.drawLine(ints[i] + 256, ints[i + 1] + 256, ints[i + 2] + 256, ints[i + 3] + 256);
             }
-            g.setColor(white);
+            g.setColor(Color.white);
             g.fillRect(0, 512, (int) (progress * 512), 5);
+            g.setColor(Color.red);
+            g.drawLine((int) (marker1 * 512), 512, (int) (marker1 * 512), 517);
+            g.setColor(Color.green);
+            g.drawLine((int) (marker2 * 512), 512, (int) (marker2 * 512), 517);
         }
     }
 
+    public float getMarker1() {
+        return marker1;
+    }
+
+    public void setMarker1(float marker1) {
+        this.marker1 = marker1;
+    }
+
+    public float getMarker2() {
+        return marker2;
+    }
+
+    public void setMarker2(float marker2) {
+        this.marker2 = marker2;
+    }
 }

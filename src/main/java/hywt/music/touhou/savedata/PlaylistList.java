@@ -11,19 +11,19 @@ import com.google.gson.JsonSyntaxException;
 import hywt.music.touhou.io.FileReader;
 
 public class PlaylistList {
-	public List<Playlist> list;
+	public List<PlaylistData> list;
 	
 	public PlaylistList() {
 	}
 
 	public void load(File path) {
-		list = new ArrayList<Playlist>();
+		list = new ArrayList<>();
 		Gson g = new Gson();
 		try {
 			File[] listFiles = path.listFiles();
-			for (int i = 0; i < listFiles.length; i++) {
-				if (listFiles[i].getName().endsWith(".json")) {
-					list.add(g.fromJson(FileReader.read(listFiles[i]), Playlist.class));
+			for (File listFile : listFiles) {
+				if (listFile.getName().endsWith(".json")) {
+					list.add(g.fromJson(FileReader.read(listFile), PlaylistData.class));
 				}
 			}
 		} catch (JsonSyntaxException e) {
@@ -37,10 +37,9 @@ public class PlaylistList {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("PlaylistList [list=");
-		builder.append(list);
-		builder.append("]");
-		return builder.toString();
+		String builder = "PlaylistList [list=" +
+				list +
+				"]";
+		return builder;
 	}
 }

@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -15,18 +14,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Hashtable;
 
-import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.JToggleButton;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
@@ -35,13 +24,14 @@ import javax.swing.event.MouseInputAdapter;
 
 import hywt.music.touhou.Constants;
 import hywt.music.touhou.StringFormatter;
+import hywt.music.touhou.io.MusicSystem;
 import hywt.music.touhou.pcmprocessing.PCMPlayer;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
 
 public class GUI {
 
-    private JFrame frmTouhouBgmPlayer;
+    private BaseFrame frmTouhouBgmPlayer;
     PCMPlayer pcmp = new PCMPlayer();
     private int gameId = 0;
     private boolean updateProgressBar = true;
@@ -88,10 +78,8 @@ public class GUI {
      */
     private void initialize() {
         label.setHorizontalAlignment(SwingConstants.CENTER);
-        frmTouhouBgmPlayer = new JFrame();
+        frmTouhouBgmPlayer = new BaseFrame();
         final Notification not = new Notification(frmTouhouBgmPlayer);
-        frmTouhouBgmPlayer.setIconImage(
-                Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/assets/hywt/music/touhou/icon.png"))); //$NON-NLS-1$
         frmTouhouBgmPlayer.setTitle(Messages.getString("GUI.title")); //$NON-NLS-1$
         frmTouhouBgmPlayer.setBounds(100, 100, 440, 320);
         frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,6 +97,7 @@ public class GUI {
         PathManager pathman = new PathManager();
         MusicExporter mus = new MusicExporter();
         Visualizer vis = new Visualizer(pcmp.getBuffer().length);
+        Extra extra = new Extra();
         ply = new PlaylistPlayer(this);
 
         JPanel infoPanel = new JPanel();
@@ -173,7 +162,7 @@ public class GUI {
         panel_4.add(progressBar);
         progressBar.setValue(0);
 
-        ht = new Hashtable<Integer, JLabel>();
+        ht = new Hashtable<>();
         ht.put(0, label);
         progressBar.setLabelTable(ht);
         progressBar.setPaintLabels(true);
@@ -182,37 +171,29 @@ public class GUI {
         panel_4.add(lblLength);
 
         // 播放状态更新线程
-        Runnable r2 = () -> {
-            while (true) {
-                try {
-                    if (updateProgressBar) {
-                        Music m = pcmp.getMusic();
-                        progressBar.setValue((int) pcmp.getPlayback());
-                        lblTime.setText(StringFormatter.getMusicLengthTime(m.sampleRate, pcmp.getPlayback()));
-                        lblLength.setText(StringFormatter.getMusicLengthTime(m.sampleRate, pcmp.getLength()));
-                        lblplaying.setText(m.title);
-                        progressBar.setMaximum((int) pcmp.getLength());
-                        ht.clear();
-                        ht.put(pcmp.getPreludeLength(), label);
-                        if (vis.isVisible()) {
-                            vis.update(pcmp.getBuffer(), pcmp.getProgress());
-                        }
+        Timer timer = new Timer(50, listener -> {
+            try {
+                if (updateProgressBar) {
+                    Music m = pcmp.getMusic();
+                    progressBar.setValue((int) pcmp.getPlayback());
+                    lblTime.setText(StringFormatter.getMusicLengthTime(m.sampleRate, pcmp.getPlayback()));
+                    lblLength.setText(StringFormatter.getMusicLengthTime(m.sampleRate, pcmp.getLength()));
+                    lblplaying.setText(m.title);
+                    progressBar.setMaximum((int) pcmp.getLength());
+                    ht.clear();
+                    ht.put(pcmp.getPreludeLength(), label);
+                    if (vis.isVisible()) {
+                        vis.update(pcmp.getBuffer(), pcmp.getProgress());
                     }
-                    if (!playing) {
-                        lblplaying.setText("-"); //$NON-NLS-1$
-                    }
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (NullPointerException ignored) {
                 }
+                if (!playing) {
+                    lblplaying.setText("-"); //$NON-NLS-1$
+                }
+            } catch (NullPointerException ignored) {
             }
-        };
+        });
 
-        Thread uiUpdater = new Thread(r2);
-        uiUpdater.setName("Progress Bar Updater");
-        uiUpdater.start();
+        timer.start();
 
         JPanel controlPanel = new JPanel();
         frmTouhouBgmPlayer.getContentPane().add(controlPanel, BorderLayout.CENTER);
@@ -227,20 +208,17 @@ public class GUI {
         musicSelectionPanel.setLayout(new GridLayout(0, 1, 0, 4));
 
         // 游戏下拉菜单
-        JComboBox<Game> gameComboBox = new JComboBox<Game>();
+        JComboBox<Game> gameComboBox = new JComboBox<>();
         musicSelectionPanel.add(gameComboBox);
 
         // 音乐下拉菜单
-        JComboBox<Music> musicComboBox = new JComboBox<Music>();
+        JComboBox<Music> musicComboBox = new JComboBox<>();
         musicSelectionPanel.add(musicComboBox);
-        gameComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                musicComboBox.removeAllItems();
-                gameId = gameComboBox.getSelectedIndex();
-                for (int i = 0; i < Constants.bgmdata.games.get(gameId).music.size(); i++) {
-                    musicComboBox.addItem(Constants.bgmdata.games.get(gameId).music.get(i));
-                }
+        gameComboBox.addActionListener(e -> {
+            musicComboBox.removeAllItems();
+            gameId = gameComboBox.getSelectedIndex();
+            for (int i = 0; i < Constants.bgmdata.games.get(gameId).music.size(); i++) {
+                musicComboBox.addItem(Constants.bgmdata.games.get(gameId).music.get(i));
             }
         });
 
@@ -274,31 +252,21 @@ public class GUI {
 
         btnPause = new JToggleButton(Messages.getString("GUI.btnP_1.text")); //$NON-NLS-1$
         panel_1.add(btnPause);
-        btnPause.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (pcmp.isPaused()) {
-                    pcmp.resume();
-                } else {
-                    pcmp.pause();
-                }
+        btnPause.addActionListener(e -> {
+            if (pcmp.isPaused()) {
+                pcmp.resume();
+            } else {
+                pcmp.pause();
             }
         });
         btnPause.setEnabled(false);
 
         // 循环按钮
         btnPlayMode = new JButton(Messages.getString("GUI.toggleBtnLoop.text")); //$NON-NLS-1$
-        btnPlayMode.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                toggleModeBtn();
-            }
-        });
+        btnPlayMode.addActionListener(e -> toggleModeBtn());
 
         btnLoop = new JToggleButton(Messages.getString("GUI.btnLoop.text")); //$NON-NLS-1$
-        btnLoop.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                pcmp.setLoop(btnLoop.isSelected());
-            }
-        });
+        btnLoop.addActionListener(e -> pcmp.setLoop(btnLoop.isSelected()));
         btnLoop.setSelected(true);
         panel_1.add(btnLoop);
         panel_1.add(btnPlayMode);
@@ -309,51 +277,40 @@ public class GUI {
                 // 读取音乐信息
                 Game g = (Game) gameComboBox.getSelectedItem();
                 Music m = (Music) musicComboBox.getSelectedItem();
+                vis.getWaveGraph().marker1 = MusicSystem.getLoopPercentage(g, m);
+                vis.getWaveGraph().marker2 = 1;
                 pcmp.setLoop(btnLoop.isSelected());
                 pcmp.setPlayMode(playMode);
                 pcmp.play(g, m);
-                btnStop.doClick();
             } catch (FileNotFoundException e1) {
                 not.showError(Messages.getString("GUI.fileNotFoundError")); //$NON-NLS-1$
                 e1.printStackTrace();
-                btnStop.doClick();
             } catch (IOException e) {
                 not.showError(Messages.getString("GUI.IOException") + e.getLocalizedMessage()); //$NON-NLS-1$
-                e.printStackTrace();
-                btnStop.doClick();
-            } catch (LineUnavailableException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch (UnsupportedAudioFileException e) {
                 not.showError(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
                 e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+                not.showError(e.toString());
             }
+            btnStop.doClick();
         };
 
         btnStop.setEnabled(false);
 
         // 播放按钮的事件
-        btnPlay.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                pcmp.setGameList(true);
-                Thread t = new Thread(musicPlaying);
-                t.setName("Player Thread");
-                t.start();
-                setStart();
-            }
+        btnPlay.addActionListener(e -> {
+            pcmp.setGameList(true);
+            Thread t = new Thread(musicPlaying);
+            t.setName("Player Thread");
+            t.start();
+            setStart();
         });
 
         // 停止按钮的事件
-        btnStop.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setStop();
-            }
-        });
+        btnStop.addActionListener(e -> setStop());
 
         JPanel panel = new JPanel();
         playbackControlPanel.add(panel);
@@ -365,13 +322,10 @@ public class GUI {
         // 音量滑块
         JSlider slider = new JSlider();
         panel.add(slider);
-        slider.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                float volume = slider.getValue() / 100f;
-                volumeLabel.setText(String.valueOf(slider.getValue()));
-                pcmp.setVolume(volume);
-            }
+        slider.addChangeListener(e -> {
+            float volume = slider.getValue() / 100f;
+            volumeLabel.setText(String.valueOf(slider.getValue()));
+            pcmp.setVolume(volume);
         });
         slider.setValue(100);
         slider.setPaintLabels(true);
@@ -382,11 +336,7 @@ public class GUI {
         controlPanel.add(panel_2);
 
         JButton btnNewButton = new JButton(Messages.getString("GUI.btnNewButton.text")); //$NON-NLS-1$
-        btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ply.show();
-            }
-        });
+        btnNewButton.addActionListener(e -> ply.show());
         panel_2.add(btnNewButton);
 
         // 显示路径管理器按钮
@@ -396,18 +346,10 @@ public class GUI {
         // 音乐导出按钮
         JButton btnExporter = new JButton(Messages.getString("GUI.exportMusic.text")); //$NON-NLS-1$
         panel_2.add(btnExporter);
-        btnExporter.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mus.display();
-            }
-        });
-        btnP.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 显示路径管理器
-                pathman.display();
-            }
+        btnExporter.addActionListener(e -> mus.display());
+        btnP.addActionListener(e -> {
+            // 显示路径管理器
+            pathman.display();
         });
 
     }

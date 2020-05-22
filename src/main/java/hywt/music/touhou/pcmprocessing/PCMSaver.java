@@ -26,7 +26,7 @@ import hywt.music.touhou.io.MusicSystem;
 import hywt.music.touhou.io.tfpack.TFPack;
 import hywt.music.touhou.io.tfpack.TFPackInputStream;
 import hywt.music.touhou.savedata.Game;
-import hywt.music.touhou.savedata.GameFormats;
+import hywt.music.touhou.savedata.GameFormat;
 import hywt.music.touhou.savedata.Music;
 import net.sourceforge.javaflacencoder.FLACFileWriter;
 
@@ -43,13 +43,13 @@ public class PCMSaver {
                 outAlbum.mkdirs();
             }
 
-            if (GameFormats.isTFPack(game.format)) {
+            if (GameFormat.isTFPack(game.format)) {
                 File f = new File(outAlbum, (game.music.indexOf(music) + 1) + " - " + music.title + ".ogg");
                 FileOutputStream fos = new FileOutputStream(f);
                 TFPack tfp = new TFPack(game, music, new File(thbgm));
                 TFPackInputStream tfs = tfp.getInputStream();
                 byte[] buffer = new byte[256];
-                int len = 0;
+                int len;
                 while ((len = tfs.read(buffer)) != -1) {
                     fos.write(buffer, 0, len);
                 }
@@ -67,10 +67,10 @@ public class PCMSaver {
             boolean bigEndian = false;
 
             if (separate) {
-                MusicInputStream musicIn = MusicSystem.getInputStream(game, music, new File(thbgm));
+                MusicInputStream musicIn = game.format.getInputStream(game, music, new File(thbgm));
 
-                long time1 = (int) (music.preludeLength / sampleSizeInBits * 8 / channels);
-                long time2 = (int) (music.loopLength / sampleSizeInBits * 8 / channels);
+                long time1 = (music.preludeLength / sampleSizeInBits * 8 / channels);
+                long time2 = (music.loopLength / sampleSizeInBits * 8 / channels);
 
                 // 创建音频流
                 AudioFormat af = new AudioFormat(sampleRate, sampleSizeInBits, channels, signed, bigEndian);
@@ -96,7 +96,7 @@ public class PCMSaver {
                 PCMSaver.setTag(game, music, file2);
             } else {
 
-                MusicInputStream musicIn = MusicSystem.getInputStream(game, music, new File(thbgm));
+                MusicInputStream musicIn = game.format.getInputStream(game, music, new File(thbgm));
 
                 System.out.println(musicIn.getClass().getCanonicalName());
 

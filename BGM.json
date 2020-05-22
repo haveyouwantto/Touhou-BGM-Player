@@ -1,7 +1,7 @@
 {
     "games": [
         {
-            "format": 0,
+            "format": "BGM_FOLDER",
             "no": "TH06",
             "title": "東方紅魔郷 ～ the Embodiment of Scarlet Devil",
             "fileName": "BGM",
@@ -149,7 +149,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH07",
             "title": "東方妖々夢 ～ Perfect Cherry Blossom",
             "fileName": "thbgm.dat",
@@ -320,7 +320,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH07.5",
             "title": "東方萃夢想 ～ Immaterial and Missing Power",
             "fileName": "th075bgm.dat",
@@ -604,7 +604,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH08",
             "title": "東方永夜抄 ～ Imperishable Night",
             "fileName": "thbgm.dat",
@@ -783,7 +783,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH09",
             "title": "東方花映塚 ～ Phantasmagoria of Flower View",
             "fileName": "thbgm.dat",
@@ -946,7 +946,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH09.5",
             "title": "東方文花帖 ～ Shoot the Bullet",
             "fileName": "thbgm.dat",
@@ -1005,7 +1005,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH10",
             "title": "東方風神録 ～ Mountain of Faith",
             "fileName": "thbgm.dat",
@@ -1160,7 +1160,7 @@
             ]
         },
         {
-            "format": 2,
+            "format": "TFPACK_1",
             "no": "TH10.5",
             "title": "東方緋想天 ～ Scarlet Weather Rhapsody",
             "fileName": "th105b.dat",
@@ -1420,7 +1420,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH11",
             "title": "東方地霊殿 ～ Subterranean Animism",
             "fileName": "thbgm.dat",
@@ -1575,7 +1575,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH12",
             "title": "東方星蓮船 ～ Undefined Fantastic Object",
             "fileName": "thbgm.dat",
@@ -1730,7 +1730,7 @@
             ]
         },
         {
-            "format": 2,
+            "format": "TFPACK_1",
             "no": "TH12.3",
             "title": "東方非想天則 ～ 超弩級ギニョルの謎を追え",
             "fileName": "th123b.dat",
@@ -1934,7 +1934,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH12.5",
             "title": "ダブルスポイラー ～ 東方文花帖",
             "fileName": "thbgm.dat",
@@ -2001,7 +2001,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH12.8",
             "title": "妖精大戦争 ～ 東方三月精",
             "fileName": "thbgm.dat",
@@ -2092,7 +2092,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH13",
             "title": "東方神霊廟 ～ Ten Desires",
             "fileName": "thbgm.dat",
@@ -2351,7 +2351,7 @@
             ]
         },
         {
-            "format": 3,
+            "format": "TFPACK_2",
             "no": "TH13.5",
             "title": "東方心綺楼 ～ Hopeless Masquerade",
             "fileName": "th135.pak",
@@ -2552,7 +2552,7 @@
             ]
         },
         {
-            "format": 3,
+            "format": "TFPACK_2",
             "no": "TH13.5b",
             "title": "東方心綺楼 ～ Hopeless Masquerade",
             "fileName": "th135b.pak",
@@ -2681,7 +2681,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH14",
             "title": "東方輝針城 ～ Double Dealing Character.",
             "fileName": "thbgm.dat",
@@ -2836,7 +2836,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH14.3",
             "title": "弹幕天邪鬼 ～ Impossible Spell Card.",
             "fileName": "thbgm.dat",
@@ -2919,7 +2919,7 @@
             ]
         },
         {
-            "format": 4,
+            "format": "TFPACK_3",
             "no": "TH14.5",
             "title": "東方深秘録 ～ Urban Legend in Limbo",
             "fileName": "th145.pak",
@@ -3390,7 +3390,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH15",
             "title": "東方紺珠伝 ～ Legacy of Lunatic Kingdom.",
             "fileName": "thbgm.dat",
@@ -3545,7 +3545,7 @@
             ]
         },
         {
-            "format": 4,
+            "format": "TFPACK_3",
             "no": "TH15.5",
             "title": "東方憑依華 ～ Antinomy of Common Flowers",
             "fileName": "th155.pak",
@@ -4448,7 +4448,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH16",
             "title": "東方天空璋 ～ Hidden Star in Four Seasons.",
             "fileName": "thbgm.dat",
@@ -4603,7 +4603,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH16.5",
             "title": "秘封ナイトメアダイアリー ～ Violet Detector.",
             "fileName": "thbgm.dat",
@@ -4678,7 +4678,7 @@
             ]
         },
         {
-            "format": 1,
+            "format": "THBGM",
             "no": "TH17",
             "title": "東方鬼形獣 ～ Wily Beast and Weakest Creature.",
             "fileName": "thbgm.dat",

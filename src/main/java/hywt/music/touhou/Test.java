@@ -1,46 +1,34 @@
 package hywt.music.touhou;
 
+import hywt.music.touhou.gui.LoopEditorWindow;
+import hywt.music.touhou.gui.Visualizer;
+import hywt.music.touhou.io.MusicInputStream;
+import hywt.music.touhou.io.MusicSystem;
+import hywt.music.touhou.savedata.BGMPath;
+import hywt.music.touhou.savedata.Music;
+
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
+import java.io.RandomAccessFile;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import hywt.music.touhou.io.MusicInputStream;
-import hywt.music.touhou.io.MusicSystem;
-import hywt.music.touhou.io.tfpack.TFPack;
-import hywt.music.touhou.io.tfpack.TFPackInputStream;
-import hywt.music.touhou.savedata.Game;
-import hywt.music.touhou.savedata.Music;
-
 public class Test {
-	public static void main(String[] args) throws LineUnavailableException, UnsupportedAudioFileException {
-		try {
-			Constants.init();
-			System.out.println(Constants.bgmdata.getGamebyId("th07"));
-			Game g = Constants.bgmdata.getGamebyId("th14.5");
-			Music m = g.music.get(0);
-			TFPack tfp = new TFPack(g, m, new File("E:\\正作\\th145\\th145.pak"));
-			TFPackInputStream tfs = tfp.getInputStream();
-			byte[] b = new byte[256];
-			int len;
-			FileInputStream fis = new FileInputStream("E:\\正作\\th145\\th145.pak");
-			FileOutputStream fos = new FileOutputStream("test.bin");
-			int pointer = 0;
-			// tfs.read(b);
-			System.out.println(Arrays.toString(b));
-
-			while ((len = tfs.read(b)) != -1) {
-				fos.write(b, 0, len);
-			}
-			tfs.close();
-			fos.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    public static void main(String[] args) throws UnsupportedAudioFileException {
+        try {
+            Constants.init();
+            MusicInputStream mis = MusicSystem.getInputStream(null,null,null);
+            System.out.println(Test.class.getResource("/assets/hywt/music/touhou/icon.png"));
+            Visualizer vis = new Visualizer(1024);
+            BGMPath path = BGMPath.load();
+            LoopEditorWindow lop = new LoopEditorWindow(new File("u:\\\u4e8c\u521b\\\u4e1c\u65b9\u590f\u591c\u796d \uff5e Shining Shooting Star\\BGM\\OP.wav"));
+            lop.setVisible(true);
+            lop.getWaveGraph().setStart(25397388-21772800);
+            lop.getWaveGraph().setEnd(25397388);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }
