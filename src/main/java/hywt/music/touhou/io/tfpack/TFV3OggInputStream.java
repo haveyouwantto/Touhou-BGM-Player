@@ -1,14 +1,14 @@
 package hywt.music.touhou.io.tfpack;
 
+import hywt.music.touhou.savedata.Music;
+
 import java.io.File;
 import java.io.IOException;
-
-import hywt.music.touhou.savedata.Music;
 
 // TH14.5 | TH15.5
 public class TFV3OggInputStream extends TFV2OggInputStream {
 
-    private byte[] aux;
+    private final byte[] aux;
 
     public TFV3OggInputStream(Music m, File file) throws IOException {
         super(m, file);
