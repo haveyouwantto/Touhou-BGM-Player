@@ -1,4 +1,8 @@
-package hywt.music.touhou.gui;
+package hywt.music.touhou.gui.test;
+
+import hywt.music.touhou.gui.BaseFrame;
+import hywt.music.touhou.gui.KeyboardListener;
+import hywt.music.touhou.gui.Messages;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +12,6 @@ import java.io.IOException;
 public class LoopEditorWindow {
     final BaseFrame jframe;
     final LoopEditor img;
-    private KeyboardListener keyboardListener;
 
     public LoopEditorWindow(File file) throws IOException {
         jframe = new BaseFrame();
@@ -18,7 +21,7 @@ public class LoopEditorWindow {
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
-        keyboardListener = new KeyboardListener();
+        KeyboardListener keyboardListener = new KeyboardListener();
         jframe.addKeyListener(keyboardListener);
 
         img = new LoopEditor(file, keyboardListener);

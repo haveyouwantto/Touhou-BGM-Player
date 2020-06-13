@@ -1,39 +1,27 @@
 package hywt.music.touhou.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Iterator;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.UIManager;
-import javax.swing.border.TitledBorder;
-
-import hywt.music.touhou.Constants;
 import hywt.music.touhou.Playlist;
 import hywt.music.touhou.savedata.Music;
 import hywt.music.touhou.savedata.PlaylistData;
 import hywt.music.touhou.savedata.PlaylistList;
 
-public class PlaylistPlayer {
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
+
+public class PlaylistPlayer implements LazyLoader {
 
     private BaseFrame frame;
-    private GUI parent;
+    private final GUI parent;
     private PlaylistList list;
     private JButton btnPlay;
-    private Notification not = new Notification(frame);
+    private final Notification not = new Notification(frame);
     private JComboBox<PlaylistData> comboBox;
     private JList<Music> jlist;
     private JScrollPane scrollPane;
@@ -45,7 +33,6 @@ public class PlaylistPlayer {
      */
     public PlaylistPlayer(GUI parent) {
         this.parent = parent;
-        initialize();
     }
 
     /**
@@ -131,21 +118,6 @@ public class PlaylistPlayer {
         });
     }
 
-    public void show() {
-        File f = new File("playlists/");
-        try {
-            list.load(f);
-        } catch (NullPointerException e) {
-            f.mkdirs();
-            list.load(f);
-        }
-        comboBox.removeAllItems();
-        for (int i = 0; i < list.list.size(); i++) {
-            comboBox.addItem(list.list.get(i));
-        }
-        frame.setVisible(true);
-    }
-
     public JButton getBtnPlay() {
         return btnPlay;
     }
@@ -160,5 +132,28 @@ public class PlaylistPlayer {
 
     public JButton getBtnPause() {
         return btnPause;
+    }
+
+    @Override
+    public void load() {
+        initialize();
+    }
+
+    @Override
+    public void setVisible(boolean b) {
+        if (b) {
+            File f = new File("playlists/");
+            try {
+                list.load(f);
+            } catch (NullPointerException e) {
+                f.mkdirs();
+                list.load(f);
+            }
+            comboBox.removeAllItems();
+            for (int i = 0; i < list.list.size(); i++) {
+                comboBox.addItem(list.list.get(i));
+            }
+        }
+        frame.setVisible(b);
     }
 }

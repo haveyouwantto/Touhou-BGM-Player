@@ -1,9 +1,9 @@
 package hywt.music.touhou.io.tfpack;
 
+import hywt.music.touhou.savedata.Music;
+
 import java.io.InputStream;
 import java.io.RandomAccessFile;
-
-import hywt.music.touhou.savedata.Music;
 
 public abstract class TFPackInputStream extends InputStream {
     protected long pointer;

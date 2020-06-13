@@ -60,7 +60,7 @@ public class TFV1OggInputStream extends TFPackInputStream {
     }
 
     @Override
-    public int available(){
+    public int available() {
         return (int) (music.preludeLength - pointer);
     }
 }

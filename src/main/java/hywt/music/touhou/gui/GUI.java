@@ -1,33 +1,25 @@
 package hywt.music.touhou.gui;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Hashtable;
-
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.MouseInputAdapter;
-
 import hywt.music.touhou.Constants;
 import hywt.music.touhou.StringFormatter;
 import hywt.music.touhou.io.MusicSystem;
 import hywt.music.touhou.pcmprocessing.PCMPlayer;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
+
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.MouseInputAdapter;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 public class GUI {
 
@@ -66,6 +58,8 @@ public class GUI {
         });
     }
 
+    private HashMap<LazyLoader, Boolean> loaderStatus;
+
     /**
      * Create the application.
      */
@@ -79,26 +73,35 @@ public class GUI {
     private void initialize() {
         label.setHorizontalAlignment(SwingConstants.CENTER);
         frmTouhouBgmPlayer = new BaseFrame();
-        final Notification not = new Notification(frmTouhouBgmPlayer);
         frmTouhouBgmPlayer.setTitle(Messages.getString("GUI.title")); //$NON-NLS-1$
         frmTouhouBgmPlayer.setBounds(100, 100, 440, 320);
         frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // 获取BGM信息
 
         // 初始化
+        final Notification not = new Notification(frmTouhouBgmPlayer);
+
         try {
+            // 获取BGM信息
             Constants.init();
         } catch (IOException e3) {
             not.showError(Messages.getString("GUI.bgmDataNotFound")); //$NON-NLS-1$
             e3.printStackTrace();
             Thread.currentThread().interrupt();
         }
+
         PathManager pathman = new PathManager();
         MusicExporter mus = new MusicExporter();
         Visualizer vis = new Visualizer(pcmp.getBuffer().length);
-        Extra extra = new Extra();
         ply = new PlaylistPlayer(this);
+        Extra extra = new Extra();
+
+        loaderStatus = new HashMap<>();
+        loaderStatus.put(pathman, false);
+        loaderStatus.put(mus, false);
+        loaderStatus.put(vis, false);
+        loaderStatus.put(extra, false);
+        loaderStatus.put(ply, false);
 
         JPanel infoPanel = new JPanel();
         infoPanel.setBorder(new EmptyBorder(0, 5, 5, 5));
@@ -115,7 +118,7 @@ public class GUI {
         lblNowPlaying.addMouseListener(new MouseInputAdapter() {
             @Override
             public void mouseReleased(final MouseEvent e) {
-                vis.setVisible(true);
+                show(vis);
             }
         });
 
@@ -291,6 +294,8 @@ public class GUI {
             } catch (UnsupportedAudioFileException e) {
                 not.showError(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
                 e.printStackTrace();
+            } catch (AssertionError e) {
+                not.showError(Messages.getString("GUI.nullSelection"));
             } catch (Exception e) {
                 e.printStackTrace();
                 not.showError(e.toString());
@@ -303,6 +308,10 @@ public class GUI {
         // 播放按钮的事件
         btnPlay.addActionListener(e -> {
             pcmp.setGameList(true);
+
+            load(vis);
+            load(ply);
+
             Thread t = new Thread(musicPlaying);
             t.setName("Player Thread");
             t.start();
@@ -336,7 +345,7 @@ public class GUI {
         controlPanel.add(panel_2);
 
         JButton btnNewButton = new JButton(Messages.getString("GUI.btnNewButton.text")); //$NON-NLS-1$
-        btnNewButton.addActionListener(e -> ply.show());
+        btnNewButton.addActionListener(e -> show(ply));
         panel_2.add(btnNewButton);
 
         // 显示路径管理器按钮
@@ -346,12 +355,24 @@ public class GUI {
         // 音乐导出按钮
         JButton btnExporter = new JButton(Messages.getString("GUI.exportMusic.text")); //$NON-NLS-1$
         panel_2.add(btnExporter);
-        btnExporter.addActionListener(e -> mus.display());
+        btnExporter.addActionListener(e -> show(mus));
         btnP.addActionListener(e -> {
             // 显示路径管理器
-            pathman.display();
+            show(pathman);
         });
 
+    }
+
+    private void show(LazyLoader loader) {
+        load(loader);
+        loader.setVisible(true);
+    }
+
+    private void load(LazyLoader loader) {
+        if (!loaderStatus.get(loader)) {
+            loader.load();
+            loaderStatus.put(loader, true);
+        }
     }
 
     protected JLabel getLblplaying() {

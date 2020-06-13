@@ -1,14 +1,13 @@
 package hywt.music.touhou.pcmprocessing;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-
+import hywt.music.touhou.io.MusicInputStream;
+import hywt.music.touhou.io.MusicSystem;
+import hywt.music.touhou.io.tfpack.TFPack;
+import hywt.music.touhou.io.tfpack.TFPackInputStream;
+import hywt.music.touhou.savedata.Game;
+import hywt.music.touhou.savedata.GameFormat;
+import hywt.music.touhou.savedata.Music;
+import net.sourceforge.javaflacencoder.FLACFileWriter;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
@@ -21,18 +20,15 @@ import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.datatype.Artwork;
 
-import hywt.music.touhou.io.MusicInputStream;
-import hywt.music.touhou.io.MusicSystem;
-import hywt.music.touhou.io.tfpack.TFPack;
-import hywt.music.touhou.io.tfpack.TFPackInputStream;
-import hywt.music.touhou.savedata.Game;
-import hywt.music.touhou.savedata.GameFormat;
-import hywt.music.touhou.savedata.Music;
-import net.sourceforge.javaflacencoder.FLACFileWriter;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class PCMSaver {
-    public static void save(File outFolder, String thbgm, Game game, Music music, boolean separate)
-            throws FileNotFoundException {
+    public static void save(File outFolder, String thbgm, Game game, Music music, boolean separate) {
         try {
 
             // 输出文件夹

@@ -1,28 +1,24 @@
 package hywt.music.touhou.pcmprocessing;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.FloatControl;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
 import hywt.music.touhou.Constants;
 import hywt.music.touhou.Playlist;
 import hywt.music.touhou.StringFormatter;
 import hywt.music.touhou.io.MusicInputStream;
 import hywt.music.touhou.io.MusicSystem;
-import hywt.music.touhou.savedata.*;
+import hywt.music.touhou.savedata.BGMPath;
+import hywt.music.touhou.savedata.Game;
+import hywt.music.touhou.savedata.GameFormat;
+import hywt.music.touhou.savedata.Music;
+
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 
 public class PCMPlayer {
 
+    /* fields for playing */
     private MusicInputStream musicIn;
     private AudioFormat af;
-    private SourceDataLine.Info info;
     private SourceDataLine sdl;
     private FloatControl volumeControl;
 
@@ -35,16 +31,16 @@ public class PCMPlayer {
     private Music music;
     private Game game;
 
-    private String source;
     private boolean gameList;
 
-    long playback;
-    int bufferSize = 1024;
+    private long playback;
+    private final int bufferSize = 1024;
+    private final byte[] buffer;
 
+    /* constants*/
     public static final int MUSIC = 0;
     public static final int LIST = 1;
 
-    private byte[] buffer;
 
     public PCMPlayer() {
         loop = true;
@@ -70,7 +66,7 @@ public class PCMPlayer {
         pause = false;
         game = g;
         music = m;
-        source = bgmpath.path.get(g.no);
+        String source = bgmpath.path.get(g.no);
         if (g.format == GameFormat.BGM_FOLDER) {
             int index = g.music.indexOf(m);
             musicIn = g.format.getInputStream(g, m,
@@ -92,7 +88,7 @@ public class PCMPlayer {
     }
 
     private void openSDL(AudioFormat af) throws LineUnavailableException {
-        info = new DataLine.Info(SourceDataLine.class, af, bufferSize);
+        SourceDataLine.Info info = new DataLine.Info(SourceDataLine.class, af, bufferSize);
         sdl = (SourceDataLine) AudioSystem.getLine(info);
 
         sdl.open(af, music.sampleRate / 2);

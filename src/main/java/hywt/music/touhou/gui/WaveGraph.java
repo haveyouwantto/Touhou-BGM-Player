@@ -1,12 +1,9 @@
 package hywt.music.touhou.gui;
 
-import java.awt.Color;
-
-import javax.swing.JPanel;
-
 import hywt.music.touhou.Etc;
 
-import java.awt.Graphics;
+import javax.swing.*;
+import java.awt.*;
 
 public class WaveGraph extends JPanel {
 
@@ -14,16 +11,14 @@ public class WaveGraph extends JPanel {
      *
      */
     private static final long serialVersionUID = -6452859177867402541L;
-    byte[] b;
-    int[] ints;
-    float marker1;
-    float marker2;
+    protected int[] ints;
+    protected float marker1;
+    protected float marker2;
 
-    float progress;
+    protected float progress;
 
     public WaveGraph(final int bufferSize) {
         this.ints = new int[bufferSize / 2];
-        b = new byte[bufferSize];
         this.progress = 0;
 
         marker1 = 0;
@@ -31,7 +26,6 @@ public class WaveGraph extends JPanel {
     }
 
     public void setData(final byte[] b, final float progress) {
-        this.b = b;
         this.progress = progress;
         for (int i = 0; i < b.length - 1; i += 2) {
             ints[i >> 1] = ((short) (Byte.toUnsignedInt(b[i]) | Byte.toUnsignedInt(b[i + 1]) << 8) >> 7);

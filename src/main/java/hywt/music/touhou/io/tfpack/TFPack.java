@@ -1,7 +1,6 @@
 package hywt.music.touhou.io.tfpack;
 
 import hywt.music.touhou.savedata.Game;
-import hywt.music.touhou.savedata.GameFormat;
 import hywt.music.touhou.savedata.Music;
 
 import java.io.File;

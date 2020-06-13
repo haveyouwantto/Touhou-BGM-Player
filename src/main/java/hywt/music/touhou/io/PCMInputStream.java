@@ -1,6 +1,5 @@
 package hywt.music.touhou.io;
 
-import hywt.music.touhou.io.MusicInputStream;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
 
@@ -9,7 +8,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class PCMInputStream extends MusicInputStream {
-    private RandomAccessFile raf;
+    private final RandomAccessFile raf;
 
     public PCMInputStream(Game game, Music music, File file) throws IOException {
         super(game, music, file);

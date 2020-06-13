@@ -1,8 +1,6 @@
 package hywt.music.touhou.io;
 
 import hywt.music.touhou.Constants;
-import hywt.music.touhou.io.tfpack.TFPack;
-import hywt.music.touhou.io.tfpack.TFPackInputStream;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.GameFormat;
 import hywt.music.touhou.savedata.Music;
@@ -21,11 +19,11 @@ public class MusicSystem {
         Class<? extends MusicInputStream> c = Constants.formatMap.get("touhou_bgm_player:wave_files");
         try {
             Constructor<? extends MusicInputStream> constructor = c.getConstructor();
-            return constructor.newInstance(g,m,f);
+            return constructor.newInstance(g, m, f);
         } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
         }
-		return null;
+        return null;
     }
 
 

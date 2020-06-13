@@ -1,14 +1,11 @@
 package hywt.music.touhou;
 
-import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Hashtable;
-
 import hywt.music.touhou.io.MusicInputStream;
 import hywt.music.touhou.io.PCMInputStream;
 import hywt.music.touhou.savedata.BGMData;
+
+import java.io.IOException;
+import java.util.Hashtable;
 
 public class Constants {
     public static BGMData bgmdata;

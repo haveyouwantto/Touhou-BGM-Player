@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Playlist {
-    private List<Music> musicList;
+    private final List<Music> musicList;
     private int pos;
 
     public Playlist(List<Music> musicList) {

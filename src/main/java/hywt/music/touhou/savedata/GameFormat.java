@@ -3,7 +3,10 @@ package hywt.music.touhou.savedata;
 import hywt.music.touhou.io.MusicInputStream;
 import hywt.music.touhou.io.OggInputStream;
 import hywt.music.touhou.io.PCMInputStream;
-import hywt.music.touhou.io.tfpack.*;
+import hywt.music.touhou.io.tfpack.TFPackInputStream;
+import hywt.music.touhou.io.tfpack.TFV1OggInputStream;
+import hywt.music.touhou.io.tfpack.TFV2OggInputStream;
+import hywt.music.touhou.io.tfpack.TFV3OggInputStream;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;

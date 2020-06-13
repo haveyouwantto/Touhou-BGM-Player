@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class KeyboardListener implements KeyListener {
 
-    private HashMap<Integer, Boolean> keys;
+    private final HashMap<Integer, Boolean> keys;
     public final static int KEY_COUNTS = 300;
 
     public KeyboardListener() {

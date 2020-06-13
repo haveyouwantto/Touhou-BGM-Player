@@ -3,33 +3,23 @@ package hywt.music.touhou.gui;
 import javax.swing.*;
 import java.awt.*;
 
-public class Visualizer{
+public class Visualizer implements LazyLoader {
     /**
      *
      */
     private static final long serialVersionUID = 185239470341954L;
-    final BaseFrame jframe;
-    final WaveGraph img;
+    BaseFrame jframe;
+    WaveGraph img;
+    final int bufferSize;
 
     public Visualizer(int bufferSize) {
-        jframe = new BaseFrame();
-        jframe.setTitle(Messages.getString("Visualizer.title"));
-        jframe.getContentPane().setPreferredSize(new Dimension(512, 517));
-        jframe.pack();
-        jframe.setLocationRelativeTo(null);
-        jframe.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-
-        img = new WaveGraph(bufferSize);
-        jframe.add(img);
+        this.bufferSize = bufferSize;
     }
 
     public boolean isVisible() {
         return jframe.isVisible();
     }
 
-    public void setVisible(boolean visible) {
-        jframe.setVisible(visible);
-    }
 
     public void update(final byte[] b, final float progress) {
         img.setData(b, progress);
@@ -42,5 +32,23 @@ public class Visualizer{
 
     public JFrame getFrame() {
         return jframe;
+    }
+
+    @Override
+    public void load() {
+        jframe = new BaseFrame();
+        jframe.setTitle(Messages.getString("Visualizer.title"));
+        jframe.getContentPane().setPreferredSize(new Dimension(512, 517));
+        jframe.pack();
+        jframe.setLocationRelativeTo(null);
+        jframe.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
+        img = new WaveGraph(bufferSize);
+        jframe.add(img);
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        jframe.setVisible(visible);
     }
 }

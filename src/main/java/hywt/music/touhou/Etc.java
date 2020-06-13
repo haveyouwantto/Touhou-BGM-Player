@@ -1,14 +1,15 @@
 package hywt.music.touhou;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class Etc {
     public static Color gen(final int i) {
         final float v0 = i % 360;
         return HSVtoRGB(v0, 1, 1);
     }
+
     public static Color HSVtoRGB(float h /* 0~360 degrees */, final float s /* 0 ~ 1.0 */,
-            final float v /* 0 ~ 1.0 */ ) {
+                                 final float v /* 0 ~ 1.0 */) {
         float f, p, q, t;
         if (s == 0) { // achromatic (grey)
             return new Color(v, v, v);

@@ -1,16 +1,14 @@
-package hywt.music.touhou.gui;
+package hywt.music.touhou.gui.test;
 
-import hywt.music.touhou.Etc;
+import hywt.music.touhou.gui.KeyboardListener;
+import hywt.music.touhou.gui.WaveGraph;
 import hywt.music.touhou.io.MusicSystem;
 
 import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Arrays;
@@ -21,26 +19,27 @@ public class LoopEditor extends WaveGraph {
      */
 
     private static final long serialVersionUID = -4343137822143577401L;
-    private RandomAccessFile raf;
-    long start;
-    long end;
-    byte[] b2;
-    int[] ints2;
-    int delta;
-    private KeyboardListener keyboardListener;
+    private final RandomAccessFile raf;
+    protected long start;
+    protected long end;
+    private byte[] b;
+    protected byte[] b2;
+    protected int[] ints2;
+    private final KeyboardListener keyboardListener;
 
     public LoopEditor(File file, KeyboardListener keyboardListener) throws IOException {
         super(1024);
         raf = new RandomAccessFile(file, "r");
         start = 1024;
         end = 1048576;
+        b = new byte[1024];
         b2 = new byte[1024];
         ints2 = new int[512];
         initialize();
         this.keyboardListener = keyboardListener;
     }
 
-    public void setData() throws IOException {
+    private void setData() throws IOException {
         raf.seek(start - 512);
         this.setMarker1((float) (raf.getFilePointer()) / raf.length());
         raf.read(b);
@@ -48,7 +47,7 @@ public class LoopEditor extends WaveGraph {
         this.repaint();
     }
 
-    public void setData2() throws IOException {
+    private void setData2() throws IOException {
         raf.seek(end - 512);
         this.setMarker2((float) (raf.getFilePointer()) / raf.length());
         raf.read(b2);
