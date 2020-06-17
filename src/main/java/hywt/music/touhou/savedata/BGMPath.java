@@ -1,6 +1,7 @@
 package hywt.music.touhou.savedata;
 
 import com.google.gson.Gson;
+import hywt.music.touhou.Logger;
 import hywt.music.touhou.io.FileReader;
 
 import java.io.File;
@@ -23,7 +24,7 @@ public class BGMPath {
             return g.fromJson(json, BGMPath.class);
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            Logger.error(e);
         }
         return null;
     }
@@ -35,7 +36,7 @@ public class BGMPath {
             FileReader.save(new File("path.json"), s);
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            Logger.error(e);
         }
     }
 }

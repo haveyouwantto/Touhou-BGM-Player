@@ -1,6 +1,7 @@
 package hywt.music.touhou.io;
 
 import hywt.music.touhou.Constants;
+import hywt.music.touhou.Logger;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.GameFormat;
 import hywt.music.touhou.savedata.Music;
@@ -21,7 +22,7 @@ public class MusicSystem {
             Constructor<? extends MusicInputStream> constructor = c.getConstructor();
             return constructor.newInstance(g, m, f);
         } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
-            e.printStackTrace();
+            Logger.error(e);
         }
         return null;
     }

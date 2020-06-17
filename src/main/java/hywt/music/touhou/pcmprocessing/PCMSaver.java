@@ -1,5 +1,6 @@
 package hywt.music.touhou.pcmprocessing;
 
+import hywt.music.touhou.Logger;
 import hywt.music.touhou.io.MusicInputStream;
 import hywt.music.touhou.io.MusicSystem;
 import hywt.music.touhou.io.tfpack.TFPack;
@@ -52,7 +53,7 @@ public class PCMSaver {
                 fos.close();
                 tfs.close();
                 setTag(game, music, f);
-                return;
+                //return;
             }
 
             // PCM 参数
@@ -65,7 +66,7 @@ public class PCMSaver {
             if (separate) {
                 MusicInputStream musicIn = game.format.getInputStream(game, music, new File(thbgm));
 
-                long time1 = (music.preludeLength / sampleSizeInBits * 8 / channels);
+                long time1 = (MusicSystem.getPreludeLength(musicIn) / sampleSizeInBits * 8 / channels);
                 long time2 = (music.loopLength / sampleSizeInBits * 8 / channels);
 
                 // 创建音频流
@@ -75,7 +76,7 @@ public class PCMSaver {
                 AudioInputStream ais2 = new AudioInputStream(musicIn, af, time2);
 
                 // wav 文件
-                File outPath = new File(outAlbum, (game.music.indexOf(music) + 1) + " - " + music.title + ".ogg");
+                File outPath = new File(outAlbum, (game.music.indexOf(music) + 1) + " - " + music.title);
 
                 if (!outPath.exists()) {
                     outPath.mkdirs();
@@ -94,8 +95,6 @@ public class PCMSaver {
 
                 MusicInputStream musicIn = game.format.getInputStream(game, music, new File(thbgm));
 
-                System.out.println(musicIn.getClass().getCanonicalName());
-
                 long time = (int) (MusicSystem.getLength(musicIn) / sampleSizeInBits * 8 / channels);
 
                 // 创建音频流
@@ -113,7 +112,7 @@ public class PCMSaver {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.error(e);
         }
     }
 
@@ -131,7 +130,7 @@ public class PCMSaver {
         try {
             tag.setField(Artwork.createArtworkFromFile(new File("Cover/" + game.no + ".jpg")));
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.error(e);
         }
         f.commit();
     }

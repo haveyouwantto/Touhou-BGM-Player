@@ -1,6 +1,7 @@
 package hywt.music.touhou.gui;
 
 import hywt.music.touhou.Constants;
+import hywt.music.touhou.Logger;
 import hywt.music.touhou.savedata.BGMPath;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.GameFormat;
@@ -139,7 +140,7 @@ public class PathManager implements LazyLoader {
                     fields.get(i).setText(path);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger.error(e);
             }
         }
         frmBgmPathManager.setVisible(b);

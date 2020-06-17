@@ -1,6 +1,7 @@
 package hywt.music.touhou.gui;
 
 import hywt.music.touhou.Constants;
+import hywt.music.touhou.Logger;
 import hywt.music.touhou.StringFormatter;
 import hywt.music.touhou.io.MusicSystem;
 import hywt.music.touhou.pcmprocessing.PCMPlayer;
@@ -53,7 +54,7 @@ public class GUI {
                 GUI window = new GUI();
                 window.frmTouhouBgmPlayer.setVisible(true);
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger.error(e);
             }
         });
     }
@@ -86,7 +87,7 @@ public class GUI {
             Constants.init();
         } catch (IOException e3) {
             not.showError(Messages.getString("GUI.bgmDataNotFound")); //$NON-NLS-1$
-            e3.printStackTrace();
+            Logger.error(e3);
             Thread.currentThread().interrupt();
         }
 
@@ -151,7 +152,7 @@ public class GUI {
                         pcmp.seek(pos);
                     } catch (IOException e1) {
                         // TODO Auto-generated catch block
-                        e1.printStackTrace();
+                        Logger.error(e1);
                     }
                 }
                 updateProgressBar = true;
@@ -287,17 +288,17 @@ public class GUI {
                 pcmp.play(g, m);
             } catch (FileNotFoundException e1) {
                 not.showError(Messages.getString("GUI.fileNotFoundError")); //$NON-NLS-1$
-                e1.printStackTrace();
+                Logger.error(e1);
             } catch (IOException e) {
                 not.showError(Messages.getString("GUI.IOException") + e.getLocalizedMessage()); //$NON-NLS-1$
-                e.printStackTrace();
+                Logger.error(e);
             } catch (UnsupportedAudioFileException e) {
                 not.showError(Messages.getString("GUI.unsupported")); //$NON-NLS-1$
-                e.printStackTrace();
+                Logger.error(e);
             } catch (AssertionError e) {
                 not.showError(Messages.getString("GUI.nullSelection"));
             } catch (Exception e) {
-                e.printStackTrace();
+                Logger.error(e);
                 not.showError(e.toString());
             }
             btnStop.doClick();

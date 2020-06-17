@@ -2,6 +2,7 @@ package hywt.music.touhou.savedata;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import hywt.music.touhou.Logger;
 import hywt.music.touhou.io.FileReader;
 
 import java.io.File;
@@ -25,24 +26,23 @@ public class PlaylistList {
                     try {
                         list.add(g.fromJson(FileReader.read(listFile), PlaylistData.class));
                     } catch (JsonSyntaxException ex) {
-                        ex.printStackTrace();
+                        Logger.error(ex);
                     }
                 }
             }
         } catch (JsonSyntaxException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            Logger.error(e);
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            Logger.error(e);
         }
     }
 
     @Override
     public String toString() {
-        String builder = "PlaylistList [list=" +
+        return "PlaylistList [list=" +
                 list +
                 "]";
-        return builder;
     }
 }

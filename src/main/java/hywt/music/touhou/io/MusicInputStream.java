@@ -36,4 +36,8 @@ public abstract class MusicInputStream extends InputStream {
         this.music = music;
     }
 
+    public abstract void mark(int readlimit);
+
+    public abstract void reset() throws IOException;
+
 }

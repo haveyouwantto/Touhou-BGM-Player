@@ -1,5 +1,6 @@
 package hywt.music.touhou.gui.test;
 
+import hywt.music.touhou.Logger;
 import hywt.music.touhou.gui.KeyboardListener;
 import hywt.music.touhou.gui.WaveGraph;
 import hywt.music.touhou.io.MusicSystem;
@@ -102,7 +103,7 @@ public class LoopEditor extends WaveGraph {
                     repaint();
                 } catch (final IOException e1) {
                     // TODO Auto-generated catch block
-                    e1.printStackTrace();
+                    Logger.error(e1);
                 }
             }
 
@@ -136,7 +137,7 @@ public class LoopEditor extends WaveGraph {
                     setData2();
                 }
             } catch (IOException ioException) {
-                ioException.printStackTrace();
+                Logger.error(ioException);
             }
         });
     }

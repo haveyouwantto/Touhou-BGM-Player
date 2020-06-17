@@ -1,5 +1,6 @@
 package hywt.music.touhou.gui;
 
+import hywt.music.touhou.Logger;
 import hywt.music.touhou.Playlist;
 import hywt.music.touhou.savedata.Music;
 import hywt.music.touhou.savedata.PlaylistData;
@@ -95,21 +96,21 @@ public class PlaylistPlayer implements LazyLoader {
             } catch (FileNotFoundException e1) {
                 not.showError(Messages.getString("GUI.fileNotFoundError")); //$NON-NLS-1$
                 parent.setStop();
-                e1.printStackTrace();
+                Logger.error(e1);
                 // btnStop.doClick();
             } catch (IOException e) {
                 not.showError(Messages.getString("GUI.IOException") + e.getLocalizedMessage()); //$NON-NLS-1$
-                e.printStackTrace();
+                Logger.error(e);
                 // btnStop.doClick();
             } catch (LineUnavailableException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
+                Logger.error(e);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
+                Logger.error(e);
             } catch (UnsupportedAudioFileException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
+                Logger.error(e);
             }
         };
         btnPlay.addActionListener(e -> {

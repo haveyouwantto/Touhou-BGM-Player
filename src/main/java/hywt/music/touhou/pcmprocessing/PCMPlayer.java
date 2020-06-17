@@ -1,6 +1,7 @@
 package hywt.music.touhou.pcmprocessing;
 
 import hywt.music.touhou.Constants;
+import hywt.music.touhou.Logger;
 import hywt.music.touhou.Playlist;
 import hywt.music.touhou.StringFormatter;
 import hywt.music.touhou.io.MusicInputStream;
@@ -104,7 +105,7 @@ public class PCMPlayer {
 
     private void play() throws IOException, InterruptedException {
         playback = 0;
-        musicIn.seek(0);
+        // musicIn.seek(0);
 
         int len;
         while (true) {
@@ -133,13 +134,12 @@ public class PCMPlayer {
     }
 
     public void seek(int pos) throws IOException {
-        if (game.format == GameFormat.WAVE_FILE || game.format == GameFormat.BGM_FOLDER
-                || game.format == GameFormat.THBGM) {
+        try {
             long pos2 = MusicSystem.roundByte(pos, af.getFrameSize());
             playback = pos2;
             musicIn.seek(pos2);
-        } else if (GameFormat.isTFPack(game.format)) {
-            // TODO: support ogg seeking
+        } catch (RuntimeException ex) {
+            Logger.log("Seeking not supported for " + musicIn.getClass());
         }
     }
 

@@ -1,6 +1,7 @@
 package hywt.music.touhou.gui;
 
 import hywt.music.touhou.Constants;
+import hywt.music.touhou.Logger;
 import hywt.music.touhou.StringFormatter;
 import hywt.music.touhou.pcmprocessing.PCMSaver;
 import hywt.music.touhou.savedata.BGMPath;
@@ -129,7 +130,7 @@ public class MusicExporter implements LazyLoader {
                             } else {
                                 PCMSaver.save(path, source, g, m, separate);
                             }
-                            System.out.println(Constants.bgmdata.games.get(i).music.get(j).toString());
+                            Logger.log(Constants.bgmdata.games.get(i).music.get(j).toString());
                         }
                     }
                 }
