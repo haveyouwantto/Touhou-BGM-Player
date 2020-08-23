@@ -64,6 +64,7 @@ public class PCMPlayer {
             throws IOException, LineUnavailableException, InterruptedException, UnsupportedAudioFileException {
 
         BGMPath bgmpath = BGMPath.load();
+        playing = true;
         pause = false;
         game = g;
         music = m;
@@ -98,9 +99,7 @@ public class PCMPlayer {
         volumeControl = (FloatControl) sdl.getControl(FloatControl.Type.MASTER_GAIN);
         this.setVolume(this.volume);
 
-        playing = true;
         setGame();
-
     }
 
     private void play() throws IOException, InterruptedException {
