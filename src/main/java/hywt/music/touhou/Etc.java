@@ -3,9 +3,9 @@ package hywt.music.touhou;
 import java.awt.*;
 
 public class Etc {
-    public static Color gen(final int i) {
-        final float v0 = i % 360;
-        return HSVtoRGB(v0, 1, 1);
+    public static Color gen(final float i) {
+        final float v0 = -i % 360;
+        return HSVtoRGB(v0 + 240, 1, 1);
     }
 
     public static Color HSVtoRGB(float h /* 0~360 degrees */, final float s /* 0 ~ 1.0 */,

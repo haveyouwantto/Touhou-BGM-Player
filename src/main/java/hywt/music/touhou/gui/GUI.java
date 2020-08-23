@@ -175,7 +175,7 @@ public class GUI {
         panel_4.add(lblLength);
 
         // 播放状态更新线程
-        Timer timer = new Timer(50, listener -> {
+        Timer timer = new Timer(16, listener -> {
             try {
                 if (updateProgressBar) {
                     Music m = pcmp.getMusic();

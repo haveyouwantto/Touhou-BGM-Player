@@ -42,9 +42,15 @@ public class WaveGraph extends JPanel {
                 int offset = i % 2 == 0 ? 128 : 384;
                 g.drawLine(i, ints[i] / 2 + offset, i + 2, ints[i + 2] / 2 + offset);
             }
-            for (i = 0; i < ints.length - 3; i += 2) {
-                g.setColor(Etc.gen(i << 1));
-                g.drawLine(ints[i] + 256, ints[i + 1] + 256, ints[i + 2] + 256, ints[i + 3] + 256);
+            for (i = 0; i < ints.length - 1; i += 2) {
+                //g.setColor(Etc.gen(i << 1));
+                //g.drawLine(ints[i] + 256, ints[i + 1] + 256, ints[i + 2] + 256, ints[i + 3] + 256);
+                int x = ints[i];
+                int y = ints[i + 1];
+                float distance = Math.max(Math.abs(x), Math.abs(y)); // Chebyshev distance
+                g.setColor(Etc.gen(distance));
+                float angle = (float) (i / (float) ints.length * 2 * Math.PI);
+                g.drawLine(256, 256, (int) (distance * (Math.cos(angle))) + 256, (int) (distance * (Math.sin(angle))) + 256);
             }
             g.setColor(Color.white);
             g.fillRect(0, 512, (int) (progress * 512), 5);
