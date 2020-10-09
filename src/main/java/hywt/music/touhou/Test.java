@@ -1,14 +1,11 @@
 package hywt.music.touhou;
 
-import hywt.music.touhou.io.tfpack.TFPack;
-import hywt.music.touhou.io.tfpack.TFPackInputStream;
+import hywt.music.touhou.io.MusicSystem;
 import hywt.music.touhou.savedata.BGMPath;
 import hywt.music.touhou.savedata.Game;
 import hywt.music.touhou.savedata.Music;
-import net.sourceforge.javaflacencoder.FLACEncoder;
-import net.sourceforge.javaflacencoder.FLACFileWriter;
 
-import javax.sound.sampled.*;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,18 +17,7 @@ public class Test {
             Game g = Constants.bgmdata.games.get(7);
             Music m = g.music.get(0);
             BGMPath bgmpath = BGMPath.load();
-            TFPack tfp = new TFPack(g, m, new File(bgmpath.path.get(g.no)));
-            TFPackInputStream tfs = tfp.getInputStream();
-            printInputStream(tfs);
-            AudioInputStream ais =
-                    new AudioInputStream(g.format.getInputStream(g, m, new File(bgmpath.path.get(g.no))), new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, m.sampleRate, 16, 2, 4,
-                            m.sampleRate, false), 88200);
-            printInputStream(ais, 1);
-            AudioSystem.write(
-                    ais
-                    , AudioFileFormat.Type.WAVE, new File("test.wav"));
-            Logger.log("test");
-            Logger.error(new Exception("msg"));
+            MusicSystem.getInputStream(g, m, new File(bgmpath.path.get(g.no)));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             Logger.error(e);

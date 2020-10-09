@@ -19,7 +19,7 @@ public class MusicSystem {
             throws IOException, UnsupportedAudioFileException {
         Class<? extends MusicInputStream> c = Constants.formatMap.get("touhou_bgm_player:wave_files");
         try {
-            Constructor<? extends MusicInputStream> constructor = c.getConstructor();
+            Constructor<? extends MusicInputStream> constructor = c.getConstructor(Game.class, Music.class, File.class);
             return constructor.newInstance(g, m, f);
         } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             Logger.error(e);

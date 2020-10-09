@@ -78,7 +78,6 @@ public class GUI {
         frmTouhouBgmPlayer.setBounds(100, 100, 440, 320);
         frmTouhouBgmPlayer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
         // 初始化
         final Notification not = new Notification(frmTouhouBgmPlayer);
 
