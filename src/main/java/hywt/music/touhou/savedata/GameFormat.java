@@ -54,7 +54,14 @@ public enum GameFormat {
     };
 
     public static boolean isTFPack(GameFormat format) {
-        return format.ordinal() >= 2;
+        switch (format) {
+            case TFPACK_1:
+            case TFPACK_2:
+            case TFPACK_3:
+                return true;
+            default:
+                return false;
+        }
     }
 
     GameFormat(final String name, final int ordinal) {
