@@ -8,3 +8,4 @@ dist/
 TH*/
 *.jar
 test.dat
+/cover.jpg

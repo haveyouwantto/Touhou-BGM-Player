@@ -1,10 +1,6 @@
 package hywt.music.touhou.gui;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
-import com.formdev.flatlaf.FlatLaf;
-import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
-import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import hywt.music.touhou.Constants;
 import hywt.music.touhou.Logger;
 import hywt.music.touhou.StringFormatter;
@@ -78,6 +74,8 @@ public class GUI {
      */
     private void initialize() throws UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel(new FlatDarculaLaf());
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        JDialog.setDefaultLookAndFeelDecorated(true);
         label.setHorizontalAlignment(SwingConstants.CENTER);
         frmTouhouBgmPlayer = new BaseFrame();
         frmTouhouBgmPlayer.setTitle(Messages.getString("GUI.title")); //$NON-NLS-1$
