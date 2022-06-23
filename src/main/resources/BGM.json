@@ -4836,7 +4836,7 @@
       "format": "THBGM",
       "no": "TH18",
       "title": "東方虹龍洞 ～ Unconnected Marketeers.",
-      "fileName": "thbgm_tr.dat",
+      "fileName": "thbgm.dat",
       "artist": [
         "上海アリス幻樂団"
       ],
@@ -4898,11 +4898,91 @@
           "loopLength": 22175488
         },
         {
-          "title": "プレイヤーズスコア",
+          "title": "廃れゆく産業遺構",
           "sampleRate": 44100,
           "preludePos": 148820464,
+          "preludeLength": 5291168,
+          "loopPos": 154111632,
+          "loopLength": 31687552
+        },
+        {
+          "title": "神代鉱石",
+          "sampleRate": 44100,
+          "preludePos": 185799184,
+          "preludeLength": 2119680,
+          "loopPos": 187918864,
+          "loopLength": 24527100
+        },
+        {
+          "title": "待ちわびた逢魔が時",
+          "sampleRate": 44100,
+          "preludePos": 212445964,
+          "preludeLength": 706208,
+          "loopPos": 213152172,
+          "loopLength": 30019776
+        },
+        {
+          "title": "星降る天魔の山",
+          "sampleRate": 44100,
+          "preludePos": 243171948,
+          "preludeLength": 646880,
+          "loopPos": 243818828,
+          "loopLength": 24930912
+        },
+        {
+          "title": "ルナレインボー",
+          "sampleRate": 44100,
+          "preludePos": 268749740,
+          "preludeLength": 725056,
+          "loopPos": 269474796,
+          "loopLength": 28348928
+        },
+        {
+          "title": "あの賑やかな市場は今どこに　～ Immemorial Marketeers\n",
+          "sampleRate": 44100,
+          "preludePos": 297823724,
+          "preludeLength": 4557728,
+          "loopPos": 302381452,
+          "loopLength": 39398784
+        },
+        {
+          "title": "嵐の後の日曜日",
+          "sampleRate": 44100,
+          "preludePos": 341780236,
+          "preludeLength": 3743744,
+          "loopPos": 345523980,
+          "loopLength": 6548480
+        },
+        {
+          "title": "虹色の世界",
+          "sampleRate": 44100,
+          "preludePos": 352072460,
+          "preludeLength": 8984064,
+          "loopPos": 361056524,
+          "loopLength": 4179584
+        },
+        {
+          "title": "幻想の地下大線路網",
+          "sampleRate": 44100,
+          "preludePos": 365236108,
+          "preludeLength": 876032,
+          "loopPos": 366112140,
+          "loopLength": 29349376
+        },
+        {
+          "title": "龍王殺しのプリンセス",
+          "sampleRate": 44100,
+          "preludePos": 395461516,
+          "preludeLength": 995520,
+          "loopPos": 396457036,
+          "loopLength": 26895328
+        },
+        {
+          "title": "プレイヤーズスコア",
+          "sampleRate": 44100,
+          "preludePos": 423352364,
           "preludeLength": 1879240,
-          "loopPos": 150699704,
+          "loopPos": 425231604,
           "loopLength": 4861944
         }
       ]

@@ -58,7 +58,7 @@ public class BGMGen {
     }
 
     public static void main(String[] args) throws IOException {
-        BGMGen gen = new BGMGen(new File("D:\\Games\\Touhou 18 - Unconnected Marketeers\\thbgm_tr.fmt"));
+        BGMGen gen = new BGMGen(new File("D:\\Games\\Touhou 18 - Unconnected Marketeers\\thbgm.fmt"));
         String json;
         int i = 0;
         while ((json = gen.read(i)) != null) {

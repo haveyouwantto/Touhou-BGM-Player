@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
-archivesBaseName = 'someJar'
-version = '1.0-SNAPSHOT' 
+archivesBaseName = 'Touhou Music Player'
+version = '1.1' 
  
 repositories {
     maven{ url'http://maven.aliyun.com/nexus/content/groups/public/' }
@@ -9,9 +9,14 @@ repositories {
 }
  
 jar {
-    manifest {
-        attributes 'Main-Class': 'com.test.Run'
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+    manifest {
+        attributes 'Main-Class': 'hywt.music.touhou.gui.GUI'
+    }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    destinationDir = file(".")
 }
  
 dependencies {
@@ -19,5 +24,5 @@ dependencies {
    implementation "com.googlecode.soundlibs:vorbisspi:1.0.3.3"
     compile group: 'net.sourceforge.javaflacencoder', name: 'java-flac-encoder', version: '0.3.7'
     compile group: 'org', name: 'jaudiotagger', version: '2.0.3'
-
+    implementation group: 'com.formdev', name: 'flatlaf', version: '1.0'
 }

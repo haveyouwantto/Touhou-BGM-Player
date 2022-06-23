@@ -1,5 +1,10 @@
 package hywt.music.touhou.gui;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
+import com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel;
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import hywt.music.touhou.Constants;
 import hywt.music.touhou.Logger;
 import hywt.music.touhou.StringFormatter;
@@ -64,14 +69,15 @@ public class GUI {
     /**
      * Create the application.
      */
-    public GUI() {
+    public GUI() throws UnsupportedLookAndFeelException {
         initialize();
     }
 
     /**
      * Initialize the contents of the frame.
      */
-    private void initialize() {
+    private void initialize() throws UnsupportedLookAndFeelException {
+        UIManager.setLookAndFeel(new FlatDarculaLaf());
         label.setHorizontalAlignment(SwingConstants.CENTER);
         frmTouhouBgmPlayer = new BaseFrame();
         frmTouhouBgmPlayer.setTitle(Messages.getString("GUI.title")); //$NON-NLS-1$
@@ -206,7 +212,7 @@ public class GUI {
         JPanel musicSelectionPanel = new JPanel();
         musicSelectionPanel.setBorder(
                 new TitledBorder(UIManager.getBorder("TitledBorder.border"), Messages.getString("GUI.musicSelection"), //$NON-NLS-1$ //$NON-NLS-2$
-                        TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+                        TitledBorder.CENTER, TitledBorder.TOP, null, null));
         controlPanel.add(musicSelectionPanel);
         musicSelectionPanel.setLayout(new GridLayout(0, 1, 0, 4));
 

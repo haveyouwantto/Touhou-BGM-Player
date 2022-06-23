@@ -13,6 +13,6 @@ public class BaseFrame extends JFrame {
     public BaseFrame() {
         super();
         this.setIconImage(Toolkit.getDefaultToolkit()
-                .getImage(MusicExporter.class.getResource("/assets/hywt/music/touhou/icon.png"))); //$NON-NLS-1$
+                .getImage(ClassLoader.getSystemResource("icon.png"))); //$NON-NLS-1$
     }
 }

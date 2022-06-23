@@ -27,6 +27,8 @@ import javax.sound.sampled.AudioSystem;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Objects;
 
 public class PCMSaver {
     public static void save(File outFolder, String thbgm, Game game, Music music, boolean separate) {
@@ -128,7 +130,8 @@ public class PCMSaver {
         tag.setField(FieldKey.TITLE, music.title);
         tag.setField(FieldKey.TRACK, String.valueOf(game.music.indexOf(music) + 1));
         try {
-            tag.setField(Artwork.createArtworkFromFile(new File("Cover/" + game.no + ".jpg")));
+            Files.copy(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream("Cover/" + game.no + ".jpg")), new File("cover.jpg").toPath());
+            tag.setField(Artwork.createArtworkFromFile(new File("cover.jpg")));
         } catch (IOException e) {
             Logger.error(e);
         }

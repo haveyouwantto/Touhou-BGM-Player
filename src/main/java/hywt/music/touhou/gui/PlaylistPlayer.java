@@ -68,7 +68,7 @@ public class PlaylistPlayer implements LazyLoader {
         frame.getContentPane().add(panel_2, BorderLayout.NORTH);
         panel_2.setBorder(
                 new TitledBorder(UIManager.getBorder("TitledBorder.border"), "\u9009\u62E9\u64AD\u653E\u5217\u8868",
-                        TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+                        TitledBorder.CENTER, TitledBorder.TOP, null, null));
 
         comboBox = new JComboBox<>();
         comboBox.addActionListener(e -> {

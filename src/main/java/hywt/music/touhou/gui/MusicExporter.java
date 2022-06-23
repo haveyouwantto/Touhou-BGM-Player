@@ -54,7 +54,7 @@ public class MusicExporter implements LazyLoader {
         gameScrollPane.setViewportView(gamePanel);
         gamePanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), //$NON-NLS-1$
                 Messages.getString("MusicExporter.selectGame"), TitledBorder.CENTER, TitledBorder.TOP, null, //$NON-NLS-1$
-                new Color(0, 0, 0)));
+                null));
 
         gamePanel.setLayout(new GridLayout(0, 1, 0, 0));
 
@@ -67,7 +67,7 @@ public class MusicExporter implements LazyLoader {
         musicScrollPane.setViewportView(musicPanel);
         musicPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), //$NON-NLS-1$
                 Messages.getString("MusicExporter.selectMusic"), TitledBorder.CENTER, TitledBorder.TOP, null, //$NON-NLS-1$
-                new Color(0, 0, 0)));
+                null));
         musicPanel.setLayout(new BoxLayout(musicPanel, BoxLayout.Y_AXIS));
 
         JPanel exportPanel = new JPanel();
@@ -145,7 +145,7 @@ public class MusicExporter implements LazyLoader {
             Game g = Constants.bgmdata.games.get(i);
 
             innerMusicPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), //$NON-NLS-1$
-                    g.toString(), TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+                    g.toString(), TitledBorder.CENTER, TitledBorder.TOP, null, null));
             innerMusicPanel.setLayout(new GridLayout(0, 1, 0, 0));
             JPanel fastSelect = new JPanel();
             fastSelect.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));

@@ -7,13 +7,16 @@ import hywt.music.touhou.savedata.Game;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class JSONLoader {
 
     public static BGMData readBGMData() throws IOException {
         Gson g = new Gson();
-        String json = FileReader.read(new File("BGM.json"));
+        Reader json = new InputStreamReader(Objects.requireNonNull(ClassLoader.getSystemResourceAsStream("BGM.json")));
         BGMData bgmData = g.fromJson(json, BGMData.class);
         bgmData.order = new ArrayList<>();
         for (int i = 0; i < bgmData.games.size(); i++) {
